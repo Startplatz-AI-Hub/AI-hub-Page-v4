@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="STARTPLATZ AI Hub - Dein Weg in die KI-Zukunft. Geförderte Weiterbildungen, praxisnahe Bootcamps und Zertifizierungen in Köln & Düsseldorf.">
+  <meta name="theme-color" content="#6366F1">
+  <title>STARTPLATZ AI Hub | KI-Weiterbildung & Bootcamps</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236366F1' width='100' height='100' rx='16'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EAI%3C/text%3E%3C/svg%3E">
+
+
+
+  <!-- External Design System -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Page Specific Styles -->
+  <link rel="stylesheet" href="css/landing.css">
+
+  <style>
+    /* GLOBAL CURSOR GLOW - INLINED FOR RELIABILITY */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.15), transparent 40%);
+      opacity: 0;
+      transition: opacity 1s ease;
+      mix-blend-mode: normal;
+    }
+
+    body:hover .cursor-glow {
+      opacity: 1;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Video Background -->
+  <div class="video-bg-container">
+    <video class="video-bg" autoplay muted loop playsinline>
+      <source
+        src="https://res.cloudinary.com/startplatz/video/upload/v1767670067/ai-hub/website/Animate_1080p_202601060420.mp4"
+        type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Global Cursor Glow Effect -->
+  <div class="cursor-glow"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <img src="https://res.cloudinary.com/startplatz/image/upload/v1767628988/ai-hub/website/aihublogo02.png"
+      alt="AI Hub" class="preloader-logo">
+    <div class="preloader-bar">
+      <div class="preloader-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar" id="scrollProgress"></div>
+  </div>
+
+  <!-- Removed distracting global grid overlay -->
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#"><img src="https://res.cloudinary.com/startplatz/image/upload/v1709845467/ai-hub/AI-Hub-Logo.png"
+          alt="STARTPLATZ AI Hub" class="logo"></a>
+      <nav class="nav">
+
+        <!-- Mega Menu: Weiterbildungen -->
+        <div class="nav-item has-dropdown">
+          <a href="#programs" class="nav-link">Weiterbildungen <i class="ph-bold ph-caret-down"></i></a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <!-- Feature Card (Left) -->
+              <div class="mega-menu-feature">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png"
+                  alt="Feature">
+                <div class="mega-menu-feature-content">
+                  <h4>Dein Start in KI</h4>
+                  <p>Lerne von den Besten und starte deine Karriere.</p>
+                  <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                      class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                </div>
+              </div>
+              <!-- Links (Right) -->
+              <div class="mega-menu-lists">
+                <div class="mega-menu-col">
+                  <h5>Für Arbeitssuchende</h5>
+                  <ul class="mega-list">
+                    <li><a href="#">KI-Manager Vollzeit</a></li>
+                    <li><a href="#">KI-Manager Teilzeit</a></li>
+                    <li><a href="#">AI-Automation Vollzeit</a></li>
+                    <li><a href="#">AI-Automation Teilzeit</a></li>
+                    <li><a href="#">KI-Start</a></li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>Für Selbstzahler</h5>
+                  <ul class="mega-list">
+                    <li><a href="#">KI-Manager Vollzeit</a></li>
+                    <li><a href="#">KI-Manager Teilzeit</a></li>
+                    <li><a href="#">AI-Automation Vollzeit</a></li>
+                    <li><a href="#">AI-Automation Teilzeit</a></li>
+                    <li><a href="#">KI-Start</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown: Für Unternehmen -->
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link">Für Unternehmen <i class="ph-bold ph-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <ul class="dropdown-list">
+              <li><a href="#">QCG-geförderte Weiterbildungen</a></li>
+              <li><a href="#">AI-Automation für Unternehmen</a></li>
+              <li><a href="#">Inhouse-Schulungen & Keynotes</a></li>
+              <li><a href="#">Talentpool & Recruiting</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Dropdown: Förderung -->
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link">Förderung <i class="ph-bold ph-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <ul class="dropdown-list">
+              <li><a href="#">Für Privatpersonen (Bildungsgutschein)</a></li>
+              <li><a href="#">Für Unternehmen (QCG)</a></li>
+              <li><a href="#">Für Arbeitsvermittler</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#events" class="nav-link">Events</a>
+
+        <!-- Dropdown: Wissen -->
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link">Wissen <i class="ph-bold ph-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <ul class="dropdown-list">
+              <li><a href="#">KI & neue Jobprofile</a></li>
+              <li><a href="#">Inhalte KI-Manager</a></li>
+              <li><a href="#">Inhalte AI-Automation</a></li>
+              <li><a href="#">Blog / Artikel</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Dropdown: Über Uns -->
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link">Über uns <i class="ph-bold ph-caret-down"></i></a>
+          <div class="dropdown-menu">
+            <ul class="dropdown-list">
+              <li><a href="#">Mission</a></li>
+              <li><a href="#">Team</a></li>
+              <li><a href="#">Partner & Netzwerke</a></li>
+              <li><a href="#">Kontakt</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </nav>
+      <div class="header-cta">
+        <a href="#contact" class="btn btn-primary btn-sm">Beratung buchen</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"><canvas id="heroGridCanvas"></canvas></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="scramble-badge"><span class="scramble-text" data-scramble>BILDUNGSGUTSCHEIN_AKTIV</span></div>
+        <h1 class="char-appear-demo" data-char-appear>Starte deine <br> KI-Karriere jetzt.</h1>
+        <p class="hero-subtitle">Praxisnahe Bootcamps und Zertifizierungen in Köln & Düsseldorf. Mit Experten lernen,
+          mit der Community wachsen.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary btn-lg"><i class="ph-fill ph-envelope-simple"></i> Jetzt
+            Info-Material</a>
+          <a href="#quiz" class="btn btn-outline btn-lg"><i class="ph-fill ph-brain"></i> Wissens-Test</a>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="hero-card frost-edge corner-stitch">
+          <span class="stitch-tl"></span><span class="stitch-tr"></span><span class="stitch-bl"></span><span
+            class="stitch-br"></span>
+          <div class="hero-card-badge"><i class="ph-fill ph-rocket"></i> Nächster Start</div>
+          <h3 class="hero-card-title">AI Prompt Engineering Bootcamp</h3>
+          <p class="hero-card-date"><i class="ph-fill ph-calendar"></i> 03. Februar 2026 · Köln</p>
+          <img
+            src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png"
+            alt="Bootcamp" class="hero-card-image">
+          <div class="hero-card-features">
+            <div class="hero-card-feature"><i class="ph-fill ph-check-circle"></i> 8 Wochen intensives Training</div>
+            <div class="hero-card-feature"><i class="ph-fill ph-check-circle"></i> Zertifizierung inklusive</div>
+            <div class="hero-card-feature"><i class="ph-fill ph-check-circle"></i> 100% Bildungsgutschein-fähig</div>
+          </div>
+          <a href="#apply" class="btn btn-primary" style="width:100%;">Jetzt Platz sichern</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Velocity Marquee - Partners -->
+  <section class="velocity-marquee-section" id="partners">
+    <div class="velocity-marquee-wrap">
+      <div class="velocity-marquee-inner" id="velocityMarquee">
+        <div class="velocity-marquee-part">
+          <span class="velocity-marquee-text">UNSERE PARTNER</span>
+          <span class="velocity-marquee-text outline">MICROSOFT</span>
+          <span class="velocity-marquee-text">GOOGLE</span>
+          <span class="velocity-marquee-text outline">AWS</span>
+          <span class="velocity-marquee-text">OPENAI</span>
+          <span class="velocity-marquee-text outline">NVIDIA</span>
+          <span class="velocity-marquee-text">IHK</span>
+          <span class="velocity-marquee-text outline">AGENTUR FÜR ARBEIT</span>
+        </div>
+        <div class="velocity-marquee-part">
+          <span class="velocity-marquee-text">UNSERE PARTNER</span>
+          <span class="velocity-marquee-text outline">MICROSOFT</span>
+          <span class="velocity-marquee-text">GOOGLE</span>
+          <span class="velocity-marquee-text outline">AWS</span>
+          <span class="velocity-marquee-text">OPENAI</span>
+          <span class="velocity-marquee-text outline">NVIDIA</span>
+          <span class="velocity-marquee-text">IHK</span>
+          <span class="velocity-marquee-text outline">AGENTUR FÜR ARBEIT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Intro Banner - Character Appear -->
+  <section class="programs-intro-banner">
+    <div class="container">
+      <h2 class="programs-intro-title" data-char-appear>Für jeden das passende Angebot</h2>
+      <p class="programs-intro-subtitle">Entdecke, wie der STARTPLATZ AI Hub dir helfen kann, deine KI-Ziele zu
+        erreichen.</p>
+    </div>
+  </section>
+
+  <!-- Target Audience Cards - BOLD with Flowing Stitch -->
+  <section class="section section-alt" id="programs">
+    <div class="container">
+      <div class="audience-grid">
+
+        <!-- ARBEITSSUCHENDE Card -->
+        <div class="audience-card" id="arbeitssuchend">
+          <span class="flow-line flow-top"></span>
+          <span class="flow-line flow-right"></span>
+          <span class="flow-line flow-bottom"></span>
+          <span class="flow-line flow-left"></span>
+          <div class="audience-card-inner">
+            <div class="audience-card-image">
+              <span class="audience-card-badge purple">100% Gefördert</span>
+              <img
+                src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png"
+                alt="Arbeitssuchende">
+            </div>
+            <div class="audience-card-content">
+              <div class="audience-card-header">
+                <h3>Arbeitssuchende</h3>
+              </div>
+              <p class="audience-main">Starte deine Karriere in der KI-Branche mit geförderten Weiterbildungen.</p>
+              <ul class="audience-features">
+                <li><i class="ph-fill ph-check"></i> 100% gefördert durch Arbeitsagentur</li>
+                <li><i class="ph-fill ph-check"></i> Praxisnahe Projekte</li>
+                <li><i class="ph-fill ph-check"></i> Karriereberatung inklusive</li>
+              </ul>
+              <a href="#contact" class="audience-cta primary"><i class="ph-fill ph-arrow-right"></i> Förderung
+                prüfen</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BERUFSTÄTIGE Card -->
+        <div class="audience-card emerald-accent" id="berufstaetig">
+          <span class="flow-line flow-top"></span>
+          <span class="flow-line flow-right"></span>
+          <span class="flow-line flow-bottom"></span>
+          <span class="flow-line flow-left"></span>
+          <div class="audience-card-inner">
+            <div class="audience-card-image">
+              <span class="audience-card-badge emerald">Berufsbegleitend</span>
+              <img
+                src="https://res.cloudinary.com/startplatz/image/upload/v1767662288/ai-hub/website/website_stock_images/EVENT-04.png"
+                alt="Berufstätige">
+            </div>
+            <div class="audience-card-content">
+              <div class="audience-card-header">
+                <h3>Berufstätige</h3>
+              </div>
+              <p class="audience-main">Erweitere deine Skills und bleibe relevant in der digitalen Transformation.</p>
+              <ul class="audience-features">
+                <li><i class="ph-fill ph-check"></i> Flexible Abendkurse</li>
+                <li><i class="ph-fill ph-check"></i> Zertifizierte Abschlüsse</li>
+                <li><i class="ph-fill ph-check"></i> Netzwerk mit Experten</li>
+              </ul>
+              <a href="#contact" class="audience-cta emerald"><i class="ph-fill ph-arrow-right"></i> Kurse entdecken</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNTERNEHMEN Card -->
+        <div class="audience-card coral-accent" id="unternehmen">
+          <span class="flow-line flow-top"></span>
+          <span class="flow-line flow-right"></span>
+          <span class="flow-line flow-bottom"></span>
+          <span class="flow-line flow-left"></span>
+          <div class="audience-card-inner">
+            <div class="audience-card-image">
+              <span class="audience-card-badge coral">Inhouse</span>
+              <img
+                src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png"
+                alt="Unternehmen">
+            </div>
+            <div class="audience-card-content">
+              <div class="audience-card-header">
+                <h3>Unternehmen</h3>
+              </div>
+              <p class="audience-main">Transformiere dein Team mit maßgeschneiderten KI-Trainings.</p>
+              <ul class="audience-features">
+                <li><i class="ph-fill ph-check"></i> Individuelle Curricula</li>
+                <li><i class="ph-fill ph-check"></i> Inhouse-Trainings</li>
+                <li><i class="ph-fill ph-check"></i> Change Management Support</li>
+              </ul>
+              <a href="#contact" class="audience-cta coral"><i class="ph-fill ph-arrow-right"></i> Beratung anfragen</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MENTORS SECTION - Infinite Parallax Slider -->
+  <section class="parallax-slider-section" id="team">
+    <div class="container">
+      <div class="mentors-grid">
+        <!-- Left: Text Content -->
+        <div class="mentors-content">
+          <span class="section-badge"><i class="ph-fill ph-users-three"></i> Unser Netzwerk</span>
+          <h2 class="section-title">Experten, die <span class="highlight">begeistern</span></h2>
+          <p class="section-subtitle">Über 150 Dozenten und Mentoren aus der Praxis. Führende KI-Experten, Tech-Pioniere
+            und erfahrene Coaches.</p>
+
+          <div class="slider-nav-controls">
+            <button class="slider-btn" id="sliderPrev"><i class="ph-bold ph-caret-left"></i></button>
+            <button class="slider-btn" id="sliderNext"><i class="ph-bold ph-caret-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Right: Borderless Slider -->
+        <div class="mentors-slider-container borderless">
+          <div class="mentors-slider-wrap">
+            <div class="parallax-track" id="parallaxTrack">
+              <div class="parallax-item">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714994/ai-hub/website/website_stock_images/Jakow_website_portait.png"
+                  alt="Jakow Smirin">
+                <div class="parallax-item-caption">
+                  <h4>Jakow Smirin</h4>
+                  <p>AI Hub Co-Founder</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714990/ai-hub/website/website_stock_images/Lukas_website_portrait.png"
+                  alt="Lukas Stratmann">
+                <div class="parallax-item-caption">
+                  <h4>Lukas Stratmann</h4>
+                  <p>AI Strategy Lead</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714988/ai-hub/website/website_stock_images/Lorenz_website_portrait.png"
+                  alt="Lorenz Gräf">
+                <div class="parallax-item-caption">
+                  <h4>Lorenz Gräf</h4>
+                  <p>STARTPLATZ Founder</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714992/ai-hub/website/website_stock_images/Martin_website_portrait.png"
+                  alt="Martin Greguletz">
+                <div class="parallax-item-caption">
+                  <h4>Martin Greguletz</h4>
+                  <p>Program Director</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767662292/ai-hub/website/website_stock_images/MENTOR-04.png"
+                  alt="Dr. Sarah Weber">
+                <div class="parallax-item-caption">
+                  <h4>Dr. Sarah Weber</h4>
+                  <p>AI Research Lead</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img
+                  src="https://res.cloudinary.com/startplatz/image/upload/v1767662238/ai-hub/website/website_stock_images/MENTOR-05.png"
+                  alt="Nina Hoffmann">
+                <div class="parallax-item-caption">
+                  <h4>Nina Hoffmann</h4>
+                  <p>ML Engineering Coach</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Cards below -->
+      <div style="max-width: 900px; margin: 48px auto 0; padding: 0 32px;">
+        <div class="location-cards" style="margin-top: 0;">
+          <div class="location-card frost-edge corner-stitch-outward">
+            <span class="stitch-tl"></span><span class="stitch-tr"></span><span class="stitch-bl"></span><span
+              class="stitch-br"></span>
+            <div class="location-header">
+              <span class="location-name">Düsseldorf</span>
+              <i class="ph-fill ph-map-pin"></i>
+            </div>
+            <p>Herzogstraße 15, 40217 Düsseldorf. Direkt im Herzen der Stadt mit bester Anbindung.</p>
+          </div>
+          <div class="location-card frost-edge corner-stitch-outward">
+            <span class="stitch-tl"></span><span class="stitch-tr"></span><span class="stitch-bl"></span><span
+              class="stitch-br"></span>
+            <div class="location-header">
+              <span class="location-name">Köln</span>
+              <i class="ph-fill ph-map-pin"></i>
+            </div>
+            <p>Im Mediapark 5, 50670 Köln. Moderne Räume im pulsierenden Medienviertel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPIs Section -->
+  <section class="section section-dark kpi-section">
+    <div class="container">
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <span class="kpi-number" data-target="2000" data-suffix="+">0</span>
+          <span class="kpi-label"><i class="ph-fill ph-users"></i> Eventteilnehmer</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-number" data-target="95" data-suffix="%">0</span>
+          <span class="kpi-label"><i class="ph-fill ph-smiley"></i> Zufriedenheit</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-number" data-target="150" data-suffix="+">0</span>
+          <span class="kpi-label"><i class="ph-fill ph-certificate"></i> Dozenten</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-number" data-target="50" data-suffix="+">0</span>
+          <span class="kpi-label"><i class="ph-fill ph-briefcase"></i> Partner-Unternehmen</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Certificates -->
+  <section class="section">
+    <div class="container">
+      <div class="vision-certs-grid">
+        <div class="vision-box frost-edge">
+          <span class="section-badge"><i class="ph-fill ph-eye"></i> Unsere Vision</span>
+          <h3>KI-Kompetenz für alle</h3>
+          <p>Wir glauben, dass künstliche Intelligenz keine Hürde, sondern eine Chance ist. Unser Ziel: Jeden Menschen
+            befähigen, KI sinnvoll einzusetzen – für eine bessere Zukunft in der Arbeitswelt.</p>
+        </div>
+        <div class="certs-box frost-edge">
+          <span class="section-badge"><i class="ph-fill ph-medal"></i> Zertifikate</span>
+          <h3>Anerkannte Abschlüsse</h3>
+          <div class="certs-logos">
+            <div class="cert-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+                alt="Microsoft"><span>Microsoft</span></div>
+            <div class="cert-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+                alt="Google"><span>Google</span></div>
+            <div class="cert-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                alt="AWS"><span>AWS</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Programs & Events - Enterprise 3-Column Layout from Design System -->
+  <section class="section" id="events">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="programs-section-header">
+        <div style="max-width: 800px; margin: 0 auto; padding: 0 var(--space-4);">
+          <div class="badge badge-soft" style="margin-bottom: 20px;">
+            <i class="ph-fill ph-calendar-check"></i>
+            2026 Season
+          </div>
+          <h2>AI Programs <span style="color: var(--color-primary);">& Events</span></h2>
+          <p class="subtitle">Workshops, Bootcamps, Masterclasses und Meetups für jeden Level</p>
+        </div>
+      </div>
+
+      <!-- 3-Column Enterprise Layout -->
+      <div class="programs-grid">
+
+        <!-- Sidebar Filters -->
+        <div class="programs-sidebar">
+          <div class="programs-filter-group">
+            <div class="programs-filter-label">
+              <i class="ph ph-funnel"></i> Filter by Type
+            </div>
+            <div class="programs-filter-tabs">
+              <button class="program-filter-tab active">All Programs</button>
+              <button class="program-filter-tab">Bootcamps</button>
+              <button class="program-filter-tab">Workshops</button>
+              <button class="program-filter-tab">Masterclasses</button>
+              <button class="program-filter-tab">Meetups</button>
+            </div>
+          </div>
+
+          <div class="programs-filter-group">
+            <div class="programs-filter-label">
+              <i class="ph ph-graduation-cap"></i> Filter by Level
+            </div>
+            <div class="programs-filter-tabs">
+              <button class="program-filter-tab active">All Levels</button>
+              <button class="program-filter-tab">Beginner</button>
+              <button class="program-filter-tab">Advanced</button>
+              <button class="program-filter-tab">Expert</button>
+            </div>
+          </div>
+
+          <div class="programs-sidebar-stats">
+            <div>
+              <div class="sidebar-stat-number">12</div>
+              <div class="sidebar-stat-label">Programs</div>
+            </div>
+            <div>
+              <div class="sidebar-stat-number">Q1</div>
+              <div class="sidebar-stat-label">2026</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Images Column -->
+        <div class="programs-images">
+          <div class="program-image">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png"
+              alt="Program">
+            <div class="program-image-overlay">BOOTCAMP</div>
+          </div>
+          <div class="program-image">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png"
+              alt="Program">
+            <div class="program-image-overlay">WORKSHOP</div>
+          </div>
+          <div class="program-image">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png"
+              alt="Program">
+            <div class="program-image-overlay">MEETUP</div>
+          </div>
+          <div class="program-image">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662288/ai-hub/website/website_stock_images/EVENT-04.png"
+              alt="Program">
+            <div class="program-image-overlay">MASTERCLASS</div>
+          </div>
+        </div>
+
+        <!-- Event Cards -->
+        <div class="programs-cards">
+          <!-- Featured Event -->
+          <div class="program-card program-card-featured">
+            <div class="program-tags">
+              <span class="program-tag program-tag-purple">Featured</span>
+              <span class="program-tag program-tag-filled">Bootcamp</span>
+              <span class="program-tag program-tag-gold">AZAV</span>
+            </div>
+            <h3 class="program-title">KI-Manager Bootcamp — Frühjahr 2026</h3>
+            <p class="program-description">12-wöchige Vollzeit-Weiterbildung zum zertifizierten KI-Manager. 100%
+              förderfähig über Bildungsgutschein.</p>
+            <div class="program-meta">
+              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Feb 3 – Apr 25</span>
+              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln + Online</span>
+              <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 12 Wochen</span>
+            </div>
+            <a href="#" class="program-cta">Jetzt Bewerben <i class="ph-fill ph-arrow-right"></i></a>
+          </div>
+
+          <!-- Event 1: Workshop -->
+          <div class="program-card">
+            <div class="program-tags">
+              <span class="program-tag program-tag-emerald">Workshop</span>
+              <span class="program-tag program-tag-outline">1 Tag</span>
+            </div>
+            <h3 class="program-title">ChatGPT für Business</h3>
+            <p class="program-description">Praktische Anwendungen von ChatGPT für Marketing, Sales und Produktivität.
+            </p>
+            <div class="program-meta">
+              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 15. Feb 2026</span>
+              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Düsseldorf</span>
+            </div>
+            <a href="#" class="program-cta">Anmelden <i class="ph-fill ph-arrow-right"></i></a>
+          </div>
+
+          <!-- Event 2: Meetup -->
+          <div class="program-card">
+            <div class="program-tags">
+              <span class="program-tag program-tag-filled">Meetup</span>
+              <span class="program-tag program-tag-outline">Kostenlos</span>
+            </div>
+            <h3 class="program-title">AI Meetup Köln #47</h3>
+            <p class="program-description">Networking und Talks zu aktuellen KI-Trends. Jeden 4. Donnerstag im Monat.
+            </p>
+            <div class="program-meta">
+              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 22. Feb 2026</span>
+              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln</span>
+            </div>
+            <a href="#" class="program-cta">Teilnehmen <i class="ph-fill ph-arrow-right"></i></a>
+          </div>
+
+          <!-- Event 3: Deep Dive -->
+          <div class="program-card">
+            <div class="program-tags">
+              <span class="program-tag program-tag-purple">Deep Dive</span>
+              <span class="program-tag program-tag-outline">2 Tage</span>
+            </div>
+            <h3 class="program-title">Machine Learning Basics</h3>
+            <p class="program-description">Von der Theorie zur Praxis: Lerne die Grundlagen von ML und trainiere dein
+              erstes Modell.</p>
+            <div class="program-meta">
+              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 1–2. März 2026</span>
+              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln</span>
+            </div>
+            <a href="#" class="program-cta">Anmelden <i class="ph-fill ph-arrow-right"></i></a>
+          </div>
+
+          <!-- Event 4: Talk -->
+          <div class="program-card">
+            <div class="program-tags">
+              <span class="program-tag program-tag-filled">Talk</span>
+              <span class="program-tag program-tag-outline">Online</span>
+            </div>
+            <h3 class="program-title">AI Trends 2026 – Was kommt als nächstes?</h3>
+            <p class="program-description">Keynote von führenden KI-Experten über die wichtigsten Entwicklungen im neuen
+              Jahr.</p>
+            <div class="program-meta">
+              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 10. März 2026</span>
+              <span class="program-meta-item"><i class="ph-fill ph-video-camera"></i> Livestream</span>
+            </div>
+            <a href="#" class="program-cta">Registrieren <i class="ph-fill ph-arrow-right"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Video Wall Reviews -->
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-video-camera"></i> Rezensionen</span>
+        <h2 class="section-title">Was unsere <span class="highlight">Teilnehmer</span> sagen</h2>
+        <p class="section-subtitle">Echte Geschichten von echten Menschen. Lass dich inspirieren.</p>
+      </div>
+
+      <div class="video-wall">
+        <div class="video-item">
+          <div class="video-thumb">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767714994/ai-hub/website/website_stock_images/Jakow_website_portait.png"
+              alt="Review">
+            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
+          </div>
+          <div class="video-info">
+            <h5>Jakow S.</h5>
+            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+            <p>"Das Bootcamp hat mein Leben verändert. Innerhalb von 3 Monaten hatte ich meinen Traumjob."</p>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-thumb">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767714990/ai-hub/website/website_stock_images/Lukas_website_portrait.png"
+              alt="Review">
+            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
+          </div>
+          <div class="video-info">
+            <h5>Lukas M.</h5>
+            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+            <p>"Die Dozenten sind absolute Experten. Praxisnah und auf dem neuesten Stand."</p>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-thumb">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662292/ai-hub/website/website_stock_images/MENTOR-04.png"
+              alt="Review">
+            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
+          </div>
+          <div class="video-info">
+            <h5>Dr. Sarah W.</h5>
+            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+            <p>"Als Mentorin bin ich beeindruckt von der Qualität der Teilnehmer und des Programms."</p>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-thumb">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767714988/ai-hub/website/website_stock_images/Lorenz_website_portrait.png"
+              alt="Review">
+            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
+          </div>
+          <div class="video-info">
+            <h5>Lorenz G.</h5>
+            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+            <p>"Die Community hier ist unschlagbar. Networking auf höchstem Niveau."</p>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-thumb">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767714992/ai-hub/website/website_stock_images/Martin_website_portrait.png"
+              alt="Review">
+            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
+          </div>
+          <div class="video-info">
+            <h5>Martin R.</h5>
+            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+            <p>"Endlich ein KI-Kurs, der hält was er verspricht. Absolut empfehlenswert!"</p>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-thumb">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662238/ai-hub/website/website_stock_images/MENTOR-05.png"
+              alt="Review">
+            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
+          </div>
+          <div class="video-info">
+            <h5>Nina H.</h5>
+            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+            <p>"Die Förderung durch den Bildungsgutschein war super einfach zu beantragen."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stories & Insights -->
+  <section class="section stories-section" id="stories">
+    <div class="container">
+      <div class="stories-header">
+        <div class="stories-header-left">
+          <h2>Stories & <span class="highlight">Insights</span></h2>
+          <p>Wissen, Trends und Erfolgsgeschichten aus der KI-Welt</p>
+        </div>
+        <a href="#" class="stories-header-link">Alle Artikel <i class="ph-bold ph-arrow-right"></i></a>
+      </div>
+
+      <div class="stories-grid">
+        <!-- Featured Article -->
+        <article class="story-featured">
+          <div class="story-featured-image">
+            <img
+              src="https://res.cloudinary.com/startplatz/image/upload/v1767662297/ai-hub/website/website_stock_images/STORY-01.png"
+              alt="KI Arbeitsmarkt 2026">
+            <span class="story-featured-badge">Insights</span>
+          </div>
+          <div class="story-featured-content">
+            <div class="story-featured-meta">
+              <i class="ph ph-clock"></i>
+              <span>8 Min. Lesezeit</span>
+            </div>
+            <h3>Wie KI den Arbeitsmarkt 2026 verändert</h3>
+            <p>Ein tieferer Blick in die Transformation der Arbeitswelt durch künstliche Intelligenz.</p>
+            <a href="#" class="story-featured-link">Weiterlesen <i class="ph-bold ph-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Sidebar Articles -->
+        <div class="stories-sidebar">
+          <article class="story-small">
+            <div class="story-small-image">
+              <img
+                src="https://res.cloudinary.com/startplatz/image/upload/v1767662300/ai-hub/website/website_stock_images/STORY-02.png"
+                alt="KI Skills">
+            </div>
+            <div class="story-small-content">
+              <span class="story-small-tag">Karriere</span>
+              <h4>5 Must-Have KI-Skills für 2026</h4>
+              <div class="story-small-meta">
+                <i class="ph ph-clock"></i>
+                <span>5 Min.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="story-small">
+            <div class="story-small-image">
+              <img
+                src="https://res.cloudinary.com/startplatz/image/upload/v1767662300/ai-hub/website/website_stock_images/STORY-03.png"
+                alt="ChatGPT vs Claude">
+            </div>
+            <div class="story-small-content">
+              <span class="story-small-tag">Tools</span>
+              <h4>ChatGPT vs. Claude: Ein Vergleich</h4>
+              <div class="story-small-meta">
+                <i class="ph ph-clock"></i>
+                <span>6 Min.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge"><i class="ph-fill ph-question"></i> Häufige Fragen</span>
+        <h2 class="section-title">Alles was du wissen <span class="highlight">musst</span></h2>
+        <p class="section-subtitle">Antworten auf die wichtigsten Fragen zu Förderung, Programmen und mehr.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item active">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Was ist ein Bildungsgutschein und wie bekomme ich ihn?</span>
+            <i class="ph-bold ph-caret-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Ein Bildungsgutschein ist eine Förderung der Agentur für Arbeit, die 100% der Kosten für eine
+              zertifizierte Weiterbildung übernimmt. Du erhältst ihn, wenn du arbeitssuchend gemeldet bist oder dein
+              Arbeitsplatz gefährdet ist. Sprich einfach mit deinem Arbeitsvermittler – wir unterstützen dich gerne beim
+              Antrag.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Welche Förderungen gibt es für Berufstätige?</span>
+            <i class="ph-bold ph-caret-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Für Berufstätige gibt es das Qualifizierungschancengesetz (QCG), das bis zu 100% der Weiterbildungskosten
+              übernimmt. Auch Programme wie WeGebAU oder Bildungsurlaub können genutzt werden. Wir beraten dich
+              individuell zu deinen Möglichkeiten.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Wie lange dauern die Bootcamps?</span>
+            <i class="ph-bold ph-caret-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Unsere Vollzeit-Bootcamps dauern in der Regel 8-12 Wochen. Berufsbegleitende Programme laufen über 4-6
+              Monate mit flexiblen Abend- und Wochenendterminen. Nach Abschluss erhältst du ein anerkanntes Zertifikat.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Brauche ich Vorkenntnisse in Programmierung?</span>
+            <i class="ph-bold ph-caret-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Für die meisten unserer Programme brauchst du keine Programmierkenntnisse. Wir bieten sowohl Kurse für
+              absolute Anfänger als auch für Fortgeschrittene an. In einem kostenlosen Beratungsgespräch finden wir das
+              passende Programm für dich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="section section-dark newsletter-section" id="newsletter">
+    <div class="container">
+      <div class="newsletter-box frost-edge corner-stitch" style="background: var(--color-dark-elevated);">
+        <span class="stitch-tl" style="border-color: var(--color-primary);"></span>
+        <span class="stitch-tr" style="border-color: var(--color-primary);"></span>
+        <span class="stitch-bl" style="border-color: var(--color-primary);"></span>
+        <span class="stitch-br" style="border-color: var(--color-primary);"></span>
+        <div class="newsletter-content">
+          <span class="section-badge" style="background:rgba(99,102,241,0.2);"><i
+              class="ph-fill ph-envelope-simple"></i> Newsletter</span>
+          <h3>Bleib auf dem Laufenden</h3>
+          <p>Erhalte exklusive Insights, Event-Einladungen und KI-Trends direkt in dein Postfach.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Deine E-Mail Adresse" required>
+            <button type="submit" class="btn btn-primary">Abonnieren</button>
+          </form>
+          <p class="newsletter-privacy">Mit der Anmeldung akzeptierst du unsere Datenschutzerklärung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="section final-cta-section" id="contact">
+    <div class="cta-bg-image">
+      <img
+        src="https://res.cloudinary.com/startplatz/image/upload/v1767662307/ai-hub/website/website_stock_images/BG-CTA.png"
+        alt="Background">
+    </div>
+    <div class="container">
+      <div class="final-cta-content">
+        <span class="section-badge"><i class="ph-fill ph-rocket-launch"></i> Jetzt durchstarten</span>
+        <h2 class="section-title" style="color:white;">Bereit für deine <span class="highlight">KI-Zukunft</span>?</h2>
+        <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; max-width: 600px; margin: 0 auto 40px;">Lass uns
+          gemeinsam herausfinden, welches Programm perfekt zu dir passt. Kostenlos und unverbindlich.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-white btn-lg"><i class="ph-fill ph-phone"></i> Beratungsgespräch buchen</a>
+          <a href="#" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.15); color: white;"><i
+              class="ph-fill ph-envelope"></i> Info-Material anfordern</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://res.cloudinary.com/startplatz/image/upload/v1767628988/ai-hub/website/aihublogo02.png"
+            alt="AI Hub" class="footer-logo">
+          <p>STARTPLATZ AI Hub – Dein Partner für KI-Weiterbildung in NRW. Geförderte Bootcamps, praxisnahe Kurse und
+            eine starke Community.</p>
+          <div class="footer-social">
+            <a href="#"><i class="ph-fill ph-linkedin-logo"></i></a>
+            <a href="#"><i class="ph-fill ph-instagram-logo"></i></a>
+            <a href="#"><i class="ph-fill ph-youtube-logo"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h5>Programme</h5>
+          <a href="#">AI Bootcamp</a>
+          <a href="#">Prompt Engineering</a>
+          <a href="#">Business AI</a>
+          <a href="#">Inhouse Training</a>
+        </div>
+        <div class="footer-links">
+          <h5>Unternehmen</h5>
+          <a href="#">Über Uns</a>
+          <a href="#">Team</a>
+          <a href="#">Karriere</a>
+          <a href="#">Presse</a>
+        </div>
+        <div class="footer-links">
+          <h5>Rechtliches</h5>
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">AGB</a>
+        </div>
+        <div class="footer-contact">
+          <h5>Kontakt</h5>
+          <p><i class="ph-fill ph-map-pin"></i> Im Mediapark 5, 50670 Köln</p>
+          <p><i class="ph-fill ph-phone"></i> +49 221 123456</p>
+          <p><i class="ph-fill ph-envelope"></i> hello@ai-hub.de</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 STARTPLATZ AI Hub. Alle Rechte vorbehalten. Crafted with ❤️ in Köln & Düsseldorf.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop"><i class="ph-bold ph-caret-up"></i></button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+  <!-- GSAP Draggable for Parallax Slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+
+
+  <!-- Design System JS -->
+  <script src="js/script.js"></script>
+  <!-- Page Specific JS -->
+  <script src="js/landing.js"></script>
+  <script>
+    // GLOBAL CURSOR GLOW SCRIPT - INLINED FOR RELIABILITY
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      document.documentElement.style.setProperty('--mouse-x', x + 'px');
+      document.documentElement.style.setProperty('--mouse-y', y + 'px');
+    });
+    console.log("Cursor glow script initialized");
+  </script>
+</body>
+
+</html>

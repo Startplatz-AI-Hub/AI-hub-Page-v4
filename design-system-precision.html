@@ -1,0 +1,3135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="STARTPLATZ AI Hub Design System v5.1 — The complete visual language featuring 40+ components, frosted glass aesthetics, award-winning animations, and precision crafted for scale." />
+  <meta name="theme-color" content="#6366F1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="STARTPLATZ AI Hub" />
+  
+  <title>Design System v5.1 | STARTPLATZ AI Hub</title>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  
+  <!-- Fonts - Outfit for bold display, Inter for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236366F1' width='100' height='100' rx='16'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='system-ui' font-weight='bold'%3EAI%3C/text%3E%3C/svg%3E">
+  
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- GSAP for Animations (Award-winning from Annnimate.com) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- SplitText is a premium GSAP plugin - using CDN for demo purposes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Mobile Toggle -->
+  <button class="mobile-toggle" onclick="toggleSidebar()">
+    <i class="ph-fill ph-list"></i>
+    <span>Menu</span>
+  </button>
+
+  <div class="ds-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="ds-sidebar" id="sidebar">
+      <div class="ds-logo">
+        <img src="https://res.cloudinary.com/startplatz/image/upload/v1767628988/ai-hub/website/aihublogo02.png" alt="STARTPLATZ AI Hub">
+        <div class="ds-logo-text">
+          <strong>AI Hub</strong>
+          <span>Design System v5.0</span>
+        </div>
+      </div>
+      
+      <nav>
+        <!-- 01. GETTING STARTED -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">01 · Getting Started</div>
+          <ul class="ds-nav-links">
+            <li><a href="#principles" class="active"><i class="ph-fill ph-compass"></i> Design Principles</a></li>
+          </ul>
+        </div>
+        
+        <!-- 02. DESIGN TOKENS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">02 · Design Tokens</div>
+          <ul class="ds-nav-links">
+            <li><a href="#colors"><i class="ph-fill ph-palette"></i> Color System</a></li>
+            <li><a href="#typography"><i class="ph-fill ph-text-aa"></i> Typography</a></li>
+            <li><a href="#spacing"><i class="ph-fill ph-ruler"></i> Spacing Scale</a></li>
+            <li><a href="#shadows"><i class="ph-fill ph-stack"></i> Shadows & Borders</a></li>
+          </ul>
+        </div>
+        
+        <!-- 03. SURFACES & EFFECTS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">03 · Surfaces & Effects</div>
+          <ul class="ds-nav-links">
+            <li><a href="#glass"><i class="ph-fill ph-drop-half-bottom"></i> Glass & Frost</a></li>
+            <li><a href="#mesh"><i class="ph-fill ph-grid-four"></i> Mesh Grid</a></li>
+            <li><a href="#interactions"><i class="ph-fill ph-sparkle"></i> Corner Stitching</a></li>
+          </ul>
+        </div>
+        
+        <!-- 04. CORE COMPONENTS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">04 · Core Components</div>
+          <ul class="ds-nav-links">
+            <li><a href="#buttons"><i class="ph-fill ph-cursor-click"></i> Buttons & CTAs</a></li>
+            <li><a href="#cards"><i class="ph-fill ph-cards"></i> Cards</a></li>
+            <li><a href="#badges"><i class="ph-fill ph-tag"></i> Badges & Tags</a></li>
+            <li><a href="#forms"><i class="ph-fill ph-textbox"></i> Forms & Inputs</a></li>
+            <li><a href="#icons"><i class="ph-fill ph-shapes"></i> Icon System</a></li>
+          </ul>
+        </div>
+        
+        <!-- 05. LAYOUT PATTERNS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">05 · Layout Patterns</div>
+          <ul class="ds-nav-links">
+            <li><a href="#programs"><i class="ph-fill ph-layout"></i> Programs Grid</a></li>
+          </ul>
+        </div>
+        
+        <!-- 06. ANIMATION LIBRARY -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">06 · Animation Library</div>
+          <ul class="ds-nav-links">
+            <li><a href="#animations"><i class="ph-fill ph-play"></i> Core Animations</a></li>
+            <li><a href="#loading"><i class="ph-fill ph-spinner"></i> Loading States</a></li>
+            <li><a href="#text-reveal"><i class="ph-fill ph-text-t"></i> Text Reveals</a></li>
+            <li><a href="#premium-effects"><i class="ph-fill ph-star-four"></i> Premium Effects</a></li>
+          </ul>
+        </div>
+        
+        <!-- 07. SLIDERS & CAROUSELS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">07 · Sliders & Carousels</div>
+          <ul class="ds-nav-links">
+            <li><a href="#carousel"><i class="ph-fill ph-arrows-left-right"></i> Testimonial Carousel</a></li>
+            <li><a href="#circular-slider"><i class="ph-fill ph-circles-three"></i> Circular Slider</a></li>
+            <li><a href="#parallax-slider"><i class="ph-fill ph-images"></i> Parallax Slider</a></li>
+          </ul>
+        </div>
+        
+        <!-- 08. AWARD-WINNING -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">08 · Award-Winning</div>
+          <ul class="ds-nav-links">
+            <li><a href="#flip-zone"><i class="ph-fill ph-cube"></i> Flip Zone</a></li>
+            <li><a href="#velocity-marquee"><i class="ph-fill ph-fast-forward"></i> Velocity Marquee</a></li>
+          </ul>
+        </div>
+        
+        <!-- 09. UX PATTERNS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">09 · UX Patterns</div>
+          <ul class="ds-nav-links">
+            <li><a href="#preloader"><i class="ph-fill ph-circle-notch"></i> Page Preloader</a></li>
+            <li><a href="#progress"><i class="ph-fill ph-chart-line-up"></i> Scroll Progress</a></li>
+            <li><a href="#backtotop"><i class="ph-fill ph-arrow-up"></i> Back to Top</a></li>
+            <li><a href="#mobilenav"><i class="ph-fill ph-list"></i> Mobile Navigation</a></li>
+            <li><a href="#cookie"><i class="ph-fill ph-cookie"></i> Cookie Banner</a></li>
+          </ul>
+        </div>
+        
+        <!-- 10. CONTENT BLOCKS -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">10 · Content Blocks</div>
+          <ul class="ds-nav-links">
+            <li><a href="#faq"><i class="ph-fill ph-question"></i> FAQ Accordion</a></li>
+            <li><a href="#newsletter"><i class="ph-fill ph-envelope"></i> Newsletter CTA</a></li>
+            <li><a href="#countup"><i class="ph-fill ph-number-square-one"></i> Stats Counter</a></li>
+          </ul>
+        </div>
+        
+        <!-- 11. RESOURCES -->
+        <div class="ds-nav-section">
+          <div class="ds-nav-title">11 · Resources</div>
+          <ul class="ds-nav-links">
+            <li><a href="#usage"><i class="ph-fill ph-code"></i> Code Usage</a></li>
+            <li><a href="assets-library.html" target="_blank"><i class="ph-fill ph-image-square"></i> Assets Library</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="ds-main">
+      
+      <!-- Header -->
+      <header style="margin-bottom: var(--space-16);">
+        <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); flex-wrap: wrap;">
+          <span class="badge badge-primary"><i class="ph-fill ph-sparkle"></i> Design System</span>
+          <span class="badge badge-outline">v5.1</span>
+          <span class="badge badge-emerald-soft">Production Ready</span>
+        </div>
+        <h1 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: var(--space-5); letter-spacing: -0.03em; line-height: 1.1; color: var(--color-gray-900);">
+          STARTPLATZ AI Hub<br>
+          <span style="color: var(--color-primary);">Design System</span>
+        </h1>
+        <p style="font-size: 1.125rem; color: var(--color-gray-500); max-width: 600px; line-height: 1.7; margin-bottom: var(--space-6);">
+          The complete visual language for STARTPLATZ AI Hub. Featuring frosted glass aesthetics, 
+          precision corners, award-winning animations, and components built for scale.
+        </p>
+        
+        <!-- Quick Stats -->
+        <div style="display: flex; gap: var(--space-8); flex-wrap: wrap; padding: var(--space-5) 0; border-top: 1px solid var(--color-gray-200); border-bottom: 1px solid var(--color-gray-200);">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: var(--color-gray-900);">40+</div>
+            <div style="font-size: 12px; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em;">Components</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: var(--color-gray-900);">11</div>
+            <div style="font-size: 12px; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em;">Categories</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: var(--color-primary);">3</div>
+            <div style="font-size: 12px; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em;">Award-Winning</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: var(--color-gray-900);">100%</div>
+            <div style="font-size: 12px; color: var(--color-gray-500); text-transform: uppercase; letter-spacing: 0.05em;">Accessible</div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 01: GETTING STARTED
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Design Principles -->
+      <section id="principles" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Design <span class="highlight">Principles</span></h2>
+          <p>Clean, modern, and intentionally designed for the AI education space.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-bottom: var(--space-8);">
+          <div class="card glass-border">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-circle-notch"></i></div>
+            <h4>Thin 2px Rounded Corners</h4>
+            <p>Subtle border-radius (2px default) creates a sharp-yet-soft feel. Not too rounded, not too sharp.</p>
+          </div>
+          <div class="card glass-border">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-sparkle"></i></div>
+            <h4>Frosted Glass Edge</h4>
+            <p>Subtle white/frost border around components. Inner glow creates that refined, premium look.</p>
+          </div>
+          <div class="card glass-border">
+            <div class="card-icon card-icon-emerald"><i class="ph-fill ph-flow-arrow"></i></div>
+            <h4>Section Connectors</h4>
+            <p>Centered vertical dashed lines connect icon rows to content cards below. Creates visual flow between sections.</p>
+          </div>
+          <div class="card glass-border">
+            <div class="card-icon card-icon-emerald"><i class="ph-fill ph-gradient"></i></div>
+            <h4>Layered Shadows</h4>
+            <p>Multiple subtle shadows create depth. Outer frost + inner glow for that signature glass effect.</p>
+          </div>
+          <div class="card glass-border">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-text-aa"></i></div>
+            <h4>Clean Typography</h4>
+            <p>Outfit for bold headings, Inter for body. Uppercase titles with tight letter-spacing.</p>
+          </div>
+          <div class="card glass-border">
+            <div class="card-icon card-icon-emerald"><i class="ph-fill ph-cursor-click"></i></div>
+            <h4>Subtle Hover States</h4>
+            <p>Gentle lift (2px), color shift on border, enhanced glow. Refined, not flashy.</p>
+          </div>
+        </div>
+        
+        <h3>Avoid These Patterns</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);">
+          <div class="card" style="border-left: 2px solid var(--color-error);">
+            <p style="font-size: 13px; color: var(--color-gray-600);">Heavily rounded corners (12px+)</p>
+          </div>
+          <div class="card" style="border-left: 2px solid var(--color-error);">
+            <p style="font-size: 13px; color: var(--color-gray-600);">Heavy blur glassmorphism</p>
+          </div>
+          <div class="card" style="border-left: 2px solid var(--color-error);">
+            <p style="font-size: 13px; color: var(--color-gray-600);">Aggressive drop shadows</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 02: DESIGN TOKENS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Colors -->
+      <section id="colors" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Color <span class="highlight">System</span></h2>
+          <p>A refined palette with purple primary, emerald accents, and warm neutrals.</p>
+        </div>
+        
+        <h3>Primary Colors</h3>
+        <div class="color-grid" style="margin-bottom: var(--space-8);">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #8B5CF6;">
+              <code style="color: white; background: rgba(0,0,0,0.3);">#8B5CF6</code>
+            </div>
+            <div class="color-info">
+              <h4>Primary</h4>
+              <p>--color-primary</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #7C3AED;">
+              <code style="color: white; background: rgba(0,0,0,0.3);">#7C3AED</code>
+            </div>
+            <div class="color-info">
+              <h4>Primary Dark</h4>
+              <p>--color-primary-dark</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #C4B5FD;">
+              <code>#C4B5FD</code>
+            </div>
+            <div class="color-info">
+              <h4>Primary Light</h4>
+              <p>--color-primary-light</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #4834D4;">
+              <code style="color: white; background: rgba(0,0,0,0.3);">#4834D4</code>
+            </div>
+            <div class="color-info">
+              <h4>Primary Dark</h4>
+              <p>--color-primary-dark</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Monochrome Scale</h3>
+        <div class="color-grid" style="margin-bottom: var(--space-8);">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #000000;">
+              <code style="color: white; background: rgba(255,255,255,0.2);">#000000</code>
+            </div>
+            <div class="color-info">
+              <h4>Black</h4>
+              <p>--color-black</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #171717;">
+              <code style="color: white; background: rgba(255,255,255,0.2);">#171717</code>
+            </div>
+            <div class="color-info">
+              <h4>Gray 900</h4>
+              <p>--color-gray-900</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #525252;">
+              <code style="color: white;">#525252</code>
+            </div>
+            <div class="color-info">
+              <h4>Gray 600</h4>
+              <p>--color-gray-600</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #A3A3A3;">
+              <code>#A3A3A3</code>
+            </div>
+            <div class="color-info">
+              <h4>Gray 400</h4>
+              <p>--color-gray-400</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #E5E5E5;">
+              <code>#E5E5E5</code>
+            </div>
+            <div class="color-info">
+              <h4>Gray 200</h4>
+              <p>--color-gray-200</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #F5F5F5; border: 1px solid #E5E5E5;">
+              <code>#F5F5F5</code>
+            </div>
+            <div class="color-info">
+              <h4>Gray 100</h4>
+              <p>--color-gray-100</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #FAFAFA; border: 1px solid #E5E5E5;">
+              <code>#FAFAFA</code>
+            </div>
+            <div class="color-info">
+              <h4>Gray 50</h4>
+              <p>--color-gray-50</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #FFFFFF; border: 1px solid #E5E5E5;">
+              <code>#FFFFFF</code>
+            </div>
+            <div class="color-info">
+              <h4>White</h4>
+              <p>--color-white</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Accent Colors</h3>
+        <div class="color-grid" style="margin-bottom: var(--space-8);">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #10B981;">
+              <code style="color: white;">#10B981</code>
+            </div>
+            <div class="color-info">
+              <h4>Emerald</h4>
+              <p>--color-emerald</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #22D3EE;">
+              <code>#22D3EE</code>
+            </div>
+            <div class="color-info">
+              <h4>Cyan</h4>
+              <p>--color-cyan</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #F59E0B;">
+              <code>#F59E0B</code>
+            </div>
+            <div class="color-info">
+              <h4>Amber</h4>
+              <p>--color-amber</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Status Colors</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #C9A227;">
+              <code>#C9A227</code>
+            </div>
+            <div class="color-info">
+              <h4>Gold</h4>
+              <p>--color-gold</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #10B981;">
+              <code style="color: white;">#10B981</code>
+            </div>
+            <div class="color-info">
+              <h4>Success</h4>
+              <p>--color-success</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #F59E0B;">
+              <code>#F59E0B</code>
+            </div>
+            <div class="color-info">
+              <h4>Warning</h4>
+              <p>--color-warning</p>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-preview" style="background: #EF4444;">
+              <code style="color: white;">#EF4444</code>
+            </div>
+            <div class="color-info">
+              <h4>Error</h4>
+              <p>--color-error</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Typography -->
+      <section id="typography" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Typo<span class="highlight">graphy</span></h2>
+          <p>DM Sans for headings, Inter for body. Clean and readable.</p>
+        </div>
+        
+        <div class="type-scale">
+          <div class="type-row">
+            <span class="type-label">H1 / 3rem</span>
+            <span class="type-h1">AI Hub Bootcamp</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H2 / 2.25rem</span>
+            <span class="type-h2">Weiterbildung</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H3 / 1.5rem</span>
+            <span class="type-h3">Deine Vorteile</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H4 / 1.25rem</span>
+            <span class="type-h4">12 Wochen Vollzeit</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body / 1rem</span>
+            <span class="type-body">Lerne KI-Projekte zu leiten, Strategien zu entwickeln und Teams in die KI-Transformation zu führen.</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Small / 0.875rem</span>
+            <span class="type-small">© 2025 STARTPLATZ AI Hub. Alle Rechte vorbehalten.</span>
+          </div>
+        </div>
+        
+        <h3>Accent Headlines</h3>
+        <div class="component-preview">
+          <h2 class="type-h2" style="margin: 0;">
+            Master AI. <span style="color: var(--color-primary);">Build the Future.</span>
+          </h2>
+        </div>
+        <div class="component-preview component-preview-dark">
+          <h2 class="type-h2" style="margin: 0; color: white;">
+            AI Bootcamp <span style="color: var(--color-primary-light);">Summer 2026</span>
+          </h2>
+        </div>
+        
+        <h3>Font Families</h3>
+        <div class="code-block">
+          <code><span class="comment">/* Display font for headlines */</span>
+<span class="property">--font-display</span>: <span class="value">'Outfit', sans-serif</span>;
+
+<span class="comment">/* Body font for paragraphs */</span>
+<span class="property">--font-body</span>: <span class="value">'Inter', sans-serif</span>;
+
+<span class="comment">/* Monospace for code */</span>
+<span class="property">--font-mono</span>: <span class="value">'JetBrains Mono', monospace</span>;</code>
+        </div>
+      </section>
+      
+      <!-- Spacing -->
+      <section id="spacing" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Spacing <span class="highlight">Scale</span></h2>
+          <p>Consistent spacing based on 4px increments.</p>
+        </div>
+        
+        <div class="spacing-grid">
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 4px; height: 32px;"></div>
+            <span class="spacing-label">4px <code>--space-1</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 8px; height: 32px;"></div>
+            <span class="spacing-label">8px <code>--space-2</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 12px; height: 32px;"></div>
+            <span class="spacing-label">12px <code>--space-3</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 16px; height: 32px;"></div>
+            <span class="spacing-label">16px <code>--space-4</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 24px; height: 32px;"></div>
+            <span class="spacing-label">24px <code>--space-6</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+            <span class="spacing-label">32px <code>--space-8</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 48px; height: 32px;"></div>
+            <span class="spacing-label">48px <code>--space-12</code></span>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width: 64px; height: 32px;"></div>
+            <span class="spacing-label">64px <code>--space-16</code></span>
+          </div>
+        </div>
+        
+        <h3>Border Radius (2-8px - The AI Hub Range)</h3>
+        <div style="display: flex; gap: var(--space-6); margin-top: var(--space-4); flex-wrap: wrap;">
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: 0;"></div>
+            <span style="font-size: 12px; display: block; margin-top: 8px;">None</span>
+            <code style="font-size: 10px;">0px</code>
+          </div>
+          <div style="text-align: center; position: relative;">
+            <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: 2px;"></div>
+            <span style="font-size: 12px; display: block; margin-top: 8px; font-weight: 600; color: var(--color-primary);">Default ✓</span>
+            <code style="font-size: 10px;">2px</code>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: 4px;"></div>
+            <span style="font-size: 12px; display: block; margin-top: 8px;">Small</span>
+            <code style="font-size: 10px;">4px</code>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: 6px;"></div>
+            <span style="font-size: 12px; display: block; margin-top: 8px;">Medium</span>
+            <code style="font-size: 10px;">6px</code>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: 8px;"></div>
+            <span style="font-size: 12px; display: block; margin-top: 8px;">Large</span>
+            <code style="font-size: 10px;">8px</code>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 80px; height: 80px; background: var(--color-primary); border-radius: 9999px;"></div>
+            <span style="font-size: 12px; display: block; margin-top: 8px;">Full (Pills)</span>
+            <code style="font-size: 10px;">9999px</code>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Shadows & Borders -->
+      <section id="shadows" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Frosted Glass <span class="highlight">Edges</span></h2>
+          <p>The signature look: thin borders with frosted glow, creating depth without heavy shadows.</p>
+        </div>
+        
+        <h3>Frosted Glass Edge Effect</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4); font-size: 14px;">The AI Hub signature: layered borders with outer frost + inner glow for a premium, refined feel.</p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-8);">
+          <div class="frost-edge" style="padding: var(--space-6);">
+            <h4 style="margin-bottom: 8px;">Frosted Edge Card</h4>
+            <p style="font-size: 13px; color: var(--color-gray-500); margin-bottom: var(--space-3);">Outward frost layer underneath - card floats on glowing surface.</p>
+            <code style="font-size: 11px; display: block; background: var(--color-gray-100); padding: 8px; border-radius: 2px;">
+::before { inset: -4px; z-index: -1; }<br>
+box-shadow: 0 0 20px rgba(255,255,255,0.5);<br>
+Creates glowing underlay effect
+            </code>
+          </div>
+          <div class="glass-border" style="padding: var(--space-6);">
+            <h4 style="margin-bottom: 8px;">Glass Border Card</h4>
+            <p style="font-size: 13px; color: var(--color-gray-500); margin-bottom: var(--space-3);">Clean card + outer frost layer + top shine + hover glow.</p>
+            <code style="font-size: 11px; display: block; background: var(--color-gray-100); padding: 8px; border-radius: 2px;">
+::after { inset: -5px; z-index: -1; }<br>
+Frost underlay + primary glow on hover<br>
+Most premium effect
+            </code>
+          </div>
+        </div>
+        
+        <h3>Border Types</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
+          <div style="padding: var(--space-4); background: white; border: 1px solid rgba(229, 231, 235, 0.8); border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,0.7);">
+            <h4 style="margin-bottom: 8px;">Frost Border</h4>
+            <code style="font-size: 11px;">rgba(229, 231, 235, 0.8)</code>
+          </div>
+          <div style="padding: var(--space-4); background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 2px;">
+            <h4 style="margin-bottom: 8px;">Subtle Border</h4>
+            <code style="font-size: 11px;">rgba(0, 0, 0, 0.06)</code>
+          </div>
+          <div style="padding: var(--space-4); background: var(--color-black); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 2px;">
+            <h4 style="margin-bottom: 8px;">Dark Border</h4>
+            <code style="font-size: 11px;">1px solid rgba(255,255,255,0.1)</code>
+          </div>
+        </div>
+        
+        <h3>Subtle Shadows (Default)</h3>
+        <div class="shadow-grid" style="margin-bottom: var(--space-8);">
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: var(--shadow-sm);"></div>
+            <span>SM</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: var(--shadow-md);"></div>
+            <span>MD</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: var(--shadow-lg);"></div>
+            <span>LG</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: var(--shadow-xl);"></div>
+            <span>XL</span>
+          </div>
+        </div>
+        
+        <h3>Frosted Glass Shadows (Default)</h3>
+        <div class="shadow-grid" style="margin-bottom: var(--space-8);">
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.3);"></div>
+            <span>Frost Edge</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.1), 0 4px 16px rgba(99, 102, 241, 0.08);"></div>
+            <span>Primary Glow</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 0 4px 16px rgba(16, 185, 129, 0.1);"></div>
+            <span>Emerald Glow</span>
+          </div>
+        </div>
+        
+        <h3>Offset Shadows (Bold Accent)</h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">Use sparingly for CTAs, featured cards, or hover states. Adds energy and visual pop.</p>
+        <div class="shadow-grid" style="margin-bottom: var(--space-8);">
+          <div class="shadow-item">
+            <div class="shadow-preview" style="border: 2px solid var(--color-gray-900); box-shadow: 4px 4px 0 var(--color-gray-900); border-radius: var(--radius-xs);"></div>
+            <span>Offset Dark</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="border: 2px solid var(--color-primary); box-shadow: 4px 4px 0 var(--color-primary); border-radius: var(--radius-xs);"></div>
+            <span>Offset Primary</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="border: 2px solid var(--color-teal); box-shadow: 4px 4px 0 var(--color-teal); border-radius: var(--radius-xs);"></div>
+            <span>Offset Teal</span>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-preview" style="border: 2px solid var(--color-coral); box-shadow: 4px 4px 0 var(--color-coral); border-radius: var(--radius-xs);"></div>
+            <span>Offset Coral</span>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* Frosted glass edge - default style */</span>
+<span class="property">border</span>: <span class="value">1px solid rgba(229, 231, 235, 0.8)</span>;
+<span class="property">border-radius</span>: <span class="value">2px</span>;
+<span class="property">box-shadow</span>: 
+  <span class="value">0 0 0 1px rgba(255, 255, 255, 0.8)</span>,
+  <span class="value">0 1px 3px rgba(0, 0, 0, 0.04)</span>,
+  <span class="value">inset 0 0 0 1px rgba(255, 255, 255, 0.3)</span>;
+
+<span class="comment">/* Offset shadow - bold accent for CTAs */</span>
+<span class="property">border</span>: <span class="value">2px solid var(--color-primary)</span>;
+<span class="property">border-radius</span>: <span class="value">2px</span>;
+<span class="property">box-shadow</span>: <span class="value">4px 4px 0 var(--color-primary)</span>;
+
+<span class="comment">/* Offset shadow - hover lift effect */</span>
+<span class="property">transition</span>: <span class="value">all 0.2s ease</span>;
+:hover {
+  <span class="property">transform</span>: <span class="value">translate(-2px, -2px)</span>;
+  <span class="property">box-shadow</span>: <span class="value">6px 6px 0 var(--color-primary)</span>;
+}</code>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 03: SURFACES & EFFECTS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Overlays -->
+      <section id="glass" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Subtle <span class="highlight">Overlays</span></h2>
+          <p>Clean overlays for backgrounds. Avoid heavy blur - prefer solid or semi-transparent.</p>
+        </div>
+        
+        <div style="padding: var(--space-4); background: var(--color-gray-100); border-radius: 2px; margin-bottom: var(--space-6);">
+          <p style="font-size: 13px; color: var(--color-gray-700);"><strong>⚠️ Note:</strong> Heavy glassmorphism (blur > 4px) is overused. Prefer solid backgrounds with opacity when needed.</p>
+        </div>
+        
+        <div class="glass-demo">
+          <div class="glass-card glass-light-demo">
+            <h4>Light Overlay</h4>
+            <p>95% white, minimal blur</p>
+          </div>
+          <div class="glass-card glass-dark-demo">
+            <h4 style="color: white;">Dark Glass</h4>
+            <p style="color: var(--color-gray-400);">55% black, 8px blur</p>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* Light frosted glass */</span>
+<span class="property">background</span>: <span class="value">rgba(255, 255, 255, 0.85)</span>;
+<span class="property">backdrop-filter</span>: <span class="value">blur(20px)</span>;
+<span class="property">-webkit-backdrop-filter</span>: <span class="value">blur(20px)</span>;
+
+<span class="comment">/* Dark frosted glass */</span>
+<span class="property">background</span>: <span class="value">rgba(0, 0, 0, 0.55)</span>;
+<span class="property">backdrop-filter</span>: <span class="value">blur(8px)</span>;
+<span class="property">-webkit-backdrop-filter</span>: <span class="value">blur(8px)</span>;</code>
+        </div>
+      </section>
+      
+      <!-- Mesh Grid -->
+      <section id="mesh" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Mesh <span class="highlight">Grid</span></h2>
+          <p>Interactive animated mesh background with cursor glow effect.</p>
+        </div>
+        
+        <h3>Static Stitch Grid - Cursor Interaction</h3>
+        <div class="mesh-demo-container">
+          <canvas id="meshDemoCanvas" class="mesh-canvas"></canvas>
+        </div>
+        <p style="font-size: 13px; color: var(--color-gray-500); margin-top: var(--space-3);"><i class="ph-fill ph-cursor"></i> Hover over the grid - dashed lines and square nodes glow purple with zigzag accents</p>
+        
+        <h3>Dynamic Stitch Grid - Animated Moving Points</h3>
+        <p style="font-size: 14px; color: var(--color-gray-600); margin-bottom: var(--space-4);">Hero section grid with points that oscillate around their base position. Dashed lines, square nodes, and animated zigzag accents on hover.</p>
+        <div class="mesh-demo-container" style="height: 350px;">
+          <canvas id="dynamicMeshCanvas" class="mesh-canvas"></canvas>
+        </div>
+        <p style="font-size: 13px; color: var(--color-gray-500); margin-top: var(--space-3);"><i class="ph-fill ph-sparkle"></i> Points animate continuously + glow on cursor proximity</p>
+        
+        <div class="code-block" style="margin-top: var(--space-4);">
+          <code><span class="comment">/* Dynamic Grid - Moving Points */</span>
+<span class="property">points</span>.forEach(p => {
+  <span class="comment">// Points have velocity (vx, vy)</span>
+  p.x += p.vx;
+  p.y += p.vy;
+  
+  <span class="comment">// Bounce back when too far from base position</span>
+  const dist = Math.hypot(p.x - p.baseX, p.y - p.baseY);
+  if (dist > <span class="value">25</span>) {
+    p.vx *= <span class="value">-0.9</span>;
+    p.vy *= <span class="value">-0.9</span>;
+  }
+});</code>
+        </div>
+        
+        <h3>Video + Mesh + Frosted Glass (Full Stack)</h3>
+        <div class="video-demo-container">
+          <video class="video-demo-bg" autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/startplatz/video/upload/v1766546931/ai-hub/website/keyvisualver1.mp4" type="video/mp4">
+          </video>
+          <canvas id="meshOverlayCanvas" class="video-demo-mesh"></canvas>
+          <div class="video-demo-content">
+            <div class="video-demo-card">
+              <span class="badge badge-primary" style="margin-bottom: var(--space-4);">LIVE DEMO</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: var(--space-3); margin-top: 0;">Video + Mesh + Frosted Glass</h3>
+              <p style="color: var(--color-gray-600); margin-bottom: var(--space-4);">This demonstrates all three layers working together: background video, animated mesh grid, and frosted glass content overlay.</p>
+              <button class="btn btn-primary btn-sm"><i class="ph-fill ph-play"></i> Experience</button>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">/* HTML Structure */</span>
+&lt;div class="<span class="property">hero-background</span>"&gt;
+  &lt;video autoplay muted loop&gt;...&lt;/video&gt;
+  &lt;canvas id="<span class="property">meshCanvas</span>"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+
+<span class="comment">/* Mesh draws grid points and lines */</span>
+<span class="comment">/* Cursor interaction: glow purple within 150px radius */</span>
+<span class="property">ctx.fillStyle</span> = <span class="value">'rgba(108, 92, 231, 0.8)'</span>; <span class="comment">// Glow color</span></code>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 06: ANIMATION LIBRARY
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Animations -->
+      <section id="animations" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Anima<span class="highlight">tions</span></h2>
+          <p>Signature animations, scroll reveals and micro-interactions.</p>
+        </div>
+        
+        <h3>Signature Animations</h3>
+        <div class="animation-grid" style="margin-bottom: var(--space-8);">
+          <div class="animation-item">
+            <div class="animation-preview anim-slide-in"></div>
+            <span>Slide In</span>
+            <code>slideIn</code>
+          </div>
+          <div class="animation-item">
+            <div class="animation-preview anim-slide-skew"></div>
+            <span>Slide Skew</span>
+            <code>slideInSkew</code>
+          </div>
+          <div class="animation-item">
+            <div class="animation-preview anim-ribbon-unfold"></div>
+            <span>Ribbon Unfold</span>
+            <code>ribbonUnfold</code>
+          </div>
+          <div class="animation-item">
+            <div class="animation-preview" style="position: relative; overflow: hidden;">
+              <div style="position: absolute; bottom: 0; left: 0; height: 3px; background: white; animation: borderDraw 1.5s ease infinite;"></div>
+            </div>
+            <span>Border Draw</span>
+            <code>borderDraw</code>
+          </div>
+        </div>
+        
+        <h3>Entry Animations</h3>
+        <div class="animation-grid" style="margin-bottom: var(--space-8);">
+          <div class="animation-item">
+            <div class="animation-preview anim-fade-up"></div>
+            <span>Fade Up</span>
+            <code>fadeInUp</code>
+          </div>
+          <div class="animation-item">
+            <div class="animation-preview anim-scale-in"></div>
+            <span>Scale In</span>
+            <code>scaleIn</code>
+          </div>
+          <div class="animation-item">
+            <div class="animation-preview anim-float"></div>
+            <span>Float</span>
+            <code>float</code>
+          </div>
+          <div class="animation-item">
+            <div class="animation-preview anim-pulse"></div>
+            <span>Pulse</span>
+            <code>pulse</code>
+          </div>
+        </div>
+        
+        <h3>Timing & Easing</h3>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4);">
+          <div style="background: var(--color-gray-100); padding: var(--space-6); border: 2px solid var(--color-black);">
+            <h4 style="font-size: 13px; margin-bottom: var(--space-3);">Durations</h4>
+            <ul style="font-size: 13px; font-family: var(--font-mono); list-style: none; display: flex; flex-direction: column; gap: var(--space-2);">
+              <li>Fast: <span style="color: var(--color-primary);">150ms</span></li>
+              <li>Normal: <span style="color: var(--color-primary);">300ms</span></li>
+              <li>Slow: <span style="color: var(--color-primary);">600ms</span></li>
+            </ul>
+          </div>
+          <div style="background: var(--color-gray-100); padding: var(--space-6); border: 2px solid var(--color-black);">
+            <h4 style="font-size: 13px; margin-bottom: var(--space-3);">Easing Curves</h4>
+            <ul style="font-size: 12px; font-family: var(--font-mono); list-style: none; display: flex; flex-direction: column; gap: var(--space-2);">
+              <li>--ease-smooth: <span style="color: var(--color-primary);">cubic-bezier(0.4, 0, 0.2, 1)</span></li>
+              <li>--ease-out: <span style="color: var(--color-primary);">cubic-bezier(0.16, 1, 0.3, 1)</span></li>
+              <li>--ease-spring: <span style="color: var(--color-primary);">cubic-bezier(0.34, 1.56, 0.64, 1)</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Loading States -->
+      <section id="loading" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Loading <span class="highlight">States</span></h2>
+          <p>Skeleton loaders, progress bars, and loading indicators.</p>
+        </div>
+        
+        <h3>Skeleton Loading</h3>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-8);">
+          <div style="background: var(--color-white); padding: var(--space-6); border: 2px solid var(--color-black);">
+            <h4 style="font-size: 12px; margin-bottom: var(--space-4); text-transform: uppercase;">Card Skeleton</h4>
+            <div style="display: flex; gap: var(--space-4); align-items: flex-start;">
+              <div class="skeleton" style="width: 60px; height: 60px; flex-shrink: 0;"></div>
+              <div style="flex: 1;">
+                <div class="skeleton" style="height: 18px; width: 70%; margin-bottom: 10px;"></div>
+                <div class="skeleton" style="height: 14px; width: 100%; margin-bottom: 6px;"></div>
+                <div class="skeleton" style="height: 14px; width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+          <div style="background: var(--color-white); padding: var(--space-6); border: 2px solid var(--color-black);">
+            <h4 style="font-size: 12px; margin-bottom: var(--space-4); text-transform: uppercase;">Text Skeleton</h4>
+            <div class="skeleton" style="height: 24px; width: 60%; margin-bottom: 12px;"></div>
+            <div class="skeleton" style="height: 14px; width: 100%; margin-bottom: 8px;"></div>
+            <div class="skeleton" style="height: 14px; width: 90%; margin-bottom: 8px;"></div>
+            <div class="skeleton" style="height: 14px; width: 75%;"></div>
+          </div>
+        </div>
+        
+        <h3>Loading Dots</h3>
+        <div style="display: flex; gap: var(--space-8); align-items: center; margin-bottom: var(--space-8);">
+          <div style="background: var(--color-white); padding: var(--space-4) var(--space-6); border: 2px solid var(--color-black);">
+            <div class="loading-dots">
+              <div class="loading-dot"></div>
+              <div class="loading-dot"></div>
+              <div class="loading-dot"></div>
+            </div>
+          </div>
+          <div style="background: var(--color-black); padding: var(--space-4) var(--space-6);">
+            <div class="loading-dots">
+              <div class="loading-dot" style="background: var(--color-white);"></div>
+              <div class="loading-dot" style="background: var(--color-white);"></div>
+              <div class="loading-dot" style="background: var(--color-white);"></div>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Progress Bar</h3>
+        <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
+          <div>
+            <p style="font-size: 12px; margin-bottom: var(--space-2);">Determinate (65%)</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 65%;"></div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 12px; margin-bottom: var(--space-2);">Indeterminate</p>
+            <div class="progress-bar progress-indeterminate">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* Skeleton shimmer effect */</span>
+<span class="property">.skeleton</span> {
+  <span class="property">background</span>: <span class="value">linear-gradient(90deg, #E5E5E5 0%, #F5F5F5 50%, #E5E5E5 100%)</span>;
+  <span class="property">background-size</span>: <span class="value">200px 100%</span>;
+  <span class="property">animation</span>: <span class="value">skeletonWave 1.5s ease-in-out infinite</span>;
+}</code>
+        </div>
+      </section>
+      
+      <!-- Interactions -->
+      <section id="interactions" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Hover <span class="highlight">Interactions</span></h2>
+          <p>Micro-interactions for buttons, cards, and interactive elements.</p>
+        </div>
+        
+        <h3>Hover Effects</h3>
+        <div class="button-grid" style="margin-bottom: var(--space-8);">
+          <button class="btn btn-primary hover-lift">Hover Lift</button>
+          <button class="btn btn-secondary hover-scale">Hover Scale</button>
+          <button class="btn btn-primary hover-shimmer">Shimmer Effect</button>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
+          <div class="card hover-lift" style="cursor: pointer;">
+            <h4>Hover Lift</h4>
+            <p>translateY(-4px) + shadow</p>
+          </div>
+          <div class="card hover-scale" style="cursor: pointer;">
+            <h4>Hover Scale</h4>
+            <p>scale(1.05)</p>
+          </div>
+          <div class="card hover-shimmer" style="cursor: pointer;">
+            <h4>Shimmer</h4>
+            <p>Light sweep effect</p>
+          </div>
+        </div>
+        
+        <h3>Corner Stitch Animation</h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Stitched lines appear on corners and fade outward on hover. A signature AI Hub effect.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-bottom: var(--space-8);">
+          <!-- Static corner stitches (always visible) -->
+          <div class="card corner-stitch-static" style="cursor: pointer; position: relative; padding: var(--space-6);">
+            <h4 style="margin-bottom: var(--space-2);">Static Corners</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Always visible stitches that glow on hover</p>
+          </div>
+          
+          <!-- Full 4-corner stitch -->
+          <div class="card corner-stitch-full" style="cursor: pointer; position: relative; padding: var(--space-6);">
+            <span class="stitch-tl"></span>
+            <span class="stitch-tr"></span>
+            <span class="stitch-bl"></span>
+            <span class="stitch-br"></span>
+            <h4 style="margin-bottom: var(--space-2);">Full Corners</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">All 4 corners expand on hover</p>
+          </div>
+          
+          <!-- Animated corner stitch (fade outward) -->
+          <div class="card corner-stitch" style="cursor: pointer; position: relative; padding: var(--space-6);">
+            <h4 style="margin-bottom: var(--space-2);">Animated</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Corners appear and fade outward on hover</p>
+          </div>
+        </div>
+        
+        <h3>Corner Stitch Outward (Inverted)</h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          L-shaped stitches that point <strong>away</strong> from the box - like decorative brackets extending outward from corners.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); margin-bottom: var(--space-8); padding: var(--space-8);">
+          <!-- Outward corner stitch -->
+          <div class="card glass-border corner-stitch-outward" style="cursor: pointer; position: relative; padding: var(--space-8);">
+            <span class="stitch-tl"></span>
+            <span class="stitch-tr"></span>
+            <span class="stitch-bl"></span>
+            <span class="stitch-br"></span>
+            <h4 style="margin-bottom: var(--space-2);">Outward Corners</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Stitches point away from the box, expand on hover</p>
+          </div>
+          
+          <!-- Outward with static visibility -->
+          <div class="card corner-stitch-outward corner-stitch-outward-static" style="cursor: pointer; position: relative; padding: var(--space-8);">
+            <span class="stitch-tl"></span>
+            <span class="stitch-tr"></span>
+            <span class="stitch-bl"></span>
+            <span class="stitch-br"></span>
+            <h4 style="margin-bottom: var(--space-2);">Static Outward</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Always visible inverted corners, perfect for cards</p>
+          </div>
+        </div>
+        
+        <!-- Blog Card Style Example -->
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Example: Blog/Article cards with outward stitching
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); margin-bottom: var(--space-8); padding: var(--space-8);">
+          <div class="corner-stitch-outward corner-stitch-outward-static" style="cursor: pointer; position: relative; background: white; border-radius: var(--radius-md); overflow: visible;">
+            <span class="stitch-tl"></span>
+            <span class="stitch-tr"></span>
+            <span class="stitch-bl"></span>
+            <span class="stitch-br"></span>
+            <div style="height: 160px; background: linear-gradient(135deg, #1e3a5f, #2d5a87); border-radius: var(--radius-md) var(--radius-md) 0 0;"></div>
+            <div style="padding: var(--space-5);">
+              <span style="color: var(--color-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">KI-TRENDS</span>
+              <h4 style="margin: var(--space-2) 0; font-size: 18px;">Die Zukunft der Arbeit mit KI</h4>
+              <p style="font-size: 13px; color: var(--color-gray-600); margin-bottom: var(--space-3);">Wie Künstliche Intelligenz die Arbeitswelt verändert...</p>
+              <a href="#" style="color: var(--color-primary); font-size: 14px; text-decoration: none; font-weight: 500;">Weiterlesen →</a>
+            </div>
+          </div>
+          
+          <div class="corner-stitch-outward corner-stitch-outward-static" style="cursor: pointer; position: relative; background: white; border-radius: var(--radius-md); overflow: visible;">
+            <span class="stitch-tl"></span>
+            <span class="stitch-tr"></span>
+            <span class="stitch-bl"></span>
+            <span class="stitch-br"></span>
+            <div style="height: 160px; background: linear-gradient(135deg, #4a5568, #718096); border-radius: var(--radius-md) var(--radius-md) 0 0;"></div>
+            <div style="padding: var(--space-5);">
+              <span style="color: var(--color-primary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">SUCCESS STORY</span>
+              <h4 style="margin: var(--space-2) 0; font-size: 18px;">Von der Karrierepause zum KI-Manager</h4>
+              <p style="font-size: 13px; color: var(--color-gray-600); margin-bottom: var(--space-3);">Wie Maria nach ihrer Elternzeit den Neustart...</p>
+              <a href="#" style="color: var(--color-primary); font-size: 14px; text-decoration: none; font-weight: 500;">Weiterlesen →</a>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Corner Stitch Breakout</h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Stitches "break out" beyond the component boundary on hover.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); margin-bottom: var(--space-8); padding: var(--space-4);">
+          <!-- Breakout corner stitch -->
+          <div class="card glass-border corner-stitch-breakout" style="cursor: pointer; position: relative; padding: var(--space-8);">
+            <span class="breakout-tl"></span>
+            <span class="breakout-tr"></span>
+            <span class="breakout-bl"></span>
+            <span class="breakout-br"></span>
+            <h4 style="margin-bottom: var(--space-2);">Breakout Effect</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Stitches escape beyond component boundaries on hover</p>
+          </div>
+          
+          <!-- Section breakout example -->
+          <div class="frost-edge corner-stitch-breakout" style="cursor: pointer; position: relative; padding: var(--space-8); background: var(--gradient-subtle);">
+            <span class="breakout-tl"></span>
+            <span class="breakout-tr"></span>
+            <span class="breakout-bl"></span>
+            <span class="breakout-br"></span>
+            <h4 style="margin-bottom: var(--space-2);">Section Border</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Perfect for hero sections, CTAs, or featured content</p>
+          </div>
+        </div>
+        
+        <h3>Flowing Stitch Animation <span style="background: var(--color-primary); color: white; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">NEW</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Dynamic animated lines that continuously flow outward from corners. Creates organic, living movement.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); margin-bottom: var(--space-8); padding: var(--space-8);">
+          <!-- Flowing stitch - on hover -->
+          <div class="card glass-border corner-stitch-flow" style="cursor: pointer; position: relative; padding: var(--space-8); min-height: 140px;">
+            <span class="flow-top"></span>
+            <span class="flow-right"></span>
+            <span class="flow-bottom"></span>
+            <span class="flow-left"></span>
+            <h4 style="margin-bottom: var(--space-2);">Flowing Lines (Hover)</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Lines flow outward continuously on hover</p>
+          </div>
+          
+          <!-- Flowing stitch - always on -->
+          <div class="card glass-border corner-stitch-flow corner-stitch-flow-always" style="cursor: pointer; position: relative; padding: var(--space-8); min-height: 140px;">
+            <span class="flow-top"></span>
+            <span class="flow-right"></span>
+            <span class="flow-bottom"></span>
+            <span class="flow-left"></span>
+            <h4 style="margin-bottom: var(--space-2);">Always Flowing</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Continuous animation for attention-grabbing elements</p>
+          </div>
+        </div>
+        
+        
+        <div class="code-block" style="margin-bottom: var(--space-8);">
+          <code><span class="comment">/* Corner Stitch - Static (always visible) */</span>
+<span class="property">.card.corner-stitch-static</span> {
+  <span class="comment">/* Stitched corners on top-left and top-right */</span>
+}
+
+<span class="comment">/* Corner Stitch - Full (all 4 corners) */</span>
+&lt;div class="<span class="property">card corner-stitch-full</span>"&gt;
+  &lt;span class="<span class="property">stitch-tl</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="property">stitch-tr</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="property">stitch-bl</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="property">stitch-br</span>"&gt;&lt;/span&gt;
+  <span class="comment">&lt;!-- content --&gt;</span>
+&lt;/div&gt;
+
+<span class="comment">/* Corner Stitch - OUTWARD (inverted, points away from box) */</span>
+&lt;div class="<span class="property">card corner-stitch-outward</span>"&gt;
+  &lt;span class="<span class="property">stitch-tl</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="property">stitch-tr</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="property">stitch-bl</span>"&gt;&lt;/span&gt;
+  &lt;span class="<span class="property">stitch-br</span>"&gt;&lt;/span&gt;
+  <span class="comment">&lt;!-- Stitches extend OUTWARD from corners --&gt;</span>
+&lt;/div&gt;
+
+<span class="comment">/* Add corner-stitch-outward-static for always-visible */</span>
+&lt;div class="<span class="property">corner-stitch-outward corner-stitch-outward-static</span>"&gt;
+  ...
+&lt;/div&gt;</code>
+        </div>
+        
+        <h3>Marquee / Logo Banner</h3>
+        <div class="marquee-container" style="border: 2px solid var(--color-black);">
+          <div class="marquee-track">
+            <span class="marquee-item" style="color: var(--color-primary);">AI HUB</span>
+            <span class="marquee-item" style="color: var(--color-black);">STARTPLATZ</span>
+            <span class="marquee-item" style="color: var(--color-gold);">KI-MANAGER</span>
+            <span class="marquee-item" style="color: var(--color-primary);">BOOTCAMP</span>
+            <span class="marquee-item" style="color: var(--color-black);">AI ACADEMY</span>
+            <span class="marquee-item" style="color: var(--color-primary);">AI HUB</span>
+            <span class="marquee-item" style="color: var(--color-black);">STARTPLATZ</span>
+            <span class="marquee-item" style="color: var(--color-gold);">KI-MANAGER</span>
+            <span class="marquee-item" style="color: var(--color-primary);">BOOTCAMP</span>
+            <span class="marquee-item" style="color: var(--color-black);">AI ACADEMY</span>
+          </div>
+        </div>
+        
+        <h3 style="margin-top: var(--space-8);">Interactive Components</h3>
+        
+        <h4 style="font-size: 14px; margin-top: var(--space-6); margin-bottom: var(--space-3);">Accordion</h4>
+        <div class="accordion" style="margin-bottom: var(--space-6);">
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              Was ist der KI-Manager Kurs?
+              <i class="ph-fill ph-caret-down"></i>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p style="font-size: 14px; color: var(--color-gray-600);">Der KI-Manager ist eine 12-wöchige Vollzeit-Weiterbildung, die dich befähigt, KI-Projekte in Unternehmen zu leiten und strategisch zu führen.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              Ist der Kurs förderfähig?
+              <i class="ph-fill ph-caret-down"></i>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p style="font-size: 14px; color: var(--color-gray-600);">Ja! Der Kurs ist AZAV-zertifiziert und kann zu 100% über den Bildungsgutschein finanziert werden.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+              Wo finden die Kurse statt?
+              <i class="ph-fill ph-caret-down"></i>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <p style="font-size: 14px; color: var(--color-gray-600);">Die Kurse finden sowohl vor Ort in Köln im STARTPLATZ als auch online statt – flexibel nach deinen Bedürfnissen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h4 style="font-size: 14px; margin-bottom: var(--space-3);">Tabs</h4>
+        <div class="tabs">
+          <div class="tab-list">
+            <button class="tab-btn active" onclick="switchTab(this, 'panel1')">Arbeitssuchende</button>
+            <button class="tab-btn" onclick="switchTab(this, 'panel2')">Selbstzahler</button>
+            <button class="tab-btn" onclick="switchTab(this, 'panel3')">Unternehmen</button>
+          </div>
+          <div id="panel1" class="tab-panel active">
+            <h4>Für Arbeitssuchende</h4>
+            <p style="color: var(--color-gray-600);">100% Förderung über den Bildungsgutschein der Agentur für Arbeit möglich. Wir unterstützen dich bei der Beantragung.</p>
+          </div>
+          <div id="panel2" class="tab-panel">
+            <h4>Für Selbstzahler</h4>
+            <p style="color: var(--color-gray-600);">Flexible Ratenzahlung und Early-Bird Rabatte verfügbar. Investiere in deine Zukunft.</p>
+          </div>
+          <div id="panel3" class="tab-panel">
+            <h4>Für Unternehmen</h4>
+            <p style="color: var(--color-gray-600);">QCG-Förderung und maßgeschneiderte Inhouse-Schulungen für dein Team.</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 04: CORE COMPONENTS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Buttons -->
+      <section id="buttons" class="ds-section">
+        <div class="ds-section-header">
+          <h2>But<span class="highlight">tons</span></h2>
+          <p>Rounded corners with gradient fills and smooth hover effects.</p>
+        </div>
+        
+        <h3>Primary Buttons</h3>
+        <div class="button-grid">
+          <button class="btn btn-primary"><i class="ph-fill ph-rocket-launch"></i> Primary</button>
+          <button class="btn btn-gradient shimmer"><i class="ph-fill ph-sparkle"></i> Gradient</button>
+          <button class="btn btn-secondary"><i class="ph-fill ph-moon"></i> Secondary</button>
+          <button class="btn btn-success"><i class="ph-fill ph-check"></i> Success</button>
+        </div>
+        
+        <h3>Outline & Ghost</h3>
+        <div class="button-grid">
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-outline-primary">Outline Primary</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-soft">Soft</button>
+        </div>
+        
+        <h3>Sizes</h3>
+        <div class="button-grid">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Default</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+        
+        <h3>On Dark Background</h3>
+        <div class="component-preview component-preview-dark">
+          <div class="button-grid">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-gradient">Gradient</button>
+            <button class="btn btn-outline-white">Outline</button>
+          </div>
+        </div>
+        
+        <h3>Icon Buttons</h3>
+        <div class="button-grid">
+          <button class="btn btn-icon btn-primary"><i class="ph-fill ph-arrow-right"></i></button>
+          <button class="btn btn-icon btn-secondary"><i class="ph-fill ph-moon"></i></button>
+          <button class="btn btn-icon btn-outline"><i class="ph-fill ph-dots-three"></i></button>
+        </div>
+      </section>
+      
+      <!-- Cards -->
+      <section id="cards" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Card <span class="highlight">System</span></h2>
+          <p>Thin 2px corners, frosted glass edges, and subtle hover states.</p>
+        </div>
+        
+        <h3>Frosted Glass Border Cards</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4); font-size: 14px;">The signature look: thin rounded corners with subtle white frosted edge.</p>
+        <div class="card-grid" style="margin-bottom: var(--space-8);">
+          <div class="card glass-border">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-sparkle"></i></div>
+            <h4>Frosted Glass Border</h4>
+            <p>The signature style: 2px radius, frost border, inner glow, gradient shine on hover.</p>
+          </div>
+          <div class="card frost-edge">
+            <div class="card-icon card-icon-emerald"><i class="ph-fill ph-snowflake"></i></div>
+            <h4>Frost Edge Card</h4>
+            <p>Pure frosted edge effect without the gradient shine. Clean and subtle.</p>
+          </div>
+        </div>
+        
+        <h3>Standard & Accent Cards</h3>
+        <div class="card-grid" style="margin-bottom: var(--space-8);">
+          <div class="card">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-square"></i></div>
+            <h4>Standard Card</h4>
+            <p>Clean baseline card with frosted edges and 2px corners.</p>
+          </div>
+          <div class="card card-accent">
+            <h4>Gradient Border Card</h4>
+            <p>Indigo gradient border for emphasis. Perfect for CTAs.</p>
+          </div>
+        </div>
+        
+        <h3>Featured & Color Cards</h3>
+        <div class="card-grid" style="margin-bottom: var(--space-8);">
+          <div class="card card-featured">
+            <h4>Featured Card</h4>
+            <p>Soft purple gradient background with frosted edges.</p>
+          </div>
+          <div class="card card-emerald">
+            <h4>Emerald Card</h4>
+            <p>Soft green gradient for success states.</p>
+          </div>
+        </div>
+        
+        <h3>Dark Card</h3>
+        <div style="margin-bottom: var(--space-8);">
+          <div class="card card-dark" style="max-width: 400px;">
+            <h4>Dark Card</h4>
+            <p>For dark sections. Subtle white border, purple glow on hover.</p>
+          </div>
+        </div>
+        
+        <h3>Interactive Demo</h3>
+        <p style="margin-bottom: var(--space-4); color: var(--color-gray-500);">Hover over cards to see the frosted glass edge glow and subtle lift (2px).</p>
+      </section>
+      
+      <!-- Badges -->
+      <section id="badges" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Badge <span class="highlight">System</span></h2>
+          <p>Pill-shaped badges for labels, status, and categories.</p>
+        </div>
+        
+        <h3>Primary Badges</h3>
+        <div class="badge-grid" style="margin-bottom: var(--space-6);">
+          <span class="badge badge-primary"><i class="ph-fill ph-brain"></i> AI Hub</span>
+          <span class="badge badge-secondary">Secondary</span>
+          <span class="badge badge-emerald"><i class="ph-fill ph-check"></i> Emerald</span>
+          <span class="badge badge-dark">Dark</span>
+        </div>
+        
+        <h3>Soft & Outline Badges</h3>
+        <div class="badge-grid" style="margin-bottom: var(--space-6);">
+          <span class="badge badge-soft"><i class="ph-fill ph-sparkle"></i> Soft</span>
+          <span class="badge badge-emerald-soft">Emerald Soft</span>
+          <span class="badge badge-outline">Outline</span>
+          <span class="badge badge-outline-primary">Primary Outline</span>
+        </div>
+        
+        <h3>Status Badges</h3>
+        <div class="badge-grid" style="margin-bottom: var(--space-6);">
+          <span class="badge badge-success"><i class="ph-fill ph-check-circle"></i> Verfügbar</span>
+          <span class="badge badge-warning"><i class="ph-fill ph-warning"></i> Limitiert</span>
+          <span class="badge badge-error"><i class="ph-fill ph-x-circle"></i> Ausgebucht</span>
+          <span class="badge badge-light">Info</span>
+        </div>
+        
+        <h3>Small Badges</h3>
+        <div class="badge-grid">
+          <span class="badge badge-sm badge-primary">Small</span>
+          <span class="badge badge-sm badge-outline">Köln</span>
+          <span class="badge badge-sm badge-light">Online</span>
+          <span class="badge badge-sm badge-emerald-soft">AZAV</span>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 05: LAYOUT PATTERNS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- AI Programs & Events -->
+      <section id="programs" class="ds-section">
+        <div class="ds-section-header">
+          <h2>AI Programs <span class="highlight">& Events</span></h2>
+          <p>Enterprise 3-column layout for showcasing workshops, bootcamps, and events.</p>
+        </div>
+        
+        <!-- Section Header Demo -->
+        <h3>Section Header</h3>
+        <div class="programs-section-header" style="margin-bottom: var(--space-8);">
+          <div style="max-width: 800px; margin: 0 auto; padding: 0 var(--space-4);">
+            <div class="badge badge-soft" style="margin-bottom: 20px;">
+              <i class="ph-fill ph-calendar-check"></i>
+              2026 Season
+            </div>
+            <h2>AI Programs <span style="color: var(--color-primary);">& Events</span></h2>
+            <p class="subtitle">Workshops, Bootcamps, Masterclasses und Meetups für jeden Level</p>
+          </div>
+        </div>
+        
+        <!-- 3-Column Layout Demo -->
+        <h3>3-Column Enterprise Layout</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4);">Sidebar filters + Image grid + Scrollable event cards</p>
+        
+        <div class="programs-grid" style="margin-bottom: var(--space-8);">
+          <!-- Sidebar -->
+          <div class="programs-sidebar">
+            <div class="programs-filter-group">
+              <div class="programs-filter-label">
+                <i class="ph ph-funnel"></i> Filter by Type
+              </div>
+              <div class="programs-filter-tabs">
+                <button class="program-filter-tab active">All Programs</button>
+                <button class="program-filter-tab">Bootcamps</button>
+                <button class="program-filter-tab">Workshops</button>
+                <button class="program-filter-tab">Masterclasses</button>
+                <button class="program-filter-tab">Meetups</button>
+                <button class="program-filter-tab">Webinars</button>
+              </div>
+            </div>
+            
+            <div class="programs-filter-group">
+              <div class="programs-filter-label">
+                <i class="ph ph-graduation-cap"></i> Filter by Level
+              </div>
+              <div class="programs-filter-tabs">
+                <button class="program-filter-tab active">All Levels</button>
+                <button class="program-filter-tab">Beginner</button>
+                <button class="program-filter-tab">Advanced</button>
+                <button class="program-filter-tab">Expert</button>
+              </div>
+            </div>
+            
+            <div class="programs-sidebar-stats">
+              <div>
+                <div class="sidebar-stat-number">12</div>
+                <div class="sidebar-stat-label">Programs</div>
+              </div>
+              <div>
+                <div class="sidebar-stat-number">Q1</div>
+                <div class="sidebar-stat-label">2026</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Images Column -->
+          <div class="programs-images">
+            <div class="program-image">
+              <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png" alt="AI Presentation" />
+              <div class="program-image-overlay"><i class="ph-fill ph-presentation-chart"></i> The Presentation</div>
+            </div>
+            <div class="program-image">
+              <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png" alt="AI Workshop" />
+              <div class="program-image-overlay"><i class="ph-fill ph-users-three"></i> The Workshop</div>
+            </div>
+            <div class="program-image">
+              <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png" alt="Networking" />
+              <div class="program-image-overlay"><i class="ph-fill ph-chats-circle"></i> The Connection</div>
+            </div>
+            <div class="program-image">
+              <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662288/ai-hub/website/website_stock_images/EVENT-04.png" alt="Breakout Session" />
+              <div class="program-image-overlay"><i class="ph-fill ph-lightbulb"></i> The Breakout</div>
+            </div>
+          </div>
+          
+          <!-- Event Cards -->
+          <div class="programs-cards">
+            <!-- Featured Event -->
+            <div class="program-card program-card-featured">
+              <div class="program-tags">
+                <span class="program-tag program-tag-purple">Featured</span>
+                <span class="program-tag program-tag-filled">Bootcamp</span>
+                <span class="program-tag program-tag-gold">AZAV</span>
+              </div>
+              <h3 class="program-title">KI-Manager Bootcamp — Frühjahr 2026</h3>
+              <p class="program-description">12-wöchige Vollzeit-Weiterbildung zum zertifizierten KI-Manager. 100% förderfähig über Bildungsgutschein.</p>
+              <div class="program-meta">
+                <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Feb 3 – Apr 25</span>
+                <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln + Online</span>
+                <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 12 Wochen</span>
+              </div>
+              <a href="#" class="program-cta">Jetzt Bewerben <i class="ph-fill ph-arrow-right"></i></a>
+            </div>
+            
+            <!-- Event 1 -->
+            <div class="program-card">
+              <div class="program-tags">
+                <span class="program-tag program-tag-filled">Workshop</span>
+                <span class="program-tag program-tag-outline">Beginner</span>
+              </div>
+              <h3 class="program-title">Prompt Engineering Masterclass</h3>
+              <p class="program-description">Lerne die Kunst des effektiven Prompting für ChatGPT, Claude und andere LLMs.</p>
+              <div class="program-meta">
+                <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Jan 18, 2026</span>
+                <span class="program-meta-item"><i class="ph-fill ph-users"></i> 28/30 Plätze</span>
+                <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 1 Tag</span>
+              </div>
+              <a href="#" class="program-cta">Anmelden <i class="ph-fill ph-arrow-right"></i></a>
+            </div>
+            
+            <!-- Event 2 -->
+            <div class="program-card">
+              <div class="program-tags">
+                <span class="program-tag program-tag-filled">Masterclass</span>
+                <span class="program-tag program-tag-outline">Advanced</span>
+              </div>
+              <h3 class="program-title">AI Ethics & Responsible Innovation</h3>
+              <p class="program-description">Ethische Frameworks und Governance-Strategien für den verantwortungsvollen KI-Einsatz.</p>
+              <div class="program-meta">
+                <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Jan 25-26, 2026</span>
+                <span class="program-meta-item"><i class="ph-fill ph-users"></i> 45 Teilnehmer</span>
+                <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 2 Tage</span>
+              </div>
+              <a href="#" class="program-cta">Details ansehen <i class="ph-fill ph-arrow-right"></i></a>
+            </div>
+            
+            <!-- Event 3 -->
+            <div class="program-card">
+              <div class="program-tags">
+                <span class="program-tag program-tag-purple">Free</span>
+                <span class="program-tag program-tag-outline">All Levels</span>
+              </div>
+              <h3 class="program-title">AI Founders Meetup Köln</h3>
+              <p class="program-description">Monatliches Networking für AI-Gründer, Entwickler und Enthusiasten. Talks + Pizza.</p>
+              <div class="program-meta">
+                <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Feb 12, 2026</span>
+                <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> STARTPLATZ</span>
+                <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 18:00 Uhr</span>
+              </div>
+              <a href="#" class="program-cta">RSVP <i class="ph-fill ph-arrow-right"></i></a>
+            </div>
+            
+            <!-- Event 4 -->
+            <div class="program-card">
+              <div class="program-tags">
+                <span class="program-tag program-tag-filled">Webinar</span>
+                <span class="program-tag program-tag-outline">Beginner</span>
+              </div>
+              <h3 class="program-title">KI im Mittelstand — Live Q&A</h3>
+              <p class="program-description">Wie KMUs von KI profitieren können: Use Cases, ROI und erste Schritte.</p>
+              <div class="program-meta">
+                <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Feb 20, 2026</span>
+                <span class="program-meta-item"><i class="ph-fill ph-monitor"></i> Online</span>
+                <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 1 Stunde</span>
+              </div>
+              <a href="#" class="program-cta">Kostenlos anmelden <i class="ph-fill ph-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* AI Programs & Events - 3 Column Layout */</span>
+&lt;div class="<span class="property">programs-section-header</span>"&gt;...&lt;/div&gt;
+
+&lt;div class="<span class="property">programs-grid</span>"&gt;
+  &lt;div class="<span class="property">programs-sidebar</span>"&gt;
+    <span class="comment">&lt;!-- Filter tabs + Stats --&gt;</span>
+  &lt;/div&gt;
+  &lt;div class="<span class="property">programs-images</span>"&gt;
+    <span class="comment">&lt;!-- 2x2 image grid with hover --&gt;</span>
+  &lt;/div&gt;
+  &lt;div class="<span class="property">programs-cards</span>"&gt;
+    <span class="comment">&lt;!-- Scrollable event cards --&gt;</span>
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 08: AWARD-WINNING COMPONENTS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Flip Zone -->
+      <section id="flip-zone" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Flip <span class="highlight">Zone</span></h2>
+          <p>Scroll-triggered 3D card flip with dramatic background text. Award-winning interaction.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4);">Scroll through this section to see the card flip animation. The card scales and rotates 180° as you scroll.</p>
+        
+        <div class="flip-zone-section" style="height: 250vh; border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-8);">
+          <div class="flip-sticky-area">
+            <div class="flip-bg-text">
+              AI HUB<br>2026
+            </div>
+            <div class="flip-card-3d" id="flipCard">
+              <div class="flip-face front">
+                <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png" alt="Front">
+              </div>
+              <div class="flip-face back">
+                <div class="flip-content">
+                  <h3>Flip Zone</h3>
+                  <p>Scroll-triggered 3D animation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* Flip Zone - 3D Card Flip on Scroll */</span>
+&lt;div class="<span class="property">flip-zone-section</span>"&gt;
+  &lt;div class="<span class="property">flip-sticky-area</span>"&gt;
+    &lt;div class="<span class="property">flip-bg-text</span>"&gt;BIG TEXT&lt;/div&gt;
+    &lt;div class="<span class="property">flip-card-3d</span>"&gt;
+      &lt;div class="<span class="property">flip-face front</span>"&gt;...&lt;/div&gt;
+      &lt;div class="<span class="property">flip-face back</span>"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+        </div>
+      </section>
+      
+      <!-- Velocity Marquee -->
+      <section id="velocity-marquee" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Velocity <span class="highlight">Marquee</span></h2>
+          <p>Infinite marquee that responds to scroll velocity. Speeds up, slows down, and reverses direction.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4);">Scroll fast to see the marquee speed up. Scroll up to see it reverse!</p>
+        
+        <div class="velocity-marquee-section" style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-8);">
+          <div class="velocity-marquee-wrap">
+            <div class="velocity-marquee-inner" id="velocityMarquee">
+              <div class="velocity-marquee-part">
+                <span class="velocity-marquee-text">STARTPLATZ</span>
+                <div class="velocity-marquee-img">
+                  <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png" alt="">
+                </div>
+                <span class="velocity-marquee-text outline">AI HUB</span>
+                <div class="velocity-marquee-img">
+                  <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png" alt="">
+                </div>
+                <span class="velocity-marquee-text">BOOTCAMP</span>
+                <div class="velocity-marquee-img">
+                  <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png" alt="">
+                </div>
+              </div>
+              <div class="velocity-marquee-part">
+                <span class="velocity-marquee-text">STARTPLATZ</span>
+                <div class="velocity-marquee-img">
+                  <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png" alt="">
+                </div>
+                <span class="velocity-marquee-text outline">AI HUB</span>
+                <div class="velocity-marquee-img">
+                  <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png" alt="">
+                </div>
+                <span class="velocity-marquee-text">BOOTCAMP</span>
+                <div class="velocity-marquee-img">
+                  <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* Velocity Marquee - Scroll-Responsive Speed */</span>
+&lt;div class="<span class="property">velocity-marquee-section</span>"&gt;
+  &lt;div class="<span class="property">velocity-marquee-wrap</span>"&gt;
+    &lt;div class="<span class="property">velocity-marquee-inner</span>"&gt;
+      &lt;div class="<span class="property">velocity-marquee-part</span>"&gt;
+        &lt;span class="<span class="property">velocity-marquee-text</span>"&gt;TEXT&lt;/span&gt;
+        &lt;div class="<span class="property">velocity-marquee-img</span>"&gt;...&lt;/div&gt;
+      &lt;/div&gt;
+      <span class="comment">&lt;!-- Duplicate for seamless loop --&gt;</span>
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+        </div>
+      </section>
+      
+      <!-- Parallax Slider -->
+      <section id="parallax-slider" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Parallax <span class="highlight">Slider</span></h2>
+          <p>Infinite draggable slider with internal parallax effect. Auto-plays and responds to drag.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4);">Drag to control the slider. Images have internal parallax based on position.</p>
+        
+        <div class="parallax-slider-section" style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-8); background: var(--gradient-subtle);">
+          <div class="parallax-slider-wrap">
+            <div class="parallax-track" id="parallaxTrack">
+              <div class="parallax-item">
+                <img src="https://res.cloudinary.com/startplatz/image/upload/v1767714994/ai-hub/website/website_stock_images/Jakow_website_portait.png" alt="">
+                <div class="parallax-item-caption">
+                  <h4>Jakow Smirin</h4>
+                  <p>AI Hub Team</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img src="https://res.cloudinary.com/startplatz/image/upload/v1767714990/ai-hub/website/website_stock_images/Lukas_website_portrait.png" alt="">
+                <div class="parallax-item-caption">
+                  <h4>Lukas Stratmann</h4>
+                  <p>AI Hub Team</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img src="https://res.cloudinary.com/startplatz/image/upload/v1767714988/ai-hub/website/website_stock_images/Lorenz_website_portrait.png" alt="">
+                <div class="parallax-item-caption">
+                  <h4>Lorenz Gräf</h4>
+                  <p>AI Hub Team</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img src="https://res.cloudinary.com/startplatz/image/upload/v1767714992/ai-hub/website/website_stock_images/Martin_website_portrait.png" alt="">
+                <div class="parallax-item-caption">
+                  <h4>Martin Greguletz</h4>
+                  <p>AI Hub Team</p>
+                </div>
+              </div>
+              <div class="parallax-item">
+                <img src="https://res.cloudinary.com/startplatz/image/upload/v1767662292/ai-hub/website/website_stock_images/MENTOR-04.png" alt="">
+                <div class="parallax-item-caption">
+                  <h4>Dr. Sarah Weber</h4>
+                  <p>AI Hub Mentor</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="code-block">
+          <code><span class="comment">/* Infinite Parallax Slider */</span>
+&lt;div class="<span class="property">parallax-slider-wrap</span>"&gt;
+  &lt;div class="<span class="property">parallax-track</span>"&gt;
+    &lt;div class="<span class="property">parallax-item</span>"&gt;
+      &lt;img src="..." alt=""&gt;
+      &lt;div class="<span class="property">parallax-item-caption</span>"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    <span class="comment">&lt;!-- More items... --&gt;</span>
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+        </div>
+      </section>
+      
+      <!-- Forms -->
+      <section id="forms" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Form <span class="highlight">Elements</span></h2>
+          <p>Rounded inputs with clear focus states and validation.</p>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" class="input" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="input" placeholder="name@email.de">
+            <span class="form-helper">We won't spam you.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Error State</label>
+            <input type="text" class="input input-error" value="Ungültige Eingabe">
+            <span class="form-error">Bitte gib eine gültige E-Mail ein.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="input" rows="4" placeholder="Deine Nachricht" style="resize: vertical;"></textarea>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Icons -->
+      <section id="icons" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Icon <span class="highlight">System</span></h2>
+          <p>Phosphor Icons (Fill variant). <a href="https://phosphoricons.com/" target="_blank" style="color: var(--color-primary);">→ All Icons</a></p>
+        </div>
+        
+        <h3>Common Icons (Fill Variant)</h3>
+        <div class="icon-grid">
+          <div class="icon-item">
+            <i class="ph-fill ph-brain"></i>
+            <span>ph-fill ph-brain</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-robot"></i>
+            <span>ph-fill ph-robot</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-rocket-launch"></i>
+            <span>ph-fill ph-rocket-launch</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-calendar"></i>
+            <span>ph-fill ph-calendar</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-users-three"></i>
+            <span>ph-fill ph-users-three</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-lightning"></i>
+            <span>ph-fill ph-lightning</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-certificate"></i>
+            <span>ph-fill ph-certificate</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-check-circle"></i>
+            <span>ph-fill ph-check-circle</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-arrow-right"></i>
+            <span>ph-fill ph-arrow-right</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-play"></i>
+            <span>ph-fill ph-play</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-envelope"></i>
+            <span>ph-fill ph-envelope</span>
+          </div>
+          <div class="icon-item">
+            <i class="ph-fill ph-map-pin"></i>
+            <span>ph-fill ph-map-pin</span>
+          </div>
+        </div>
+        
+        <h3 style="margin-top: var(--space-8);">Icon Rule</h3>
+        <div style="background: var(--color-gray-100); padding: var(--space-4); border-left: 4px solid var(--color-primary);">
+          <p style="font-size: 14px; color: var(--color-gray-700);"><strong>Always use filled (solid) icons</strong> - not outline variants. Use the <code>ph-fill</code> class prefix.</p>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 11: RESOURCES
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Code Usage -->
+      <section id="usage" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Code <span class="highlight">Usage</span></h2>
+          <p>Quick reference for implementing the Precision Design System v5.0.</p>
+        </div>
+        
+        <h3>Import Fonts</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Fonts --&gt;</span>
+&lt;link href="<span class="value">https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap</span>" rel="stylesheet"&gt;
+
+<span class="comment">&lt;!-- Phosphor Icons (Fill variant) --&gt;</span>
+&lt;script src="<span class="value">https://unpkg.com/@phosphor-icons/web@2.0.3</span>"&gt;&lt;/script&gt;</code>
+        </div>
+        
+        <h3>CSS Variables - Thin Rounded Corners</h3>
+        <div class="code-block">
+          <code><span class="comment">/* Thin Rounded Corners (2px default) */</span>
+<span class="property">--radius-xs</span>: <span class="value">2px</span>;   <span class="comment">/* Default - the signature */</span>
+<span class="property">--radius-sm</span>: <span class="value">4px</span>;   <span class="comment">/* Slightly softer */</span>
+<span class="property">--radius</span>: <span class="value">6px</span>;      <span class="comment">/* Cards, buttons */</span>
+<span class="property">--radius-md</span>: <span class="value">8px</span>;   <span class="comment">/* Maximum */</span></code>
+        </div>
+        
+        <h3>Frosted Glass Edge Effect</h3>
+        <div class="code-block">
+          <code><span class="comment">/* The AI Hub signature - frosted glass border */</span>
+.frost-edge {
+  <span class="property">border-radius</span>: <span class="value">var(--radius-xs)</span>;
+  <span class="property">border</span>: <span class="value">1px solid rgba(229, 231, 235, 0.7)</span>;
+  <span class="property">box-shadow</span>: 
+    <span class="value">0 0 0 1px rgba(255, 255, 255, 0.8)</span>,
+    <span class="value">0 1px 3px rgba(0, 0, 0, 0.04)</span>,
+    <span class="value">inset 0 0 0 1px rgba(255, 255, 255, 0.5)</span>;
+}</code>
+        </div>
+        
+        <h3>Glass Border Card</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Card with frosted glass border --&gt;</span>
+&lt;div class="<span class="property">card glass-border</span>"&gt;
+  &lt;h4&gt;Card Title&lt;/h4&gt;
+  &lt;p&gt;Card content goes here.&lt;/p&gt;
+&lt;/div&gt;
+
+<span class="comment">&lt;!-- Frost edge variant --&gt;</span>
+&lt;div class="<span class="property">card frost-edge</span>"&gt;...&lt;/div&gt;</code>
+        </div>
+        
+        <h3>Section Connector Pattern</h3>
+        <p style="color: var(--color-gray-500); margin-bottom: var(--space-4); font-size: 14px;">
+          Centered vertical dashed line connecting icons/tabs to content below. Creates visual flow between sections.
+        </p>
+        
+        <!-- Live Demo of Connector Pattern -->
+        <div style="background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%); padding: var(--space-8); border-radius: var(--radius-xs); border: 1px solid rgba(229, 231, 235, 0.6); margin-bottom: var(--space-6);">
+          <div class="section-connector">
+            <!-- Icons row at top -->
+            <div class="connector-start">
+              <div class="connector-item active">
+                <div class="connector-item-icon"><i class="ph-fill ph-chat-circle"></i></div>
+                <span class="connector-item-label">Chat</span>
+                <span class="connector-item-desc">AI Chat</span>
+              </div>
+              <div class="connector-item">
+                <div class="connector-item-icon"><i class="ph-fill ph-robot"></i></div>
+                <span class="connector-item-label">Assistants</span>
+                <span class="connector-item-desc">Custom AI</span>
+              </div>
+              <div class="connector-item">
+                <div class="connector-item-icon"><i class="ph-fill ph-plugs-connected"></i></div>
+                <span class="connector-item-label">Integrations</span>
+                <span class="connector-item-desc">Connect</span>
+              </div>
+              <div class="connector-item">
+                <div class="connector-item-icon"><i class="ph-fill ph-flow-arrow"></i></div>
+                <span class="connector-item-label">Workflows</span>
+                <span class="connector-item-desc">Automate</span>
+              </div>
+            </div>
+            
+            <!-- Connector end - the main card -->
+            <div class="connector-end">
+              <div class="card glass-border" style="padding: var(--space-8);">
+                <div style="display: flex; gap: var(--space-6);">
+                  <div style="width: 200px; border-right: 1px solid var(--color-gray-200); padding-right: var(--space-6);">
+                    <div style="font-weight: 600; margin-bottom: var(--space-4); font-size: 14px;">Navigation</div>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+                      <div style="padding: 8px 12px; background: rgba(99,102,241,0.1); border-radius: 2px; font-size: 13px; color: var(--color-primary);">Dashboard</div>
+                      <div style="padding: 8px 12px; font-size: 13px; color: var(--color-gray-500);">Analytics</div>
+                      <div style="padding: 8px 12px; font-size: 13px; color: var(--color-gray-500);">Settings</div>
+                    </div>
+                  </div>
+                  <div style="flex: 1;">
+                    <div style="color: var(--color-gray-400); font-size: 12px; margin-bottom: var(--space-2);">Content Area</div>
+                    <div style="background: var(--color-gray-100); height: 120px; border-radius: 2px; display: flex; align-items: center; justify-content: center; color: var(--color-gray-500); font-size: 13px;">
+                      Main content connected to selected tab
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Section Connector Pattern --&gt;</span>
+&lt;div class="<span class="property">section-connector</span>"&gt;
+  <span class="comment">&lt;!-- Icons/tabs at top --&gt;</span>
+  &lt;div class="<span class="property">connector-start</span>"&gt;
+    &lt;div class="<span class="property">connector-item active</span>"&gt;
+      &lt;div class="<span class="property">connector-item-icon</span>"&gt;...&lt;/div&gt;
+      &lt;span class="<span class="property">connector-item-label</span>"&gt;Label&lt;/span&gt;
+    &lt;/div&gt;
+    <span class="comment">&lt;!-- More items... --&gt;</span>
+  &lt;/div&gt;
+  
+  <span class="comment">&lt;!-- Content card below --&gt;</span>
+  &lt;div class="<span class="property">connector-end</span>"&gt;
+    &lt;div class="<span class="property">card glass-border</span>"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="comment">/* CSS - The dashed line is automatic via ::before */</span>
+.section-connector::before {
+  <span class="property">background</span>: <span class="value">repeating-linear-gradient(
+    to bottom,
+    rgba(209, 213, 219, 0.6) 0px,
+    rgba(209, 213, 219, 0.6) 4px,
+    transparent 4px,
+    transparent 8px
+  )</span>;
+}</code>
+        </div>
+      </section>
+      
+      <!-- ================================================ -->
+      <!-- UX FEATURES SECTION -->
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 09: UX PATTERNS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Page Preloader -->
+      <section id="preloader" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Page <span class="highlight">Preloader</span></h2>
+          <p>Animated loading screen displayed while the page loads.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <div style="position: relative; height: 300px; background: var(--color-black); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--space-4);">
+          <img src="https://res.cloudinary.com/startplatz/image/upload/v1767628988/ai-hub/website/aihublogo02.png" alt="Logo" style="width: 120px; filter: brightness(0) invert(1); animation: preloaderPulse 1.5s ease-in-out infinite;" />
+          <div style="width: 200px; height: 4px; background: var(--color-gray-800); overflow: hidden;">
+            <div class="demo-preloader-bar" style="height: 100%; width: 0%; background: var(--color-primary); animation: preloaderBar 2s ease-in-out infinite;"></div>
+          </div>
+          <p style="color: var(--color-gray-500); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em;">Loading...</p>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- HTML Structure --&gt;</span>
+&lt;div class="<span class="property">preloader</span>" id="preloader"&gt;
+  &lt;img src="logo.png" class="<span class="property">preloader-logo</span>" /&gt;
+  &lt;div class="<span class="property">preloader-bar</span>"&gt;
+    &lt;div class="<span class="property">preloader-progress</span>"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="comment">/* CSS */</span>
+<span class="property">.preloader</span> {
+  position: fixed;
+  inset: 0;
+  background: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+<span class="property">.preloader.hidden</span> {
+  opacity: 0;
+  visibility: hidden;
+}
+<span class="property">.preloader-logo</span> {
+  width: 120px;
+  animation: pulse 1.5s ease infinite;
+}
+<span class="property">.preloader-bar</span> {
+  width: 200px;
+  height: 4px;
+  background: var(--color-gray-800);
+}
+<span class="property">.preloader-progress</span> {
+  height: 100%;
+  background: var(--color-primary);
+  animation: loadingBar 2s ease infinite;
+}
+
+<span class="comment">// JavaScript - Hide after load</span>
+window.addEventListener('load', () =&gt; {
+  document.getElementById('preloader').classList.add('hidden');
+});</code>
+        </div>
+      </section>
+      
+      <!-- Scroll Progress Bar -->
+      <section id="progress" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Scroll <span class="highlight">Progress</span></h2>
+          <p>Fixed progress bar at the top showing scroll position.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <p style="font-size: 13px; color: var(--color-gray-500); margin-bottom: var(--space-4);"><i class="ph-fill ph-arrow-up"></i> Look at the top of this page - that's the scroll progress bar!</p>
+        
+        <div style="position: relative; height: 80px; background: var(--color-gray-100); overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; height: 3px; width: 65%; background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));"></div>
+          <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--color-gray-600); font-size: 13px;">65% scrolled</p>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- HTML --&gt;</span>
+&lt;div class="<span class="property">scroll-progress</span>" id="scrollProgress"&gt;&lt;/div&gt;
+
+<span class="comment">/* CSS */</span>
+<span class="property">.scroll-progress</span> {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  z-index: 10001;
+  transition: width 0.1s linear;
+}
+
+<span class="comment">// JavaScript</span>
+window.addEventListener('scroll', () =&gt; {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+});</code>
+        </div>
+      </section>
+      
+      <!-- Back to Top Button -->
+      <section id="backtotop" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Back to <span class="highlight">Top</span></h2>
+          <p>Floating button that appears on scroll to quickly return to top.</p>
+        </div>
+        
+        <h3>Button Variants</h3>
+        <div style="display: flex; gap: var(--space-4); align-items: center; margin-bottom: var(--space-6);">
+          <button class="demo-back-to-top" style="width: 48px; height: 48px; background: var(--color-primary); color: white; border: none; border-radius: var(--radius-xs); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25); transition: all 0.3s;">
+            <i class="ph-fill ph-arrow-up" style="font-size: 20px;"></i>
+          </button>
+          <span style="color: var(--color-gray-600); font-size: 13px;">Primary</span>
+          
+          <button style="width: 48px; height: 48px; background: var(--color-gray-900); color: white; border: none; border-radius: var(--radius-xs); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <i class="ph-fill ph-arrow-up" style="font-size: 20px;"></i>
+          </button>
+          <span style="color: var(--color-gray-600); font-size: 13px;">Dark</span>
+          
+          <button style="width: 48px; height: 48px; background: var(--color-white); color: var(--color-gray-700); border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.06);">
+            <i class="ph-fill ph-arrow-up" style="font-size: 20px;"></i>
+          </button>
+          <span style="color: var(--color-gray-600); font-size: 13px;">Light</span>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- HTML --&gt;</span>
+&lt;button class="<span class="property">back-to-top</span>" id="backToTop"&gt;
+  &lt;i class="ph-fill ph-arrow-up"&gt;&lt;/i&gt;
+&lt;/button&gt;
+
+<span class="comment">/* CSS */</span>
+<span class="property">.back-to-top</span> {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
+}
+<span class="property">.back-to-top.visible</span> {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+<span class="property">.back-to-top:hover</span> {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+}
+
+<span class="comment">// JavaScript</span>
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () =&gt; {
+  backToTop.classList.toggle('visible', window.scrollY &gt; 500);
+});
+backToTop.addEventListener('click', () =&gt; {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});</code>
+        </div>
+      </section>
+      
+      <!-- Mobile Navigation -->
+      <section id="mobilenav" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Mobile <span class="highlight">Navigation</span></h2>
+          <p>Responsive hamburger menu with slide-in panel.</p>
+        </div>
+        
+        <h3>Hamburger Toggle</h3>
+        <div style="display: flex; gap: var(--space-6); align-items: center;">
+          <div style="background: var(--color-black); padding: var(--space-4);">
+            <button class="demo-hamburger" style="display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px;">
+              <span style="display: block; width: 24px; height: 2px; background: var(--color-white); transition: all 0.3s;"></span>
+              <span style="display: block; width: 24px; height: 2px; background: var(--color-white); transition: all 0.3s;"></span>
+              <span style="display: block; width: 24px; height: 2px; background: var(--color-white); transition: all 0.3s;"></span>
+            </button>
+          </div>
+          <span style="color: var(--color-gray-600); font-size: 13px;">→</span>
+          <div style="background: var(--color-black); padding: var(--space-4);">
+            <button class="demo-hamburger active" style="display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px;">
+              <span style="display: block; width: 24px; height: 2px; background: var(--color-white); transform: rotate(45deg) translateY(5px);"></span>
+              <span style="display: block; width: 24px; height: 2px; background: var(--color-white); opacity: 0;"></span>
+              <span style="display: block; width: 24px; height: 2px; background: var(--color-white); transform: rotate(-45deg) translateY(-5px);"></span>
+            </button>
+          </div>
+          <span style="color: var(--color-gray-600); font-size: 13px;">Active (X)</span>
+        </div>
+        
+        <h3>Mobile Menu Panel</h3>
+        <div style="display: flex; gap: var(--space-4); margin-top: var(--space-4);">
+          <div style="width: 280px; background: var(--color-black); padding: var(--space-6);">
+            <a href="#" style="display: block; color: var(--color-white); text-decoration: none; padding: var(--space-3) 0; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--color-gray-800); transition: color 0.3s;">Home</a>
+            <a href="#" style="display: block; color: var(--color-primary); text-decoration: none; padding: var(--space-3) 0; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--color-gray-800);">Mentors</a>
+            <a href="#" style="display: block; color: var(--color-white); text-decoration: none; padding: var(--space-3) 0; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--color-gray-800); transition: color 0.3s;">Bootcamp</a>
+            <a href="#" style="display: block; color: var(--color-white); text-decoration: none; padding: var(--space-3) 0; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--color-gray-800); transition: color 0.3s;">Events</a>
+            <a href="#" style="display: block; color: var(--color-white); text-decoration: none; padding: var(--space-3) 0; font-size: 1.25rem; font-weight: 600; transition: color 0.3s;">Contact</a>
+            <button class="btn btn-primary" style="width: 100%; margin-top: var(--space-6);">Join Community</button>
+          </div>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Hamburger Button --&gt;</span>
+&lt;button class="<span class="property">mobile-toggle</span>" id="mobileToggle"&gt;
+  &lt;span&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;/span&gt;
+  &lt;span&gt;&lt;/span&gt;
+&lt;/button&gt;
+
+<span class="comment">&lt;!-- Mobile Panel --&gt;</span>
+&lt;div class="<span class="property">mobile-nav</span>" id="mobileNav"&gt;
+  &lt;ul class="mobile-nav-links"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    ...
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+<span class="comment">/* CSS - Hamburger */</span>
+<span class="property">.mobile-toggle span</span> {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  transition: all 0.3s;
+}
+<span class="property">.mobile-toggle.active span:nth-child(1)</span> {
+  transform: rotate(45deg) translateY(7px);
+}
+<span class="property">.mobile-toggle.active span:nth-child(2)</span> {
+  opacity: 0;
+}
+<span class="property">.mobile-toggle.active span:nth-child(3)</span> {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+<span class="comment">/* CSS - Panel */</span>
+<span class="property">.mobile-nav</span> {
+  position: fixed;
+  top: 80px;
+  right: -100%;
+  width: 300px;
+  height: calc(100vh - 80px);
+  background: var(--color-black);
+  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 9999;
+}
+<span class="property">.mobile-nav.open</span> {
+  right: 0;
+}</code>
+        </div>
+      </section>
+      
+      <!-- Cookie Consent Banner -->
+      <section id="cookie" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Cookie <span class="highlight">Banner</span></h2>
+          <p>GDPR-compliant cookie consent notification.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <div style="position: relative; background: var(--color-black); padding: var(--space-5); display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 300px;">
+            <span style="font-size: 24px;">🍪</span>
+            <p style="color: var(--color-white); font-size: 14px; margin: 0;">
+              Wir nutzen Cookies, um dein Erlebnis zu verbessern. Mit der Nutzung dieser Website stimmst du unserer 
+              <a href="#" style="color: var(--color-primary); text-decoration: underline;">Datenschutzerklärung</a> zu.
+            </p>
+          </div>
+          <div style="display: flex; gap: var(--space-3);">
+            <button style="padding: 10px 20px; background: transparent; color: var(--color-gray-400); border: 1px solid var(--color-gray-600); font-size: 13px; font-weight: 600; cursor: pointer;">Einstellungen</button>
+            <button style="padding: 10px 20px; background: var(--color-primary); color: white; border: none; font-size: 13px; font-weight: 600; cursor: pointer;">Akzeptieren</button>
+          </div>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- HTML --&gt;</span>
+&lt;div class="<span class="property">cookie-banner</span>" id="cookieBanner"&gt;
+  &lt;div class="cookie-content"&gt;
+    &lt;p&gt;🍪 Wir nutzen Cookies...&lt;/p&gt;
+    &lt;div class="cookie-buttons"&gt;
+      &lt;button class="cookie-btn-settings"&gt;Einstellungen&lt;/button&gt;
+      &lt;button class="cookie-btn-accept"&gt;Akzeptieren&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="comment">/* CSS */</span>
+<span class="property">.cookie-banner</span> {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-black);
+  padding: var(--space-5);
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+<span class="property">.cookie-banner.visible</span> {
+  transform: translateY(0);
+}
+
+<span class="comment">// JavaScript - Hide on accept</span>
+document.getElementById('acceptCookies').addEventListener('click', () =&gt; {
+  document.getElementById('cookieBanner').classList.remove('visible');
+  localStorage.setItem('cookiesAccepted', 'true');
+});</code>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 10: CONTENT BLOCKS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- FAQ Accordion -->
+      <section id="faq" class="ds-section">
+        <div class="ds-section-header">
+          <h2>FAQ <span class="highlight">ACCORDION</span></h2>
+          <p>Expandable question/answer component with smooth animations.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <div class="faq-demo" style="max-width: 700px;">
+          <div class="faq-item-demo" style="border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); margin-bottom: var(--space-3); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7), 0 1px 3px rgba(0, 0, 0, 0.04);">
+            <button class="faq-question-demo" onclick="toggleFaqDemo(this)" style="width: 100%; padding: var(--space-5); display: flex; justify-content: space-between; align-items: center; background: var(--color-white); border: none; border-radius: var(--radius-xs); cursor: pointer; font-size: 1rem; font-weight: 600; text-align: left;">
+              <span>Brauche ich Programmierkenntnisse für die Workshops?</span>
+              <i class="ph-fill ph-caret-down" style="transition: transform 0.3s; color: var(--color-gray-400);"></i>
+            </button>
+            <div class="faq-answer-demo" style="max-height: 0; overflow: hidden; transition: all 0.3s ease; background: var(--color-gray-50);">
+              <p style="padding: var(--space-5); margin: 0; color: var(--color-gray-700);">Nein, unsere Einsteiger-Workshops sind speziell für Menschen ohne technischen Hintergrund konzipiert. Wir beginnen bei den Grundlagen und arbeiten uns Schritt für Schritt vor.</p>
+            </div>
+          </div>
+          <div class="faq-item-demo active" style="border: 1px solid rgba(99, 102, 241, 0.3); border-radius: var(--radius-xs); margin-bottom: var(--space-3); box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.1), 0 4px 12px rgba(99, 102, 241, 0.08);">
+            <button class="faq-question-demo" onclick="toggleFaqDemo(this)" style="width: 100%; padding: var(--space-5); display: flex; justify-content: space-between; align-items: center; background: var(--color-primary); color: white; border: none; border-radius: var(--radius-xs) var(--radius-xs) 0 0; cursor: pointer; font-size: 1rem; font-weight: 600; text-align: left;">
+              <span>Wie lange dauern die Programme?</span>
+              <i class="ph-fill ph-caret-down" style="transform: rotate(180deg); transition: transform 0.3s;"></i>
+            </button>
+            <div class="faq-answer-demo" style="max-height: 200px; overflow: hidden; transition: all 0.3s ease; background: rgba(99, 102, 241, 0.05);">
+              <p style="padding: var(--space-5); margin: 0; color: var(--color-gray-700);">Die Dauer variiert je nach Programm: Workshops dauern 2-4 Stunden, der Intensiv-Kurs 3 Tage und unser Bootcamp 12 Wochen in Vollzeit.</p>
+            </div>
+          </div>
+          <div class="faq-item-demo" style="border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); margin-bottom: var(--space-3); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7), 0 1px 3px rgba(0, 0, 0, 0.04);">
+            <button class="faq-question-demo" onclick="toggleFaqDemo(this)" style="width: 100%; padding: var(--space-5); display: flex; justify-content: space-between; align-items: center; background: var(--color-white); border: none; border-radius: var(--radius-xs); cursor: pointer; font-size: 1rem; font-weight: 600; text-align: left;">
+              <span>Gibt es Fördermöglichkeiten?</span>
+              <i class="ph-fill ph-caret-down" style="transition: transform 0.3s; color: var(--color-gray-400);"></i>
+            </button>
+            <div class="faq-answer-demo" style="max-height: 0; overflow: hidden; transition: all 0.3s ease; background: var(--color-gray-50);">
+              <p style="padding: var(--space-5); margin: 0; color: var(--color-gray-700);">Ja! Unser Bootcamp ist AZAV-zertifiziert und kann über Bildungsgutschein zu 100% gefördert werden. Auch das Qualifizierungschancengesetz für Berufstätige ist anwendbar.</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3>States</h3>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-4);">
+          <div class="card">
+            <h4 style="font-size: 13px; color: var(--color-gray-600); margin-bottom: var(--space-2);">Collapsed (Default)</h4>
+            <p style="font-size: 14px;">Frosted glass border, White background, Caret down</p>
+          </div>
+          <div class="card" style="background: rgba(99, 102, 241, 0.05); border-color: rgba(99, 102, 241, 0.2);">
+            <h4 style="font-size: 13px; color: var(--color-primary); margin-bottom: var(--space-2);">Expanded (Active)</h4>
+            <p style="font-size: 14px;">Purple accent border, Purple header, Caret up</p>
+          </div>
+        </div>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- HTML --&gt;</span>
+&lt;div class="<span class="property">faq-item</span>"&gt;
+  &lt;button class="<span class="property">faq-question</span>"&gt;
+    &lt;span&gt;Question text?&lt;/span&gt;
+    &lt;i class="ph-fill ph-caret-down"&gt;&lt;/i&gt;
+  &lt;/button&gt;
+  &lt;div class="<span class="property">faq-answer</span>"&gt;
+    &lt;p&gt;Answer text...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="comment">/* CSS */</span>
+<span class="property">.faq-item</span> { border: 2px solid var(--color-black); }
+<span class="property">.faq-item.active</span> { border-color: var(--color-primary); }
+<span class="property">.faq-item.active .faq-question</span> {
+  background: var(--color-primary);
+  color: white;
+}
+<span class="property">.faq-answer</span> {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+<span class="property">.faq-item.active .faq-answer</span> {
+  max-height: 500px;
+}</code>
+        </div>
+      </section>
+      
+      <!-- Newsletter Form -->
+      <section id="newsletter" class="ds-section">
+        <div class="ds-section-header">
+          <h2>NEWSLETTER <span class="highlight">FORM</span></h2>
+          <p>Contact and subscription forms with validation states.</p>
+        </div>
+        
+        <h3>Full Contact Form</h3>
+        <div style="background: var(--color-primary); padding: var(--space-8); max-width: 600px; border-radius: var(--radius-xs);">
+          <h3 style="color: white; margin-top: 0; margin-bottom: var(--space-6);">Join our Community</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-4);">
+            <div>
+              <label style="display: block; color: white; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">Vorname</label>
+              <input type="text" placeholder="Max" style="width: 100%; padding: var(--space-3); border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); font-size: 14px; background: white;">
+            </div>
+            <div>
+              <label style="display: block; color: white; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">Nachname</label>
+              <input type="text" placeholder="Mustermann" style="width: 100%; padding: var(--space-3); border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); font-size: 14px; background: white;">
+            </div>
+          </div>
+          <div style="margin-bottom: var(--space-4);">
+            <label style="display: block; color: white; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">E-Mail</label>
+            <input type="email" placeholder="max@example.com" style="width: 100%; padding: var(--space-3); border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); font-size: 14px; background: white;">
+          </div>
+          <div style="margin-bottom: var(--space-4);">
+            <label style="display: block; color: white; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">Interesse</label>
+            <select style="width: 100%; padding: var(--space-3); border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); font-size: 14px; background: white;">
+              <option>Workshops</option>
+              <option>Bootcamp</option>
+              <option>Corporate Training</option>
+              <option>Community Events</option>
+            </select>
+          </div>
+          <div style="margin-bottom: var(--space-6);">
+            <label style="display: flex; align-items: flex-start; gap: var(--space-2); color: white; font-size: 13px; cursor: pointer;">
+              <input type="checkbox" style="margin-top: 2px;">
+              <span>Ich stimme dem Erhalt von E-Mails zu und akzeptiere die Datenschutzerklärung.</span>
+            </label>
+          </div>
+          <button class="btn btn-black" style="width: 100%; border-radius: var(--radius-xs);">
+            <i class="ph-fill ph-paper-plane-tilt"></i> Newsletter Abonnieren
+          </button>
+        </div>
+        
+        <h3>Simple Email Form</h3>
+        <div style="display: flex; gap: 0; max-width: 500px; margin-top: var(--space-4);">
+          <input type="email" placeholder="Deine E-Mail Adresse" style="flex: 1; padding: var(--space-4); border: 1px solid rgba(229, 231, 235, 0.8); border-right: none; border-radius: var(--radius-xs) 0 0 var(--radius-xs); font-size: 14px;">
+          <button class="btn btn-primary" style="border-radius: 0 var(--radius-xs) var(--radius-xs) 0;">Abonnieren</button>
+        </div>
+        
+        <h3>Form States</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-4);">
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">Default</label>
+            <input type="text" placeholder="Placeholder" style="width: 100%; padding: var(--space-3); border: 1px solid rgba(229, 231, 235, 0.8); border-radius: var(--radius-xs); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(0, 0, 0, 0.02);">
+          </div>
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">Focus</label>
+            <input type="text" value="Focused" style="width: 100%; padding: var(--space-3); border: 1px solid var(--color-primary); border-radius: var(--radius-xs); outline: none; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);">
+          </div>
+          <div>
+            <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: var(--space-2);">Error</label>
+            <input type="text" value="Invalid" style="width: 100%; padding: var(--space-3); border: 1px solid var(--color-error); border-radius: var(--radius-xs); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);">
+            <p style="color: var(--color-error); font-size: 12px; margin-top: var(--space-1);">Bitte gültige E-Mail eingeben</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Count-up Animation -->
+      <section id="countup" class="ds-section">
+        <div class="ds-section-header">
+          <h2>COUNT-UP <span class="highlight">STATS</span></h2>
+          <p>Animated number counter that triggers on scroll into view.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); background: var(--color-gray-100); padding: var(--space-8);">
+          <div style="text-align: center;">
+            <div class="countup-demo" style="font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: var(--color-black);" data-target="2500">0</div>
+            <p style="color: var(--color-gray-600); text-transform: uppercase; font-size: 13px; letter-spacing: 0.05em;">Absolventen</p>
+          </div>
+          <div style="text-align: center;">
+            <div class="countup-demo" style="font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: var(--color-black);" data-target="94" data-suffix="%">0</div>
+            <p style="color: var(--color-gray-600); text-transform: uppercase; font-size: 13px; letter-spacing: 0.05em;">Erfolgsquote</p>
+          </div>
+          <div style="text-align: center;">
+            <div class="countup-demo" style="font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: var(--color-primary);" data-target="50" data-prefix="+">0</div>
+            <p style="color: var(--color-gray-600); text-transform: uppercase; font-size: 13px; letter-spacing: 0.05em;">Mentoren</p>
+          </div>
+          <div style="text-align: center;">
+            <div class="countup-demo" style="font-family: var(--font-display); font-size: 3.5rem; font-weight: 800; color: var(--color-black);" data-target="12">0</div>
+            <p style="color: var(--color-gray-600); text-transform: uppercase; font-size: 13px; letter-spacing: 0.05em;">Wochen</p>
+          </div>
+        </div>
+        <button onclick="triggerCountUp()" class="btn btn-outline" style="margin-top: var(--space-4);">
+          <i class="ph-fill ph-play"></i> Replay Animation
+        </button>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- HTML --&gt;</span>
+&lt;div class="<span class="property">stat-number</span>" data-target="2500" data-prefix="+" data-suffix="%"&gt;0&lt;/div&gt;
+
+<span class="comment">// JavaScript</span>
+function animateCountUp(element) {
+  const target = parseInt(element.dataset.target);
+  const prefix = element.dataset.prefix || '';
+  const suffix = element.dataset.suffix || '';
+  const duration = 2000;
+  const step = target / (duration / 16);
+  let current = 0;
+  
+  const timer = setInterval(() =&gt; {
+    current += step;
+    if (current &gt;= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    element.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
+  }, 16);
+}
+
+<span class="comment">// Trigger on scroll into view</span>
+const observer = new IntersectionObserver((entries) =&gt; {
+  entries.forEach(entry =&gt; {
+    if (entry.isIntersecting) {
+      animateCountUp(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number').forEach(el =&gt; observer.observe(el));</code>
+        </div>
+      </section>
+      
+      <!-- ═══════════════════════════════════════════════════════════════════════
+           SECTION 07: SLIDERS & CAROUSELS
+           ═══════════════════════════════════════════════════════════════════════ -->
+      
+      <!-- Carousel -->
+      <section id="carousel" class="ds-section">
+        <div class="ds-section-header">
+          <h2>CAROUSEL <span class="highlight">CONTROLS</span></h2>
+          <p>Navigation patterns for mentor/testimonial carousels.</p>
+        </div>
+        
+        <h3>Arrow Navigation</h3>
+        <div style="display: flex; gap: var(--space-4); align-items: center; margin-bottom: var(--space-6);">
+          <button class="frost-edge" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(229, 231, 235, 0.8); background: white; cursor: pointer; transition: all 0.3s; border-radius: var(--radius-xs);">
+            <i class="ph-fill ph-arrow-left" style="font-size: 20px; color: var(--color-gray-700);"></i>
+          </button>
+          <button style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--color-primary); color: white; border: none; cursor: pointer; transition: all 0.3s; border-radius: var(--radius-xs); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);">
+            <i class="ph-fill ph-arrow-right" style="font-size: 20px;"></i>
+          </button>
+          <button class="frost-edge" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(229, 231, 235, 0.8); background: var(--color-gray-50); cursor: pointer; transition: all 0.3s; border-radius: var(--radius-xs);">
+            <i class="ph-fill ph-caret-left" style="font-size: 20px; color: var(--color-gray-600);"></i>
+          </button>
+          <button class="frost-edge" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(229, 231, 235, 0.8); background: var(--color-gray-50); cursor: pointer; transition: all 0.3s; border-radius: var(--radius-xs);">
+            <i class="ph-fill ph-caret-right" style="font-size: 20px; color: var(--color-gray-600);"></i>
+          </button>
+          <span style="color: var(--color-gray-600); font-size: 13px;">2px rounded, frosted glass edges</span>
+        </div>
+        
+        <h3>Dot Navigation</h3>
+        <div style="display: flex; gap: var(--space-2); align-items: center; margin-bottom: var(--space-6);">
+          <div style="width: 32px; height: 8px; background: var(--color-primary); border-radius: var(--radius-full);"></div>
+          <div style="width: 8px; height: 8px; background: var(--color-gray-300); border-radius: var(--radius-full);"></div>
+          <div style="width: 8px; height: 8px; background: var(--color-gray-300); border-radius: var(--radius-full);"></div>
+          <div style="width: 8px; height: 8px; background: var(--color-gray-300); border-radius: var(--radius-full);"></div>
+          <span style="color: var(--color-gray-600); font-size: 13px; margin-left: var(--space-4);">Pill-shaped dots (radius-full)</span>
+        </div>
+        
+        <h3>Card Carousel Preview</h3>
+        <div style="display: flex; gap: var(--space-4); overflow: hidden; padding: var(--space-2);">
+          <div class="frost-edge" style="flex: 0 0 200px; background: var(--color-white); border-radius: var(--radius-xs); overflow: hidden; transition: all 0.3s;">
+            <div style="height: 150px; background: var(--color-gray-200);"></div>
+            <div style="padding: var(--space-4);">
+              <h4 style="font-size: 14px; font-weight: 700;">Dr. Sarah Chen</h4>
+              <p style="font-size: 12px; color: var(--color-primary);">AI Research Lead</p>
+            </div>
+          </div>
+          <div class="frost-edge" style="flex: 0 0 200px; background: var(--color-white); border-radius: var(--radius-xs); overflow: hidden; transition: all 0.3s; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);">
+            <div style="height: 150px; background: var(--color-gray-200);"></div>
+            <div style="padding: var(--space-4);">
+              <h4 style="font-size: 14px; font-weight: 700;">Marcus Weber</h4>
+              <p style="font-size: 12px; color: var(--color-primary);">ML Engineer</p>
+            </div>
+          </div>
+          <div class="frost-edge" style="flex: 0 0 200px; background: var(--color-white); border-radius: var(--radius-xs); overflow: hidden; transition: all 0.3s; opacity: 0.5;">
+            <div style="height: 150px; background: var(--color-gray-200);"></div>
+            <div style="padding: var(--space-4);">
+              <h4 style="font-size: 14px; font-weight: 700;">Lisa Park</h4>
+              <p style="font-size: 12px; color: var(--color-primary);">Data Scientist</p>
+            </div>
+          </div>
+        </div>
+        
+        <h3>Auto-Rotate with Pause</h3>
+        <div style="display: flex; gap: var(--space-4); align-items: center; margin-top: var(--space-6); margin-bottom: var(--space-4);">
+          <div style="display: flex; gap: var(--space-2); align-items: center;">
+            <div style="width: 32px; height: 8px; background: var(--color-primary); position: relative; overflow: hidden;">
+              <div class="carousel-progress" style="position: absolute; inset: 0; background: var(--color-primary-light); transform: scaleX(0); transform-origin: left; animation: carouselProgress 5s linear infinite;"></div>
+            </div>
+            <div style="width: 8px; height: 8px; background: var(--color-gray-300);"></div>
+            <div style="width: 8px; height: 8px; background: var(--color-gray-300);"></div>
+          </div>
+          <span style="color: var(--color-gray-600); font-size: 13px;">Auto-advances every 5 seconds</span>
+        </div>
+        <p style="font-size: 13px; color: var(--color-gray-500);"><i class="ph-fill ph-info"></i> Pause auto-rotate when user hovers over carousel</p>
+        
+        <h3>Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">/* Arrow Buttons - AI Hub Brand Style */</span>
+<span class="property">.carousel-arrow</span> {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: var(--radius-xs); <span class="comment">/* 2px rounded */</span>
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  <span class="comment">/* Frosted glass edge */</span>
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+<span class="property">.carousel-arrow:hover</span> {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+<span class="comment">/* Dot Navigation - Pill shaped */</span>
+<span class="property">.carousel-dot</span> {
+  width: 8px;
+  height: 8px;
+  background: var(--color-gray-300);
+  border-radius: var(--radius-full); <span class="comment">/* Pill shape */</span>
+  cursor: pointer;
+  transition: all 0.3s;
+}
+<span class="property">.carousel-dot.active</span> {
+  width: 32px;
+  background: var(--color-primary);
+}
+
+<span class="comment">// JavaScript - Auto-rotate</span>
+let currentSlide = 0;
+let autoRotate = setInterval(nextSlide, 5000);
+
+carousel.addEventListener('mouseenter', () =&gt; clearInterval(autoRotate));
+carousel.addEventListener('mouseleave', () =&gt; {
+  autoRotate = setInterval(nextSlide, 5000);
+});</code>
+        </div>
+      </section>
+      
+      <!-- Circular Slider - Award-Winning from Annnimate.com -->
+      <section id="circular-slider" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Circular <span class="highlight">Slider</span></h2>
+          <p>Award-winning circular carousel using GSAP MotionPath + Draggable. Drag around the circle to navigate.</p>
+        </div>
+        
+        <div style="padding: var(--space-4); background: var(--color-primary-lighter); border-radius: var(--radius-xs); margin-bottom: var(--space-6); border-left: 3px solid var(--color-primary);">
+          <p style="font-size: 13px; color: var(--color-primary-dark); margin: 0;"><strong>🏆 Award-Winning Component</strong> — Original code from <a href="https://www.annnimate.com/try/circular-slider" target="_blank" style="color: var(--color-primary);">Annnimate</a>. Requires GSAP + MotionPathPlugin + Draggable + InertiaPlugin.</p>
+        </div>
+        
+        <h3>Live Demo</h3>
+        <div class="circular_slider_demo_wrap">
+          <div
+            class="circular_slider_wrap"
+            data-anm-circular-slider
+            data-anm-circular-slider-type="snap"
+            data-anm-circular-slider-autoplay="0"
+          >
+            <div class="circular_slider_container" data-anm-circular-slider-container>
+              <svg class="circular_slider_svg" viewBox="0 0 200 200">
+                <circle
+                  class="circular_slider_path"
+                  data-anm-circular-slider-path
+                  cx="100"
+                  cy="100"
+                  r="100"
+                />
+              </svg>
+
+              <!-- 12 items for a fuller circular carousel like Annnimate -->
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop" alt="AI Expert" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop" alt="ML Engineer" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop" alt="Data Scientist" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=533&fit=crop" alt="Product Lead" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop" alt="Tech Lead" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=533&fit=crop" alt="CTO" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=533&fit=crop" alt="Developer" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=533&fit=crop" alt="Designer" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop" alt="Strategist" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=533&fit=crop" alt="Researcher" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=533&fit=crop" alt="Analyst" class="circular_slider_image" />
+              </div>
+              <div class="circular_slider_item" data-anm-circular-slider-item>
+                <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=533&fit=crop" alt="Engineer" class="circular_slider_image" />
+              </div>
+            </div>
+          </div>
+
+          <div class="circular_slider_controls">
+            <button class="circular_slider_arrow" data-anm-circular-slider-prev aria-label="Previous slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="circular_slider_arrow" data-anm-circular-slider-next aria-label="Next slide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <h3>Features</h3>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
+          <div class="card">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-hand-grabbing"></i></div>
+            <h4>GSAP Draggable</h4>
+            <p>Drag the circular container to navigate. Uses inertia for natural feel.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon card-icon-emerald"><i class="ph-fill ph-path"></i></div>
+            <h4>MotionPath</h4>
+            <p>Items positioned along a circular SVG path with perfect alignment.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon card-icon-primary"><i class="ph-fill ph-arrows-clockwise"></i></div>
+            <h4>Snap Mode</h4>
+            <p>Configurable snap-to-item or free rotation modes.</p>
+          </div>
+        </div>
+        
+        <h3>Required Dependencies</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Load GSAP and plugins --&gt;</span>
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"&gt;&lt;/script&gt;
+<span class="comment">&lt;!-- InertiaPlugin requires GSAP Club membership --&gt;</span></code>
+        </div>
+        
+        <h3>HTML Structure</h3>
+        <div class="code-block">
+          <code>&lt;div class="<span class="property">circular_slider_demo_wrap</span>"&gt;
+  &lt;div class="<span class="property">circular_slider_wrap</span>"
+    <span class="property">data-anm-circular-slider</span>
+    <span class="property">data-anm-circular-slider-type</span>="snap"
+    <span class="property">data-anm-circular-slider-autoplay</span>="0"&gt;
+    
+    &lt;div class="circular_slider_container" <span class="property">data-anm-circular-slider-container</span>&gt;
+      &lt;svg class="circular_slider_svg" viewBox="0 0 200 200"&gt;
+        &lt;circle class="circular_slider_path" <span class="property">data-anm-circular-slider-path</span>
+          cx="100" cy="100" r="100" /&gt;
+      &lt;/svg&gt;
+      
+      &lt;div class="circular_slider_item" <span class="property">data-anm-circular-slider-item</span>&gt;
+        &lt;img src="image.jpg" class="circular_slider_image" /&gt;
+      &lt;/div&gt;
+      <span class="comment">&lt;!-- More items... --&gt;</span>
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="circular_slider_controls"&gt;
+    &lt;button class="circular_slider_arrow" <span class="property">data-anm-circular-slider-prev</span>&gt;...&lt;/button&gt;
+    &lt;button class="circular_slider_arrow" <span class="property">data-anm-circular-slider-next</span>&gt;...&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+        </div>
+      </section>
+      
+      <!-- Text Reveal - Award-Winning Scroll Animation -->
+      <section id="text-reveal" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Text <span class="highlight">Reveal</span></h2>
+          <p>Award-winning scroll-triggered text animation. Text reveals word by word or character by character as you scroll using GSAP SplitText with masking effect.</p>
+        </div>
+        
+        <div style="padding: var(--space-4); background: var(--color-primary-lighter); border-radius: var(--radius-xs); margin-bottom: var(--space-6); border-left: 3px solid var(--color-primary);">
+          <p style="font-size: 13px; color: var(--color-primary-dark); margin: 0;"><strong>🏆 Award-Winning Component</strong> — From <a href="https://www.annnimate.com/try/text-reveal" target="_blank" style="color: var(--color-primary);">Annnimate</a>. Uses GSAP SplitText for professional word/character animations with scroll trigger.</p>
+        </div>
+        
+        <h3>Live Demo — Scroll to Reveal</h3>
+        <div class="text_reveal_demo_container" style="margin-bottom: var(--space-8);">
+          <div class="text_reveal_wrap">
+            <h2
+              class="text_reveal_text"
+              data-anm-scroll-text-reveal
+              data-anm-start="top 80%"
+              data-anm-stagger="0.08"
+            >
+              Master AI. Build the future. At STARTPLATZ AI Hub, we empower <strong>innovators</strong> and <strong>entrepreneurs</strong> to harness the power of artificial intelligence. Join our community of builders shaping tomorrow.
+            </h2>
+          </div>
+        </div>
+        
+        <h3 style="margin-top: var(--space-8);">Dark Theme Variant</h3>
+        <div class="text_reveal_demo_container dark" style="margin-bottom: var(--space-8);">
+          <div class="text_reveal_wrap">
+            <h2
+              class="text_reveal_text"
+              data-anm-scroll-text-reveal
+              data-anm-type="words"
+              data-anm-start="top 80%"
+              data-anm-stagger="0.05"
+            >
+              Every stride is a statement. Every finish line a new beginning. We build tools for <strong>creators</strong> who refuse to settle for yesterday's limits.
+            </h2>
+          </div>
+        </div>
+        
+        <h3 style="margin-top: var(--space-8);">Configuration Options</h3>
+        <div class="card-grid" style="margin-bottom: var(--space-6);">
+          <div class="card glass-border">
+            <h4 style="margin-bottom: var(--space-2);"><code>data-anm-type</code></h4>
+            <p style="font-size: 14px; color: var(--color-gray-600);"><strong>lines</strong> (default), <strong>words</strong>, or <strong>chars</strong> — Controls how text is split and animated.</p>
+          </div>
+          <div class="card glass-border">
+            <h4 style="margin-bottom: var(--space-2);"><code>data-anm-start</code></h4>
+            <p style="font-size: 14px; color: var(--color-gray-600);">ScrollTrigger start position. Default: <strong>"top 80%"</strong></p>
+          </div>
+          <div class="card glass-border">
+            <h4 style="margin-bottom: var(--space-2);"><code>data-anm-stagger</code></h4>
+            <p style="font-size: 14px; color: var(--color-gray-600);">Delay between each element. Default: <strong>0.08</strong> for lines, <strong>0.06</strong> for words, <strong>0.01</strong> for chars.</p>
+          </div>
+          <div class="card glass-border">
+            <h4 style="margin-bottom: var(--space-2);"><code>data-anm-ease</code></h4>
+            <p style="font-size: 14px; color: var(--color-gray-600);">GSAP easing function. Default: <strong>"expo.out"</strong></p>
+          </div>
+          <div class="card glass-border">
+            <h4 style="margin-bottom: var(--space-2);"><code>data-anm-duration</code></h4>
+            <p style="font-size: 14px; color: var(--color-gray-600);">Animation duration in seconds. Varies by type.</p>
+          </div>
+          <div class="card glass-border">
+            <h4 style="margin-bottom: var(--space-2);"><code>data-anm-scrub</code></h4>
+            <p style="font-size: 14px; color: var(--color-gray-600);">Link animation to scroll position. <strong>true</strong> or a number for smoothing.</p>
+          </div>
+        </div>
+        
+        <h3>HTML Structure</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- Text Reveal - Scroll Animation --&gt;</span>
+<span class="comment">&lt;!-- Line-by-line text reveal with masking effect on scroll --&gt;</span>
+
+&lt;div class="<span class="property">text_reveal_wrap</span>"&gt;
+  &lt;h2
+    class="<span class="property">text_reveal_text</span>"
+    <span class="property">data-anm-scroll-text-reveal</span>
+    <span class="property">data-anm-start</span>="top 75%"
+    <span class="property">data-anm-stagger</span>="0.1"
+  &gt;
+    Every stride is a statement. Every finish line a new beginning. 
+    We build gear for athletes who refuse to settle for 
+    &lt;strong&gt;yesterday's pace&lt;/strong&gt;. Push beyond limits. 
+    Outrun expectations. This is where &lt;strong&gt;champions are made&lt;/strong&gt;.
+  &lt;/h2&gt;
+&lt;/div&gt;</code>
+        </div>
+        
+        <h3 style="margin-top: var(--space-6);">Required Dependencies</h3>
+        <div class="code-block">
+          <code><span class="comment">&lt;!-- GSAP Core + Plugins --&gt;</span>
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"&gt;&lt;/script&gt;</code>
+        </div>
+      </section>
+      
+      <!-- Premium Effects - Award-Winning Components -->
+      <section id="premium-effects" class="ds-section">
+        <div class="ds-section-header">
+          <h2>Premium <span class="highlight">Effects</span></h2>
+          <p>Award-winning motion effects and interactions. Adapted to the AI Hub brand with 2px corners, frosted glass, and purple accents.</p>
+        </div>
+        
+        <div style="padding: var(--space-4); background: var(--color-primary-lighter); border-radius: var(--radius-xs); margin-bottom: var(--space-8); border-left: 3px solid var(--color-primary);">
+          <p style="font-size: 13px; color: var(--color-primary-dark); margin: 0;"><strong>🏆 Award-Winning Collection</strong> — These effects are inspired by top motion design patterns. Uses GSAP for smooth, performant animations.</p>
+        </div>
+        
+        <!-- NOISE OVERLAY -->
+        <h3>Noise Overlay <span style="background: var(--color-primary); color: white; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">SUBTLE</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Adds a subtle grain texture over the entire page. Creates depth and premium feel without being intrusive.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-bottom: var(--space-8);">
+          <div class="noise-demo" style="padding: var(--space-8); background: var(--gradient-subtle);">
+            <h4 style="margin-bottom: var(--space-2);">With Noise</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Subtle grain adds texture and depth</p>
+          </div>
+          <div style="padding: var(--space-8); background: var(--gradient-subtle); border-radius: var(--radius-xs);">
+            <h4 style="margin-bottom: var(--space-2);">Without Noise</h4>
+            <p style="font-size: 13px; color: var(--color-gray-600);">Clean but can feel flat</p>
+          </div>
+        </div>
+        
+        <!-- CHARACTER APPEAR -->
+        <h3>Character Appear <span style="background: var(--color-emerald); color: white; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">SCROLL</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Characters cascade in one-by-one from below. Perfect for hero headlines or impactful statements.
+        </p>
+        <div style="margin-bottom: var(--space-6);">
+          <div class="char-appear-demo" data-char-appear>
+            MASTER AI.<br>BUILD THE FUTURE.
+          </div>
+        </div>
+        <div style="padding: var(--space-6); background: var(--color-gray-900); border-radius: var(--radius-xs); margin-bottom: var(--space-8);">
+          <div class="char-appear-demo dark" data-char-appear>
+            PRECISION ENGINEERING
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" id="replayCharAppear" style="margin-bottom: var(--space-8);">
+          <i class="ph-fill ph-arrow-counter-clockwise"></i> Replay Animation
+        </button>
+        
+        <!-- CURSOR TOOLTIP -->
+        <h3>Cursor Tooltip <span style="background: var(--color-cyan); color: var(--color-gray-900); font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">HOVER</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Frosted glass tooltip that follows the cursor. Shows contextual information on hover.
+        </p>
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-8);">
+          <button class="btn btn-primary" data-tooltip="Start your AI journey">Explore Programs</button>
+          <button class="btn btn-outline" data-tooltip="View success stories">Case Studies</button>
+          <button class="btn btn-ghost" data-tooltip="Contact our team">Get in Touch</button>
+          <div class="card glass-border" data-tooltip="Click to learn more" style="padding: var(--space-4); cursor: pointer;">
+            <i class="ph-fill ph-brain" style="font-size: 24px; color: var(--color-primary);"></i>
+          </div>
+        </div>
+        
+        <!-- IMAGE TRAIL -->
+        <h3>Image Trail <span style="background: var(--color-amber); color: var(--color-gray-900); font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">MOVE</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Images spawn at cursor position and fade out with rotation. Creates an engaging, playful experience.
+        </p>
+        <div class="trail-area" id="imageTrailArea" style="margin-bottom: var(--space-8);">
+          <span class="trail-area-title">MOVE YOUR CURSOR</span>
+        </div>
+        
+        <!-- TEXT SCRAMBLE -->
+        <h3>Text Scramble <span style="background: var(--color-gray-900); color: white; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">CYBER</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Matrix-style text decode effect. Characters scramble randomly before revealing the final text.
+        </p>
+        <div class="scramble-container" style="margin-bottom: var(--space-4);">
+          <h4 class="scramble-text primary" data-scramble>AI_HUB_INITIALIZED</h4>
+          <p class="scramble-text" data-scramble style="opacity: 0.6; margin-top: var(--space-3); font-size: 0.875rem;">SYSTEM_STATUS_ONLINE</p>
+        </div>
+        <button class="btn btn-sm btn-outline" id="replayScramble" style="margin-bottom: var(--space-8);">
+          <i class="ph-fill ph-arrow-counter-clockwise"></i> Replay Scramble
+        </button>
+        
+        <!-- VELOCITY SKEW GRID -->
+        <h3>Velocity Skew Grid <span style="background: var(--color-primary); color: white; font-size: 10px; padding: 2px 8px; border-radius: var(--radius-full); margin-left: var(--space-2); font-weight: 600;">SCROLL</span></h3>
+        <p style="color: var(--color-gray-600); margin-bottom: var(--space-4); font-size: 14px;">
+          Grid skews based on scroll velocity. Fast scroll = more skew. Adds a dynamic, responsive feel.
+        </p>
+        <div class="velocity-grid" id="velocityGrid" style="margin-bottom: var(--space-8);">
+          <div class="velocity-card">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=600&fit=crop" alt="AI Image 1">
+          </div>
+          <div class="velocity-card">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=600&fit=crop" alt="AI Image 2">
+          </div>
+          <div class="velocity-card">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop" alt="AI Image 3">
+          </div>
+          <div class="velocity-card">
+            <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=400&h=600&fit=crop" alt="AI Image 4">
+          </div>
+        </div>
+        <p style="font-size: 13px; color: var(--color-gray-500);"><i class="ph-fill ph-info"></i> Scroll up and down quickly to see the skew effect</p>
+        
+        <h3 style="margin-top: var(--space-8);">Implementation</h3>
+        <div class="code-block">
+          <code><span class="comment">/* Character Appear - JS */</span>
+const target = document.querySelector('[data-char-appear]');
+const chars = target.innerText.split('');
+target.innerHTML = chars.map(char => 
+  `&lt;span class="char-appear-wrap"&gt;
+    &lt;span class="char-appear-inner"&gt;${char === ' ' ? '&amp;nbsp;' : char}&lt;/span&gt;
+  &lt;/span&gt;`
+).join('');
+
+gsap.to('.char-appear-inner', {
+  y: '0%',
+  duration: <span class="value">0.8</span>,
+  stagger: <span class="value">0.03</span>,
+  ease: <span class="value">'expo.out'</span>,
+  scrollTrigger: { trigger: target, start: 'top 85%' }
+});
+
+<span class="comment">/* Text Scramble - JS */</span>
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+let iterations = 0;
+const interval = setInterval(() => {
+  el.innerText = original.split('').map((letter, i) => 
+    i < iterations ? original[i] : chars[Math.floor(Math.random() * chars.length)]
+  ).join('');
+  if (iterations >= original.length) clearInterval(interval);
+  iterations += 1/3;
+}, <span class="value">30</span>);</code>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer style="margin-top: var(--space-16); padding: var(--space-12) 0; border-top: 1px solid var(--color-border); background: var(--gradient-subtle); border-radius: var(--radius-md) var(--radius-md) 0 0;">
+        
+        <!-- Brand Mark -->
+        <div style="text-align: center; margin-bottom: var(--space-8);">
+          <img src="https://res.cloudinary.com/startplatz/image/upload/v1767628988/ai-hub/website/aihublogo02.png" alt="AI Hub" style="height: 48px; margin: 0 auto var(--space-4);">
+          <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--color-gray-900); margin-bottom: var(--space-2);">
+            Design System <span style="color: var(--color-primary);">v5.1</span>
+          </h3>
+          <p style="color: var(--color-gray-500); font-size: 14px; max-width: 400px; margin: 0 auto;">
+            The complete visual language for STARTPLATZ AI Hub products and experiences.
+          </p>
+        </div>
+        
+        <!-- Features Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--space-4); max-width: 700px; margin: 0 auto var(--space-8); padding: 0 var(--space-4);">
+          <div style="text-align: center; padding: var(--space-4);">
+            <i class="ph-fill ph-corners-out" style="font-size: 24px; color: var(--color-primary); margin-bottom: var(--space-2); display: block;"></i>
+            <div style="font-size: 12px; font-weight: 600; color: var(--color-gray-700);">2-8px Corners</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <i class="ph-fill ph-drop-half-bottom" style="font-size: 24px; color: var(--color-primary); margin-bottom: var(--space-2); display: block;"></i>
+            <div style="font-size: 12px; font-weight: 600; color: var(--color-gray-700);">Frosted Glass</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <i class="ph-fill ph-grid-four" style="font-size: 24px; color: var(--color-primary); margin-bottom: var(--space-2); display: block;"></i>
+            <div style="font-size: 12px; font-weight: 600; color: var(--color-gray-700);">Stitch Grids</div>
+          </div>
+          <div style="text-align: center; padding: var(--space-4);">
+            <i class="ph-fill ph-star-four" style="font-size: 24px; color: var(--color-primary); margin-bottom: var(--space-2); display: block;"></i>
+            <div style="font-size: 12px; font-weight: 600; color: var(--color-gray-700);">Premium FX</div>
+          </div>
+        </div>
+        
+        <!-- Browser Support -->
+        <div style="text-align: center; margin-bottom: var(--space-6);">
+          <div style="display: flex; justify-content: center; gap: var(--space-3); flex-wrap: wrap;">
+            <span class="badge badge-emerald-soft"><i class="ph-fill ph-check-circle"></i> Production Ready</span>
+            <span class="badge badge-light">Chrome 90+</span>
+            <span class="badge badge-light">Firefox 88+</span>
+            <span class="badge badge-light">Safari 14+</span>
+            <span class="badge badge-light">Edge 90+</span>
+          </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div style="text-align: center; padding-top: var(--space-6); border-top: 1px solid var(--color-gray-200);">
+          <p style="color: var(--color-gray-400); font-size: 13px;">
+            © 2026 STARTPLATZ AI Hub. Crafted with precision in Köln & Düsseldorf.
+          </p>
+          <p style="color: var(--color-gray-400); font-size: 11px; margin-top: var(--space-2);">
+            Last updated: January 2026 • 40+ Components • 11 Categories • 3 Award-Winning Effects
+          </p>
+        </div>
+      </footer>
+      
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+
+</body>
+</html>
+
