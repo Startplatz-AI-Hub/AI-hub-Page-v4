@@ -125,11 +125,49 @@ function animateKPIs() {
   kpiNumbers.forEach(el => observer.observe(el));
 }
 
+// MOBILE MENU LOGIC
+function initMobileMenu() {
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const overlay = document.querySelector('.mobile-nav-overlay');
+  const links = document.querySelectorAll('.mobile-nav-link, .mobile-nav-btn');
+  const icon = toggle ? toggle.querySelector('i') : null;
+
+  if (!toggle || !overlay) return;
+
+  function toggleMenu() {
+    const isActive = toggle.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = isActive ? 'hidden' : '';
+
+    // Icon animation
+    if (icon) {
+      if (isActive) {
+        icon.classList.replace('ph-list', 'ph-x');
+      } else {
+        icon.classList.replace('ph-x', 'ph-list');
+      }
+    }
+  }
+
+  toggle.addEventListener('click', toggleMenu);
+
+  // Close on link click
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      toggleMenu();
+    });
+  });
+}
+
 // Initialize KPIs after DOM and GSAP are ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', animateKPIs);
+  document.addEventListener('DOMContentLoaded', () => {
+    animateKPIs();
+    initMobileMenu();
+  });
 } else {
   animateKPIs();
+  initMobileMenu();
 }
 
 // Hero Grid Animation (Pulsating Grid)
