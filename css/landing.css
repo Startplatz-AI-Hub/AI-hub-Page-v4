@@ -3071,6 +3071,32 @@ body::before {
   .programs-cards {
     max-height: none;
   }
+
+  /* Fix Stories layout on mobile (stack them back to column) */
+  .stories-sidebar {
+    flex-direction: column !important;
+  }
+
+  .story-small {
+    flex-direction: row;
+    /* Keep image left, text right */
+  }
+
+  /* Fix Hero text size for mobile */
+  .hero-text h1 {
+    font-size: 3rem !important;
+  }
+}
+
+/* HARDWARE ACCELERATION FOR MOBILE PERFORMANCE */
+.cursor-glow,
+.video-bg,
+.frost-edge,
+.hero-card,
+.audience-card,
+.program-card {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* STORIES & INSIGHTS - Restored */
