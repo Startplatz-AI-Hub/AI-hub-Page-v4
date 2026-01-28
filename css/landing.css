@@ -5180,9 +5180,9 @@ body:hover .cursor-glow {
 
 .hero-cta-card {
   padding: 36px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
   border-radius: 16px;
   box-shadow: 
     0 24px 80px rgba(0, 0, 0, 0.1),
@@ -6002,17 +6002,140 @@ NEWSPAPER GRID (Insights)
     }
 }
 
+/* Hide mobile CTA on desktop */
+.hero-mobile-cta {
+    display: none;
+}
+
 @media (max-width: 768px) {
-    .hero-split-layout {
-        padding: 70px 16px 30px !important;
+    /* ==========================================
+       COMPLETE MOBILE HERO REWRITE
+       ========================================== */
+    
+    /* Reset the hero container for mobile */
+    .hero-bold-container {
+        min-height: 100svh !important;
+        padding: 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 24px !important;
-        grid-template-columns: 1fr !important;
+        background: transparent !important;
     }
     
+    /* Hero split layout - single column on mobile */
+    .hero-split-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 100px 20px 40px !important;
+        gap: 32px !important;
+        min-height: auto !important;
+        width: 100% !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    /* Left side with claim - centered */
+    .hero-bold-left {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+    }
+    
+    /* Badge styling */
+    .hero-bold-left .hero-badge {
+        margin-bottom: 16px !important;
+    }
+    
+    /* Mobile headline sizing */
+    .hero-mega-claim-xl {
+        font-size: 2.5rem !important;
+        line-height: 1.05 !important;
+        letter-spacing: -0.02em !important;
+        text-align: center !important;
+        margin-bottom: 24px !important;
+    }
+    
+    .hero-mega-claim-xl .claim-line {
+        font-size: 2.5rem !important;
+        display: block !important;
+    }
+    
+    /* COMPLETELY HIDE the CTA card column on mobile */
+    .hero-bold-right.hero-cta-right,
+    .hero-cta-right,
+    .hero-split-layout > .hero-bold-right,
+    .hero-cta-card {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
+        opacity: 0 !important;
+    }
+    
+    /* SHOW mobile CTA section */
+    .hero-mobile-cta {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        margin-top: 32px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .mobile-cta-desc {
+        font-size: 1rem !important;
+        color: var(--color-gray-600) !important;
+        text-align: center !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+    }
+    
+    .mobile-cta-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+    }
+    
+    .mobile-cta-buttons .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 16px 24px !important;
+        font-size: 1rem !important;
+    }
+    
+    .mobile-secondary-link {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        color: var(--color-primary) !important;
+        font-weight: 500 !important;
+        text-decoration: none !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Partner marquee at bottom */
     .hero-partner-marquee-interactive {
-        bottom: 40px;
+        position: relative !important;
+        bottom: auto !important;
+        margin-top: auto !important;
+        padding: 16px 0 !important;
+    }
+    
+    /* Scroll indicator */
+    .scroll-indicator {
+        display: none !important;
     }
     
     /* HIDE 3D Shards completely on mobile - too heavy */
@@ -6022,48 +6145,117 @@ NEWSPAPER GRID (Insights)
         display: none !important;
     }
     
-    /* HIDE the floating CTA column on mobile - it breaks the layout */
-    .hero-bold-right.hero-cta-right,
-    .hero-cta-right,
-    .hero-split-layout > .hero-bold-right {
-        display: none !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        position: absolute !important;
-        left: -9999px !important;
+    /* ==========================================
+       OTHER MOBILE FIXES
+       ========================================== */
+    
+    /* Prevent horizontal overflow */
+    body, html {
+        overflow-x: hidden !important;
     }
     
-    /* Show the CTA elements inline below the hero text instead */
-    .hero-bold-left {
-        display: flex !important;
+    /* Section padding on mobile */
+    section {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    
+    /* KPI Section - 2 columns on mobile */
+    .stats-strip {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+        padding: 32px 16px !important;
+    }
+    
+    /* Vision/Certificates cards */
+    .values-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    /* Certificates badges - wrap */
+    .cert-cards {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    
+    /* Team section - full width on mobile */
+    .team-fullwidth-section {
+        padding: 40px 16px !important;
+    }
+    
+    .team-fullwidth-image-wrapper {
+        height: auto !important;
+        min-height: 200px !important;
+    }
+    
+    .team-floating-card {
+        position: relative !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin-bottom: 16px !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+    
+    /* Events section */
+    .events-scroll {
+        gap: 16px !important;
+        padding: 0 16px !important;
+    }
+    
+    .event-card {
+        min-width: 280px !important;
+    }
+    
+    /* Video Wall - single column */
+    .video-wall-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    
+    /* Insights section */
+    .insights-section {
+        padding: 40px 16px !important;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .insights-sidebar {
         flex-direction: column !important;
-        align-items: flex-start !important;
     }
     
-    /* Mobile claim sizing */
-    .hero-mega-claim-xl {
-        font-size: 2.8rem !important;
-        line-height: 1.1 !important;
+    /* FAQ section */
+    .faq-section {
+        padding: 40px 16px !important;
     }
     
-    .hero-mega-claim-xl .claim-line {
-        font-size: 2.8rem !important;
+    /* Newsletter section */
+    .newsletter-section {
+        padding: 40px 16px !important;
+    }
+    
+    .newsletter-inner {
+        flex-direction: column !important;
+        gap: 32px !important;
+    }
+    
+    /* Footer - single column */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        text-align: center !important;
+    }
+    
+    .footer-links {
+        align-items: center !important;
     }
 }
 
-/* ==========================================
-   HERO BACKGROUND FALLBACK - Instant WOW
-   ========================================== */
-.hero-bold-container {
-    /* Beautiful gradient as fallback while Three.js loads */
-    background: 
-        radial-gradient(ellipse 80% 60% at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
-        radial-gradient(ellipse 50% 50% at 20% 60%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
-        linear-gradient(180deg, #f8f7ff 0%, #ffffff 50%, #faf9ff 100%);
-}
+/* Hero background is handled by Three.js - no fallback needed */
 
 /* ==========================================
    3D SHARD LABELS - Floating Labels
