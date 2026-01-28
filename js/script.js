@@ -722,9 +722,9 @@
     // ========================================
     
     if (typeof gsap !== "undefined") {
-      const plugins = [MotionPathPlugin, Draggable].filter(
-        (p) => typeof p !== "undefined"
-      );
+      const plugins = [];
+      if (typeof MotionPathPlugin !== "undefined") plugins.push(MotionPathPlugin);
+      if (typeof Draggable !== "undefined") plugins.push(Draggable);
       if (plugins.length) {
         gsap.registerPlugin(...plugins);
       }

@@ -26,50 +26,16 @@
   <!-- Page Specific Styles -->
   <link rel="stylesheet" href="css/landing.css">
 
-  <style>
-    /* GLOBAL CURSOR GLOW - INLINED FOR RELIABILITY */
-    .cursor-glow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.15), transparent 40%);
-      opacity: 0;
-      transition: opacity 1s ease;
-      mix-blend-mode: normal;
-    }
-
-    body:hover .cursor-glow {
-      opacity: 1;
-    }
-  </style>
-
 </head>
 
 <body>
-  <!-- Video Background -->
-  <div class="video-bg-container">
-    <video class="video-bg" autoplay muted loop playsinline>
-      <source
-        src="https://res.cloudinary.com/startplatz/video/upload/v1767670067/ai-hub/website/Animate_1080p_202601060420.mp4"
-        type="video/mp4">
-    </video>
+  <!-- 3D Canvas Background - Neural Network -->
+  <div id="canvas-container">
+    <canvas id="main-canvas"></canvas>
   </div>
 
-  <!-- Global Cursor Glow Effect -->
-  <div class="cursor-glow"></div>
 
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <img src="https://res.cloudinary.com/startplatz/image/upload/v1767628988/ai-hub/website/aihublogo02.png"
-      alt="AI Hub" class="preloader-logo">
-    <div class="preloader-bar">
-      <div class="preloader-bar-fill"></div>
-    </div>
-  </div>
+
 
   <!-- Scroll Progress -->
   <div class="scroll-progress">
@@ -195,93 +161,126 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="hero-grid"><canvas id="heroGridCanvas"></canvas></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="scramble-badge"><span class="scramble-text" data-scramble>BILDUNGSGUTSCHEIN_AKTIV</span></div>
-        <h1 class="char-appear-demo" data-char-appear>Starte deine <br> KI-Karriere jetzt.</h1>
-        <p class="hero-subtitle">Praxisnahe Bootcamps und Zertifizierungen in Köln & Düsseldorf. Mit Experten lernen,
-          mit der Community wachsen.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary btn-lg"><i class="ph-fill ph-envelope-simple"></i> Jetzt
-            Info-Material</a>
-          <a href="#quiz" class="btn btn-outline btn-lg"><i class="ph-fill ph-brain"></i> Wissens-Test</a>
+  <!-- Hero Section - BOLD Left Claim + Right CTA Card + Bottom Partner Marquee -->
+  <section class="hero hero-bold" id="hero">
+    <div class="hero-bold-container hero-split-layout">
+      <!-- Left Side: MASSIVE Claim - Positioned Top Left -->
+      <div class="hero-bold-left hero-fly-in-left">
+        <div class="hero-badge-wrap">
+          <span class="hero-badge">100% GEFÖRDERT</span>
         </div>
+        <h1 class="hero-mega-claim hero-mega-claim-xl">
+          <span class="claim-line">STARTE</span>
+          <span class="claim-line">DEINE</span>
+          <span class="claim-line highlight">KARRIERE</span>
+          <span class="claim-line dim">JETZT.</span>
+        </h1>
       </div>
-      <div class="hero-image-wrap">
-        <div class="hero-card frost-edge corner-stitch">
-          <span class="stitch-tl"></span><span class="stitch-tr"></span><span class="stitch-bl"></span><span
-            class="stitch-br"></span>
-          <div class="hero-card-badge"><i class="ph-fill ph-rocket"></i> Nächster Start</div>
-          <h3 class="hero-card-title">AI Prompt Engineering Bootcamp</h3>
-          <p class="hero-card-date"><i class="ph-fill ph-calendar"></i> 03. Februar 2026 · Köln</p>
-          <img
-            src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png"
-            alt="Bootcamp" class="hero-card-image">
-          <div class="hero-card-features">
-            <div class="hero-card-feature"><i class="ph-fill ph-check-circle"></i> 8 Wochen intensives Training</div>
-            <div class="hero-card-feature"><i class="ph-fill ph-check-circle"></i> Zertifizierung inklusive</div>
-            <div class="hero-card-feature"><i class="ph-fill ph-check-circle"></i> 100% Bildungsgutschein-fähig</div>
+
+      <!-- Right Side: CTA Card - Fixed to RIGHT -->
+      <div class="hero-bold-right hero-cta-right">
+        <div class="hero-cta-card">
+          <div class="hero-cta-header">
+            <span class="cta-label">Zertifizierungen von</span>
+            <div class="hero-cert-badges">
+              <span class="cert-badge">Microsoft</span>
+              <span class="cert-badge">Google</span>
+              <span class="cert-badge">AWS</span>
+              <span class="cert-badge featured">Agentur für Arbeit</span>
+              <span class="cert-badge">IHK</span>
+            </div>
           </div>
-          <a href="#apply" class="btn btn-primary" style="width:100%;">Jetzt Platz sichern</a>
+
+          <p class="hero-cta-desc">
+            Praxisnahe Bootcamps in Köln & Düsseldorf.<br>
+            12 Wochen. Zertifiziert. Karriere ready.
+          </p>
+
+          <div class="hero-cta-actions">
+            <a href="#contact" class="btn btn-primary btn-lg hero-main-cta">
+              Kostenlos beraten lassen
+              <i class="ph-bold ph-arrow-right"></i>
+            </a>
+            <a href="#quiz" class="hero-secondary-link">
+              <i class="ph-fill ph-brain"></i> Oder erst Wissens-Test machen
+            </a>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Partner Marquee Banner - Draggable with Hover Highlight -->
+    <div class="hero-partner-marquee hero-partner-marquee-interactive" id="partnerMarquee">
+      <div class="marquee-track-draggable" id="marqueeTrack">
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="AWS"></span>
+        <span class="marquee-item-interactive"><img src="https://res.cloudinary.com/startplatz/image/upload/v1709845467/ai-hub/AI-Hub-Logo.png" alt="AI Hub"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="AWS"></span>
+        <span class="marquee-item-interactive"><img src="https://res.cloudinary.com/startplatz/image/upload/v1709845467/ai-hub/AI-Hub-Logo.png" alt="AI Hub"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></span>
+        <span class="marquee-item-interactive"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="AWS"></span>
+        <span class="marquee-item-interactive"><img src="https://res.cloudinary.com/startplatz/image/upload/v1709845467/ai-hub/AI-Hub-Logo.png" alt="AI Hub"></span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <i class="ph-bold ph-caret-down"></i>
+    </div>
+  </section>
+
+  <!-- 3D Scroll Morph Section with Scroll Snap -->
+  <section class="morph-scroll-section morph-scroll-snap" id="morph-stage">
+    <div class="morph-sticky">
+      <div class="morph-content">
+        <h2 class="morph-title">Für jeden das <span class="highlight">passende Angebot</span></h2>
+        <p class="morph-subtitle">Klicke auf eine Kachel um mehr zu erfahren</p>
       </div>
     </div>
   </section>
 
-  <!-- Velocity Marquee - Partners -->
-  <section class="velocity-marquee-section" id="partners">
-    <div class="velocity-marquee-wrap">
-      <div class="velocity-marquee-inner" id="velocityMarquee">
-        <div class="velocity-marquee-part">
-          <span class="velocity-marquee-text">UNSERE PARTNER</span>
-          <span class="velocity-marquee-text outline">MICROSOFT</span>
-          <span class="velocity-marquee-text">GOOGLE</span>
-          <span class="velocity-marquee-text outline">AWS</span>
-          <span class="velocity-marquee-text">OPENAI</span>
-          <span class="velocity-marquee-text outline">NVIDIA</span>
-          <span class="velocity-marquee-text">IHK</span>
-          <span class="velocity-marquee-text outline">AGENTUR FÜR ARBEIT</span>
-        </div>
-        <div class="velocity-marquee-part">
-          <span class="velocity-marquee-text">UNSERE PARTNER</span>
-          <span class="velocity-marquee-text outline">MICROSOFT</span>
-          <span class="velocity-marquee-text">GOOGLE</span>
-          <span class="velocity-marquee-text outline">AWS</span>
-          <span class="velocity-marquee-text">OPENAI</span>
-          <span class="velocity-marquee-text outline">NVIDIA</span>
-          <span class="velocity-marquee-text">IHK</span>
-          <span class="velocity-marquee-text outline">AGENTUR FÜR ARBEIT</span>
+  <!-- Morph Target Modal -->
+  <div class="morph-modal-overlay" id="morphModalOverlay">
+    <div class="morph-modal" id="morphModal" data-color="mint">
+      <div class="morph-modal-header">
+        <h3><i class="ph-fill ph-user-circle-gear"></i> <span id="morphModalTitle">Für Arbeitssuchende</span></h3>
+        <button class="morph-modal-close" id="morphModalClose"><i class="ph-bold ph-x"></i></button>
+      </div>
+      <div class="morph-modal-body">
+        <p id="morphModalDesc">Starte deine Karriere in der KI-Branche mit 100% geförderten Weiterbildungen durch die
+          Agentur für Arbeit.</p>
+        <ul class="morph-modal-features" id="morphModalFeatures">
+          <li><i class="ph-fill ph-check-circle"></i> 100% gefördert durch Bildungsgutschein</li>
+          <li><i class="ph-fill ph-check-circle"></i> Praxisnahe Projekte & Zertifikate</li>
+          <li><i class="ph-fill ph-check-circle"></i> Karriereberatung inklusive</li>
+        </ul>
+        <div class="morph-modal-cta">
+          <a href="#contact" class="btn btn-primary" id="morphModalCta">Förderung prüfen</a>
+          <button class="btn btn-outline morph-modal-close-btn">Schließen</button>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Programs Intro Banner - Character Appear -->
-  <section class="programs-intro-banner">
-    <div class="container">
-      <h2 class="programs-intro-title" data-char-appear>Für jeden das passende Angebot</h2>
-      <p class="programs-intro-subtitle">Entdecke, wie der STARTPLATZ AI Hub dir helfen kann, deine KI-Ziele zu
-        erreichen.</p>
-    </div>
-  </section>
+  </div>
 
   <!-- Target Audience Cards - BOLD with Flowing Stitch -->
-  <section class="section section-alt" id="programs">
+  <section class="section section-alt audience-reveal" id="programs">
     <div class="container">
       <div class="audience-grid">
 
-        <!-- ARBEITSSUCHENDE Card -->
-        <div class="audience-card" id="arbeitssuchend">
+        <!-- ARBEITSSUCHENDE Card - Mint Green -->
+        <div class="audience-card mint-accent" id="arbeitssuchend">
           <span class="flow-line flow-top"></span>
           <span class="flow-line flow-right"></span>
           <span class="flow-line flow-bottom"></span>
           <span class="flow-line flow-left"></span>
           <div class="audience-card-inner">
             <div class="audience-card-image">
-              <span class="audience-card-badge purple">100% Gefördert</span>
+              <span class="audience-card-badge mint">100% Gefördert</span>
               <img
                 src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png"
                 alt="Arbeitssuchende">
@@ -296,21 +295,20 @@
                 <li><i class="ph-fill ph-check"></i> Praxisnahe Projekte</li>
                 <li><i class="ph-fill ph-check"></i> Karriereberatung inklusive</li>
               </ul>
-              <a href="#contact" class="audience-cta primary"><i class="ph-fill ph-arrow-right"></i> Förderung
-                prüfen</a>
+              <a href="#contact" class="audience-cta mint"><i class="ph-fill ph-arrow-right"></i> Förderung prüfen</a>
             </div>
           </div>
         </div>
 
-        <!-- BERUFSTÄTIGE Card -->
-        <div class="audience-card emerald-accent" id="berufstaetig">
+        <!-- BERUFSTÄTIGE Card - Navy Blue -->
+        <div class="audience-card navy-accent" id="berufstaetig">
           <span class="flow-line flow-top"></span>
           <span class="flow-line flow-right"></span>
           <span class="flow-line flow-bottom"></span>
           <span class="flow-line flow-left"></span>
           <div class="audience-card-inner">
             <div class="audience-card-image">
-              <span class="audience-card-badge emerald">Berufsbegleitend</span>
+              <span class="audience-card-badge navy">Berufsbegleitend</span>
               <img
                 src="https://res.cloudinary.com/startplatz/image/upload/v1767662288/ai-hub/website/website_stock_images/EVENT-04.png"
                 alt="Berufstätige">
@@ -325,20 +323,20 @@
                 <li><i class="ph-fill ph-check"></i> Zertifizierte Abschlüsse</li>
                 <li><i class="ph-fill ph-check"></i> Netzwerk mit Experten</li>
               </ul>
-              <a href="#contact" class="audience-cta emerald"><i class="ph-fill ph-arrow-right"></i> Kurse entdecken</a>
+              <a href="#contact" class="audience-cta navy"><i class="ph-fill ph-arrow-right"></i> Kurse entdecken</a>
             </div>
           </div>
         </div>
 
-        <!-- UNTERNEHMEN Card -->
-        <div class="audience-card coral-accent" id="unternehmen">
+        <!-- UNTERNEHMEN Card - Orange -->
+        <div class="audience-card orange-accent" id="unternehmen">
           <span class="flow-line flow-top"></span>
           <span class="flow-line flow-right"></span>
           <span class="flow-line flow-bottom"></span>
           <span class="flow-line flow-left"></span>
           <div class="audience-card-inner">
             <div class="audience-card-image">
-              <span class="audience-card-badge coral">Inhouse</span>
+              <span class="audience-card-badge orange">Inhouse</span>
               <img
                 src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png"
                 alt="Unternehmen">
@@ -353,7 +351,8 @@
                 <li><i class="ph-fill ph-check"></i> Inhouse-Trainings</li>
                 <li><i class="ph-fill ph-check"></i> Change Management Support</li>
               </ul>
-              <a href="#contact" class="audience-cta coral"><i class="ph-fill ph-arrow-right"></i> Beratung anfragen</a>
+              <a href="#contact" class="audience-cta orange"><i class="ph-fill ph-arrow-right"></i> Beratung
+                anfragen</a>
             </div>
           </div>
         </div>
@@ -362,107 +361,37 @@
     </div>
   </section>
 
-  <!-- MENTORS SECTION - Infinite Parallax Slider -->
-  <section class="parallax-slider-section" id="team">
-    <div class="container">
-      <div class="mentors-grid">
-        <!-- Left: Text Content -->
-        <div class="mentors-content">
-          <span class="section-badge"><i class="ph-fill ph-users-three"></i> Unser Netzwerk</span>
-          <h2 class="section-title">Experten, die <span class="highlight">begeistern</span></h2>
-          <p class="section-subtitle">Über 150 Dozenten und Mentoren aus der Praxis. Führende KI-Experten, Tech-Pioniere
-            und erfahrene Coaches.</p>
+  <!-- TEAM SECTION - Full-Width Widescreen Image with Floating Cards -->
+  <section class="section team-fullwidth-section" id="team">
+    <!-- Header -->
+    <div class="team-fullwidth-header">
+      <div class="container">
+        <span class="section-badge"><i class="ph-fill ph-users-three"></i> Unser Netzwerk</span>
+        <h2 class="section-title section-title-xl">Experten, die <span class="highlight">begeistern</span></h2>
+        <p class="section-subtitle">Über 150 Dozenten und Mentoren aus der Praxis. Führende KI-Experten, Tech-Pioniere und erfahrene Coaches.</p>
+      </div>
+    </div>
 
-          <div class="slider-nav-controls">
-            <button class="slider-btn" id="sliderPrev"><i class="ph-bold ph-caret-left"></i></button>
-            <button class="slider-btn" id="sliderNext"><i class="ph-bold ph-caret-right"></i></button>
-          </div>
-        </div>
-
-        <!-- Right: Borderless Slider -->
-        <div class="mentors-slider-container borderless">
-          <div class="mentors-slider-wrap">
-            <div class="parallax-track" id="parallaxTrack">
-              <div class="parallax-item">
-                <img
-                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714994/ai-hub/website/website_stock_images/Jakow_website_portait.png"
-                  alt="Jakow Smirin">
-                <div class="parallax-item-caption">
-                  <h4>Jakow Smirin</h4>
-                  <p>AI Hub Co-Founder</p>
-                </div>
-              </div>
-              <div class="parallax-item">
-                <img
-                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714990/ai-hub/website/website_stock_images/Lukas_website_portrait.png"
-                  alt="Lukas Stratmann">
-                <div class="parallax-item-caption">
-                  <h4>Lukas Stratmann</h4>
-                  <p>AI Strategy Lead</p>
-                </div>
-              </div>
-              <div class="parallax-item">
-                <img
-                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714988/ai-hub/website/website_stock_images/Lorenz_website_portrait.png"
-                  alt="Lorenz Gräf">
-                <div class="parallax-item-caption">
-                  <h4>Lorenz Gräf</h4>
-                  <p>STARTPLATZ Founder</p>
-                </div>
-              </div>
-              <div class="parallax-item">
-                <img
-                  src="https://res.cloudinary.com/startplatz/image/upload/v1767714992/ai-hub/website/website_stock_images/Martin_website_portrait.png"
-                  alt="Martin Greguletz">
-                <div class="parallax-item-caption">
-                  <h4>Martin Greguletz</h4>
-                  <p>Program Director</p>
-                </div>
-              </div>
-              <div class="parallax-item">
-                <img
-                  src="https://res.cloudinary.com/startplatz/image/upload/v1767662292/ai-hub/website/website_stock_images/MENTOR-04.png"
-                  alt="Dr. Sarah Weber">
-                <div class="parallax-item-caption">
-                  <h4>Dr. Sarah Weber</h4>
-                  <p>AI Research Lead</p>
-                </div>
-              </div>
-              <div class="parallax-item">
-                <img
-                  src="https://res.cloudinary.com/startplatz/image/upload/v1767662238/ai-hub/website/website_stock_images/MENTOR-05.png"
-                  alt="Nina Hoffmann">
-                <div class="parallax-item-caption">
-                  <h4>Nina Hoffmann</h4>
-                  <p>ML Engineering Coach</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- FULL-WIDTH Team Photo Container -->
+    <div class="team-fullwidth-image-wrapper">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&h=700&fit=crop&q=80"
+        alt="STARTPLATZ AI Hub Team" class="team-fullwidth-image">
+      
+      <!-- Floating Location Card - Düsseldorf (Bottom Left) -->
+      <div class="team-floating-card team-floating-left">
+        <img src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=400&h=240&fit=crop&q=80" alt="Düsseldorf Standort">
+        <div class="team-floating-label">
+          <i class="ph-fill ph-map-pin"></i>
+          <span>Düsseldorf</span>
         </div>
       </div>
 
-      <!-- Location Cards below -->
-      <div style="max-width: 900px; margin: 48px auto 0; padding: 0 32px;">
-        <div class="location-cards" style="margin-top: 0;">
-          <div class="location-card frost-edge corner-stitch-outward">
-            <span class="stitch-tl"></span><span class="stitch-tr"></span><span class="stitch-bl"></span><span
-              class="stitch-br"></span>
-            <div class="location-header">
-              <span class="location-name">Düsseldorf</span>
-              <i class="ph-fill ph-map-pin"></i>
-            </div>
-            <p>Herzogstraße 15, 40217 Düsseldorf. Direkt im Herzen der Stadt mit bester Anbindung.</p>
-          </div>
-          <div class="location-card frost-edge corner-stitch-outward">
-            <span class="stitch-tl"></span><span class="stitch-tr"></span><span class="stitch-bl"></span><span
-              class="stitch-br"></span>
-            <div class="location-header">
-              <span class="location-name">Köln</span>
-              <i class="ph-fill ph-map-pin"></i>
-            </div>
-            <p>Im Mediapark 5, 50670 Köln. Moderne Räume im pulsierenden Medienviertel.</p>
-          </div>
+      <!-- Floating Location Card - Köln (Bottom Right) -->
+      <div class="team-floating-card team-floating-right">
+        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=240&fit=crop&q=80" alt="Köln Standort">
+        <div class="team-floating-label">
+          <i class="ph-fill ph-map-pin"></i>
+          <span>Köln</span>
         </div>
       </div>
     </div>
@@ -518,344 +447,259 @@
     </div>
   </section>
 
-  <!-- AI Programs & Events - Enterprise 3-Column Layout from Design System -->
-  <section class="section" id="events">
-    <div class="container">
-
-      <!-- Section Header -->
-      <div class="programs-section-header">
-        <div style="max-width: 800px; margin: 0 auto; padding: 0 var(--space-4);">
-          <div class="badge badge-soft" style="margin-bottom: 20px;">
-            <i class="ph-fill ph-calendar-check"></i>
-            2026 Season
-          </div>
-          <h2>AI Programs <span style="color: var(--color-primary);">& Events</span></h2>
-          <p class="subtitle">Workshops, Bootcamps, Masterclasses und Meetups für jeden Level</p>
-        </div>
-      </div>
-
-      <!-- 3-Column Enterprise Layout -->
-      <div class="programs-grid">
-
-        <!-- Sidebar Filters -->
-        <div class="programs-sidebar">
-          <div class="programs-filter-group">
-            <div class="programs-filter-label">
-              <i class="ph ph-funnel"></i> Filter by Type
-            </div>
-            <div class="programs-filter-tabs">
-              <button class="program-filter-tab active">All Programs</button>
-              <button class="program-filter-tab">Bootcamps</button>
-              <button class="program-filter-tab">Workshops</button>
-              <button class="program-filter-tab">Masterclasses</button>
-              <button class="program-filter-tab">Meetups</button>
-            </div>
-          </div>
-
-          <div class="programs-filter-group">
-            <div class="programs-filter-label">
-              <i class="ph ph-graduation-cap"></i> Filter by Level
-            </div>
-            <div class="programs-filter-tabs">
-              <button class="program-filter-tab active">All Levels</button>
-              <button class="program-filter-tab">Beginner</button>
-              <button class="program-filter-tab">Advanced</button>
-              <button class="program-filter-tab">Expert</button>
-            </div>
-          </div>
-
-          <div class="programs-sidebar-stats">
-            <div>
-              <div class="sidebar-stat-number">12</div>
-              <div class="sidebar-stat-label">Programs</div>
-            </div>
-            <div>
-              <div class="sidebar-stat-number">Q1</div>
-              <div class="sidebar-stat-label">2026</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Images Column -->
-        <div class="programs-images">
-          <div class="program-image">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png"
-              alt="Program">
-            <div class="program-image-overlay">BOOTCAMP</div>
-          </div>
-          <div class="program-image">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662277/ai-hub/website/website_stock_images/EVENT-02.png"
-              alt="Program">
-            <div class="program-image-overlay">WORKSHOP</div>
-          </div>
-          <div class="program-image">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png"
-              alt="Program">
-            <div class="program-image-overlay">MEETUP</div>
-          </div>
-          <div class="program-image">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662288/ai-hub/website/website_stock_images/EVENT-04.png"
-              alt="Program">
-            <div class="program-image-overlay">MASTERCLASS</div>
-          </div>
-        </div>
-
-        <!-- Event Cards -->
-        <div class="programs-cards">
-          <!-- Featured Event -->
-          <div class="program-card program-card-featured">
-            <div class="program-tags">
-              <span class="program-tag program-tag-purple">Featured</span>
-              <span class="program-tag program-tag-filled">Bootcamp</span>
-              <span class="program-tag program-tag-gold">AZAV</span>
-            </div>
-            <h3 class="program-title">KI-Manager Bootcamp — Frühjahr 2026</h3>
-            <p class="program-description">12-wöchige Vollzeit-Weiterbildung zum zertifizierten KI-Manager. 100%
-              förderfähig über Bildungsgutschein.</p>
-            <div class="program-meta">
-              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> Feb 3 – Apr 25</span>
-              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln + Online</span>
-              <span class="program-meta-item"><i class="ph-fill ph-clock"></i> 12 Wochen</span>
-            </div>
-            <a href="#" class="program-cta">Jetzt Bewerben <i class="ph-fill ph-arrow-right"></i></a>
-          </div>
-
-          <!-- Event 1: Workshop -->
-          <div class="program-card">
-            <div class="program-tags">
-              <span class="program-tag program-tag-emerald">Workshop</span>
-              <span class="program-tag program-tag-outline">1 Tag</span>
-            </div>
-            <h3 class="program-title">ChatGPT für Business</h3>
-            <p class="program-description">Praktische Anwendungen von ChatGPT für Marketing, Sales und Produktivität.
-            </p>
-            <div class="program-meta">
-              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 15. Feb 2026</span>
-              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Düsseldorf</span>
-            </div>
-            <a href="#" class="program-cta">Anmelden <i class="ph-fill ph-arrow-right"></i></a>
-          </div>
-
-          <!-- Event 2: Meetup -->
-          <div class="program-card">
-            <div class="program-tags">
-              <span class="program-tag program-tag-filled">Meetup</span>
-              <span class="program-tag program-tag-outline">Kostenlos</span>
-            </div>
-            <h3 class="program-title">AI Meetup Köln #47</h3>
-            <p class="program-description">Networking und Talks zu aktuellen KI-Trends. Jeden 4. Donnerstag im Monat.
-            </p>
-            <div class="program-meta">
-              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 22. Feb 2026</span>
-              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln</span>
-            </div>
-            <a href="#" class="program-cta">Teilnehmen <i class="ph-fill ph-arrow-right"></i></a>
-          </div>
-
-          <!-- Event 3: Deep Dive -->
-          <div class="program-card">
-            <div class="program-tags">
-              <span class="program-tag program-tag-purple">Deep Dive</span>
-              <span class="program-tag program-tag-outline">2 Tage</span>
-            </div>
-            <h3 class="program-title">Machine Learning Basics</h3>
-            <p class="program-description">Von der Theorie zur Praxis: Lerne die Grundlagen von ML und trainiere dein
-              erstes Modell.</p>
-            <div class="program-meta">
-              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 1–2. März 2026</span>
-              <span class="program-meta-item"><i class="ph-fill ph-map-pin"></i> Köln</span>
-            </div>
-            <a href="#" class="program-cta">Anmelden <i class="ph-fill ph-arrow-right"></i></a>
-          </div>
-
-          <!-- Event 4: Talk -->
-          <div class="program-card">
-            <div class="program-tags">
-              <span class="program-tag program-tag-filled">Talk</span>
-              <span class="program-tag program-tag-outline">Online</span>
-            </div>
-            <h3 class="program-title">AI Trends 2026 – Was kommt als nächstes?</h3>
-            <p class="program-description">Keynote von führenden KI-Experten über die wichtigsten Entwicklungen im neuen
-              Jahr.</p>
-            <div class="program-meta">
-              <span class="program-meta-item"><i class="ph-fill ph-calendar"></i> 10. März 2026</span>
-              <span class="program-meta-item"><i class="ph-fill ph-video-camera"></i> Livestream</span>
-            </div>
-            <a href="#" class="program-cta">Registrieren <i class="ph-fill ph-arrow-right"></i></a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Video Wall Reviews -->
-  <section class="section reviews-section" id="reviews">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-badge"><i class="ph-fill ph-video-camera"></i> Rezensionen</span>
-        <h2 class="section-title">Was unsere <span class="highlight">Teilnehmer</span> sagen</h2>
-        <p class="section-subtitle">Echte Geschichten von echten Menschen. Lass dich inspirieren.</p>
-      </div>
-
-      <div class="video-wall">
-        <div class="video-item">
-          <div class="video-thumb">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767714994/ai-hub/website/website_stock_images/Jakow_website_portait.png"
-              alt="Review">
-            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
-          </div>
-          <div class="video-info">
-            <h5>Jakow S.</h5>
-            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
-                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-            <p>"Das Bootcamp hat mein Leben verändert. Innerhalb von 3 Monaten hatte ich meinen Traumjob."</p>
-          </div>
-        </div>
-        <div class="video-item">
-          <div class="video-thumb">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767714990/ai-hub/website/website_stock_images/Lukas_website_portrait.png"
-              alt="Review">
-            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
-          </div>
-          <div class="video-info">
-            <h5>Lukas M.</h5>
-            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
-                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-            <p>"Die Dozenten sind absolute Experten. Praxisnah und auf dem neuesten Stand."</p>
-          </div>
-        </div>
-        <div class="video-item">
-          <div class="video-thumb">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662292/ai-hub/website/website_stock_images/MENTOR-04.png"
-              alt="Review">
-            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
-          </div>
-          <div class="video-info">
-            <h5>Dr. Sarah W.</h5>
-            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
-                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-            <p>"Als Mentorin bin ich beeindruckt von der Qualität der Teilnehmer und des Programms."</p>
-          </div>
-        </div>
-        <div class="video-item">
-          <div class="video-thumb">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767714988/ai-hub/website/website_stock_images/Lorenz_website_portrait.png"
-              alt="Review">
-            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
-          </div>
-          <div class="video-info">
-            <h5>Lorenz G.</h5>
-            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
-                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-            <p>"Die Community hier ist unschlagbar. Networking auf höchstem Niveau."</p>
-          </div>
-        </div>
-        <div class="video-item">
-          <div class="video-thumb">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767714992/ai-hub/website/website_stock_images/Martin_website_portrait.png"
-              alt="Review">
-            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
-          </div>
-          <div class="video-info">
-            <h5>Martin R.</h5>
-            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
-                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-            <p>"Endlich ein KI-Kurs, der hält was er verspricht. Absolut empfehlenswert!"</p>
-          </div>
-        </div>
-        <div class="video-item">
-          <div class="video-thumb">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662238/ai-hub/website/website_stock_images/MENTOR-05.png"
-              alt="Review">
-            <div class="play-btn"><i class="ph-fill ph-play"></i></div>
-          </div>
-          <div class="video-info">
-            <h5>Nina H.</h5>
-            <div class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
-                class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
-            <p>"Die Förderung durch den Bildungsgutschein war super einfach zu beantragen."</p>
-          </div>
-        </div>
+  <!-- AI Programs & Events - Horizontal Timeline -->
+  <section class="section events-timeline-section" id="events">
+    <div class="events-header">
+      <div class="container">
+        <span class="section-badge"><i class="ph-fill ph-calendar-check"></i> 2026 Season</span>
+        <h2 class="section-title">Upcoming <span class="highlight">Events</span></h2>
       </div>
     </div>
-  </section>
 
-  <!-- Stories & Insights -->
-  <section class="section stories-section" id="stories">
-    <div class="container">
-      <div class="stories-header">
-        <div class="stories-header-left">
-          <h2>Stories & <span class="highlight">Insights</span></h2>
-          <p>Wissen, Trends und Erfolgsgeschichten aus der KI-Welt</p>
-        </div>
-        <a href="#" class="stories-header-link">Alle Artikel <i class="ph-bold ph-arrow-right"></i></a>
-      </div>
-
-      <div class="stories-grid">
-        <!-- Featured Article -->
-        <article class="story-featured">
-          <div class="story-featured-image">
-            <img
-              src="https://res.cloudinary.com/startplatz/image/upload/v1767662297/ai-hub/website/website_stock_images/STORY-01.png"
-              alt="KI Arbeitsmarkt 2026">
-            <span class="story-featured-badge">Insights</span>
+    <!-- Horizontal Scroll Timeline -->
+    <div class="events-timeline-wrapper">
+      <div class="events-timeline" id="eventsTimeline">
+        <!-- Featured Event - Large -->
+        <article class="timeline-event timeline-event-featured" data-parallax="0.3">
+          <div class="timeline-event-accent"></div>
+          <div class="timeline-event-date">
+            <span class="date-month">FEB</span>
+            <span class="date-day">03</span>
           </div>
-          <div class="story-featured-content">
-            <div class="story-featured-meta">
-              <i class="ph ph-clock"></i>
-              <span>8 Min. Lesezeit</span>
+          <div class="timeline-event-content">
+            <div class="timeline-event-tags">
+              <span class="tag tag-gold">AZAV</span>
+              <span class="tag tag-primary">12 Wochen</span>
             </div>
-            <h3>Wie KI den Arbeitsmarkt 2026 verändert</h3>
-            <p>Ein tieferer Blick in die Transformation der Arbeitswelt durch künstliche Intelligenz.</p>
-            <a href="#" class="story-featured-link">Weiterlesen <i class="ph-bold ph-arrow-right"></i></a>
+            <h3>KI-Manager Bootcamp</h3>
+            <p>Vollzeit-Weiterbildung zum zertifizierten KI-Manager. 100% förderfähig.</p>
+            <div class="timeline-event-footer">
+              <span class="location"><i class="ph-fill ph-map-pin"></i> Köln + Online</span>
+              <a href="#" class="btn-timeline">Bewerben <i class="ph-bold ph-arrow-right"></i></a>
+            </div>
           </div>
         </article>
 
-        <!-- Sidebar Articles -->
-        <div class="stories-sidebar">
-          <article class="story-small">
-            <div class="story-small-image">
-              <img
-                src="https://res.cloudinary.com/startplatz/image/upload/v1767662300/ai-hub/website/website_stock_images/STORY-02.png"
-                alt="KI Skills">
+        <!-- Event 2 -->
+        <article class="timeline-event" data-parallax="0.5">
+          <div class="timeline-event-date">
+            <span class="date-month">FEB</span>
+            <span class="date-day">15</span>
+          </div>
+          <div class="timeline-event-content">
+            <div class="timeline-event-tags">
+              <span class="tag tag-emerald">Workshop</span>
             </div>
-            <div class="story-small-content">
-              <span class="story-small-tag">Karriere</span>
-              <h4>5 Must-Have KI-Skills für 2026</h4>
-              <div class="story-small-meta">
-                <i class="ph ph-clock"></i>
-                <span>5 Min.</span>
-              </div>
+            <h3>ChatGPT für Business</h3>
+            <p>Praktische Anwendungen für Marketing & Sales.</p>
+            <div class="timeline-event-footer">
+              <span class="location"><i class="ph-fill ph-map-pin"></i> Düsseldorf</span>
+              <a href="#" class="btn-timeline">Anmelden <i class="ph-bold ph-arrow-right"></i></a>
             </div>
-          </article>
+          </div>
+        </article>
 
-          <article class="story-small">
-            <div class="story-small-image">
-              <img
-                src="https://res.cloudinary.com/startplatz/image/upload/v1767662300/ai-hub/website/website_stock_images/STORY-03.png"
-                alt="ChatGPT vs Claude">
+        <!-- Event 3 -->
+        <article class="timeline-event" data-parallax="0.4">
+          <div class="timeline-event-date">
+            <span class="date-month">FEB</span>
+            <span class="date-day">22</span>
+          </div>
+          <div class="timeline-event-content">
+            <div class="timeline-event-tags">
+              <span class="tag tag-outline">Kostenlos</span>
             </div>
-            <div class="story-small-content">
-              <span class="story-small-tag">Tools</span>
-              <h4>ChatGPT vs. Claude: Ein Vergleich</h4>
-              <div class="story-small-meta">
-                <i class="ph ph-clock"></i>
-                <span>6 Min.</span>
-              </div>
+            <h3>AI Meetup Köln #47</h3>
+            <p>Networking und Talks zu aktuellen KI-Trends.</p>
+            <div class="timeline-event-footer">
+              <span class="location"><i class="ph-fill ph-map-pin"></i> Köln</span>
+              <a href="#" class="btn-timeline">Join <i class="ph-bold ph-arrow-right"></i></a>
             </div>
-          </article>
+          </div>
+        </article>
+
+        <!-- Event 4 -->
+        <article class="timeline-event" data-parallax="0.6">
+          <div class="timeline-event-date">
+            <span class="date-month">MÄR</span>
+            <span class="date-day">01</span>
+          </div>
+          <div class="timeline-event-content">
+            <div class="timeline-event-tags">
+              <span class="tag tag-purple">Deep Dive</span>
+              <span class="tag tag-outline">2 Tage</span>
+            </div>
+            <h3>Machine Learning Basics</h3>
+            <p>Von der Theorie zur Praxis – trainiere dein erstes ML-Modell.</p>
+            <div class="timeline-event-footer">
+              <span class="location"><i class="ph-fill ph-map-pin"></i> Köln</span>
+              <a href="#" class="btn-timeline">Anmelden <i class="ph-bold ph-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Event 5 -->
+        <article class="timeline-event" data-parallax="0.35">
+          <div class="timeline-event-date">
+            <span class="date-month">MÄR</span>
+            <span class="date-day">10</span>
+          </div>
+          <div class="timeline-event-content">
+            <div class="timeline-event-tags">
+              <span class="tag tag-primary">Online</span>
+            </div>
+            <h3>AI Trends 2026</h3>
+            <p>Keynote: Die wichtigsten KI-Entwicklungen im neuen Jahr.</p>
+            <div class="timeline-event-footer">
+              <span class="location"><i class="ph-fill ph-video-camera"></i> Livestream</span>
+              <a href="#" class="btn-timeline">Register <i class="ph-bold ph-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- More Events CTA -->
+        <article class="timeline-event timeline-event-cta">
+          <div class="timeline-cta-content">
+            <i class="ph-fill ph-calendar-plus"></i>
+            <span>Alle Events</span>
+            <i class="ph-bold ph-arrow-right"></i>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials - Stylish Header on RIGHT side for variety -->
+  <section class="section testimonials-section testimonials-stylish" id="reviews">
+    <!-- Header aligned RIGHT for variety -->
+    <div class="testimonials-hero-header">
+      <div class="container testimonials-header-flex">
+        <a href="#" class="testimonials-view-all-left">Alle ansehen <i class="ph-bold ph-arrow-right"></i></a>
+        <div class="testimonials-header-right">
+          <span class="section-badge"><i class="ph-fill ph-chat-circle-text"></i> Was Teilnehmer sagen</span>
+          <h2 class="section-title section-title-xl">Echte <span class="highlight">Erfolgsgeschichten</span></h2>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
+      <div class="video-mosaic-grid">
+        <!-- Video 1 -->
+        <div class="video-mosaic-item" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop&q=80" alt="Thomas - Vom Lehrer zum KI-Entwickler">
+          <div class="video-mosaic-play"><i class="ph-fill ph-play"></i></div>
+          <div class="video-mosaic-info">
+            <span class="video-mosaic-name">Thomas</span>
+            <span class="video-mosaic-title">Vom Lehrer zum KI-Entwickler</span>
+          </div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-mosaic-item" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=300&fit=crop&q=80" alt="Sarah - Mein Weg ins Tech-Startup">
+          <div class="video-mosaic-play"><i class="ph-fill ph-play"></i></div>
+          <div class="video-mosaic-info">
+            <span class="video-mosaic-name">Sarah</span>
+            <span class="video-mosaic-title">Mein Weg ins Tech-Startup</span>
+          </div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-mosaic-item" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=300&fit=crop&q=80" alt="Michael - Warum sich der Kurs lohnt">
+          <div class="video-mosaic-play"><i class="ph-fill ph-play"></i></div>
+          <div class="video-mosaic-info">
+            <span class="video-mosaic-name">Michael</span>
+            <span class="video-mosaic-title">Warum sich der Kurs lohnt</span>
+          </div>
+        </div>
+        <!-- Video 4 -->
+        <div class="video-mosaic-item" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=300&fit=crop&q=80" alt="Julia - KI im Marketing nutzen">
+          <div class="video-mosaic-play"><i class="ph-fill ph-play"></i></div>
+          <div class="video-mosaic-info">
+            <span class="video-mosaic-name">Julia</span>
+            <span class="video-mosaic-title">KI im Marketing nutzen</span>
+          </div>
+        </div>
+        <!-- Video 5 -->
+        <div class="video-mosaic-item" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          <img src="https://images.unsplash.com/photo-1522075469751-3a3694c2d714?w=400&h=300&fit=crop&q=80" alt="100% gefördert - so geht's">
+          <div class="video-mosaic-play"><i class="ph-fill ph-play"></i></div>
+          <div class="video-mosaic-info">
+            <span class="video-mosaic-name">Tutorial</span>
+            <span class="video-mosaic-title">100% gefördert - so geht's</span>
+          </div>
+        </div>
+        <!-- Video 6 -->
+        <div class="video-mosaic-item" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop&q=80" alt="Campus Tour Köln">
+          <div class="video-mosaic-play"><i class="ph-fill ph-play"></i></div>
+          <div class="video-mosaic-info">
+            <span class="video-mosaic-name">Einblick</span>
+            <span class="video-mosaic-title">Campus Tour Köln</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Modal for Full-Screen Playback -->
+  <div class="video-modal-overlay" id="videoModalOverlay">
+    <div class="video-modal">
+      <button class="video-modal-close" id="videoModalClose"><i class="ph-bold ph-x"></i></button>
+      <div class="video-modal-content">
+        <iframe id="videoModalIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stories - Newspaper Style -->
+  <section class="section stories-compact-section" id="stories">
+    <div class="container">
+      <div class="stories-compact-header">
+        <h2>Insights</h2>
+        <a href="#" class="stories-view-all">Alle Artikel <i class="ph-bold ph-arrow-right"></i></a>
+      </div>
+
+      <div class="newspaper-grid">
+        <!-- Main Feature (Left) -->
+        <article class="news-main-feature">
+          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80" alt="Main Story">
+          <div class="news-main-content">
+            <span class="news-badge">Trend Report</span>
+            <h3>Wie Generative AI die Kreativbranche revolutioniert</h3>
+            <div class="news-meta" style="color: rgba(255,255,255,0.7); margin-top: 12px;">
+              <span><i class="ph-fill ph-calendar"></i> Heute</span>
+              <span><i class="ph-fill ph-clock"></i> 8 min Lesezeit</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Side List (Right) -->
+        <div class="news-side-list">
+          <a href="#" class="news-side-item">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=200&q=80" alt="News 1"
+              class="news-side-img">
+            <div class="news-side-content">
+              <h5>5 Skills, die jeder KI-Manager braucht</h5>
+              <div class="news-meta"><span>Karriere</span></div>
+            </div>
+          </a>
+          <a href="#" class="news-side-item">
+            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=200&q=80" alt="News 2"
+              class="news-side-img">
+            <div class="news-side-content">
+              <h5>Prompt Engineering: Einsteiger Guide</h5>
+              <div class="news-meta"><span>Tutorial</span></div>
+            </div>
+          </a>
+          <a href="#" class="news-side-item">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=200&q=80" alt="News 3"
+              class="news-side-img">
+            <div class="news-side-content">
+              <h5>Interview: Die Zukunft der Arbeit</h5>
+              <div class="news-meta"><span>Interview</span></div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -920,46 +764,44 @@
     </div>
   </section>
 
-  <!-- Newsletter Section -->
-  <section class="section section-dark newsletter-section" id="newsletter">
-    <div class="container">
-      <div class="newsletter-box frost-edge corner-stitch" style="background: var(--color-dark-elevated);">
-        <span class="stitch-tl" style="border-color: var(--color-primary);"></span>
-        <span class="stitch-tr" style="border-color: var(--color-primary);"></span>
-        <span class="stitch-bl" style="border-color: var(--color-primary);"></span>
-        <span class="stitch-br" style="border-color: var(--color-primary);"></span>
-        <div class="newsletter-content">
-          <span class="section-badge" style="background:rgba(99,102,241,0.2);"><i
-              class="ph-fill ph-envelope-simple"></i> Newsletter</span>
-          <h3>Bleib auf dem Laufenden</h3>
-          <p>Erhalte exklusive Insights, Event-Einladungen und KI-Trends direkt in dein Postfach.</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Deine E-Mail Adresse" required>
-            <button type="submit" class="btn btn-primary">Abonnieren</button>
-          </form>
-          <p class="newsletter-privacy">Mit der Anmeldung akzeptierst du unsere Datenschutzerklärung.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Final CTA Section -->
-  <section class="section final-cta-section" id="contact">
-    <div class="cta-bg-image">
-      <img
-        src="https://res.cloudinary.com/startplatz/image/upload/v1767662307/ai-hub/website/website_stock_images/BG-CTA.png"
-        alt="Background">
-    </div>
+  <!-- Newsletter Section - Premium Design -->
+  <section class="section section-dark newsletter-premium" id="contact">
     <div class="container">
-      <div class="final-cta-content">
-        <span class="section-badge"><i class="ph-fill ph-rocket-launch"></i> Jetzt durchstarten</span>
-        <h2 class="section-title" style="color:white;">Bereit für deine <span class="highlight">KI-Zukunft</span>?</h2>
-        <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; max-width: 600px; margin: 0 auto 40px;">Lass uns
-          gemeinsam herausfinden, welches Programm perfekt zu dir passt. Kostenlos und unverbindlich.</p>
-        <div class="cta-buttons">
-          <a href="#" class="btn btn-white btn-lg"><i class="ph-fill ph-phone"></i> Beratungsgespräch buchen</a>
-          <a href="#" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.15); color: white;"><i
-              class="ph-fill ph-envelope"></i> Info-Material anfordern</a>
+      <div class="newsletter-premium-grid">
+        <div class="newsletter-premium-content">
+          <span class="section-badge" style="background: rgba(99, 102, 241, 0.2);"><i
+              class="ph-fill ph-envelope-simple"></i> Newsletter</span>
+          <h2 class="newsletter-premium-title">Bleib an der <span class="highlight">KI-Spitze</span></h2>
+          <p class="newsletter-premium-desc">Erhalte wöchentlich exklusive Insights, Event-Einladungen und die neuesten
+            KI-Trends direkt in dein Postfach. Über 5.000 Abonnenten vertrauen uns bereits.</p>
+
+          <ul class="newsletter-benefits">
+            <li><i class="ph-fill ph-check-circle"></i> Wöchentliche KI-Insights & Tutorials</li>
+            <li><i class="ph-fill ph-check-circle"></i> Exklusive Event-Einladungen</li>
+            <li><i class="ph-fill ph-check-circle"></i> Kostenlose Ressourcen & Templates</li>
+            <li><i class="ph-fill ph-check-circle"></i> Karriere-Tipps von Experten</li>
+          </ul>
+        </div>
+
+        <div class="newsletter-premium-form-wrap">
+          <form class="newsletter-premium-form">
+            <div class="form-group">
+              <label for="newsletter-name">Dein Name</label>
+              <input type="text" id="newsletter-name" placeholder="Max Mustermann" required>
+            </div>
+            <div class="form-group">
+              <label for="newsletter-email">E-Mail Adresse</label>
+              <input type="email" id="newsletter-email" placeholder="max@beispiel.de" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-full">
+              <i class="ph-fill ph-paper-plane-tilt"></i> Jetzt abonnieren
+            </button>
+            <p class="newsletter-privacy-text">
+              <i class="ph ph-shield-check"></i>
+              Mit der Anmeldung akzeptierst du unsere <a href="#">Datenschutzerklärung</a>. Abmeldung jederzeit möglich.
+            </p>
+          </form>
         </div>
       </div>
     </div>
@@ -1035,24 +877,714 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-
   <!-- GSAP Draggable for Parallax Slider -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
+  <!-- Three.js Import Map for Neural Network Background -->
+  <script type="importmap">
+  {
+      "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+  }
+  </script>
+
+  <!-- 3D Neural Network Background Engine -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+    const canvas = document.getElementById('main-canvas');
+    if (!canvas) {
+      console.warn('Canvas not found');
+    } else {
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.6;
+
+      const scene = new THREE.Scene();
+      // Deeper, more atmospheric background with subtle purple tint
+      scene.background = new THREE.Color(0xeae8f0);
+
+      const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, 30);
+
+      const composer = new EffectComposer(renderer);
+      composer.addPass(new RenderPass(scene, camera));
+      composer.addPass(new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.65, 0.4, 0.75));
+
+      // Nebula - GALAXY with STRUCTURE and DEPTH
+      const nebulaMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+          uTime: { value: 0 },
+          uScrollProgress: { value: 0 }
+        },
+        vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+        fragmentShader: `
+              uniform float uTime;
+              uniform float uScrollProgress;
+              varying vec2 vUv;
+              
+              float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
+              float noise(vec2 p) {
+                  vec2 i = floor(p), f = fract(p);
+                  f = f * f * (3.0 - 2.0 * f);
+                  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+              }
+              // More octaves for detailed structure
+              float fbm(vec2 p) { 
+                  float v = 0.0, a = 0.5; 
+                  mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
+                  for (int i = 0; i < 8; i++) { 
+                      v += a * noise(p); 
+                      p = rot * p * 2.1 + vec2(0.1, 0.2); 
+                      a *= 0.5; 
+                  } 
+                  return v; 
+              }
+              // Turbulence for wispy cloud edges
+              float turbulence(vec2 p) {
+                  float t = 0.0;
+                  float scale = 1.0;
+                  for (int i = 0; i < 5; i++) {
+                      t += abs(noise(p * scale) - 0.5) * (1.0 / scale);
+                      scale *= 2.0;
+                  }
+                  return t;
+              }
+              
+              void main() {
+                  vec2 uv = vUv;
+                  uv.y += uScrollProgress * 1.2;
+                  uv.x += uScrollProgress * 0.2;
+                  float t = uTime * 0.02;
+                  
+                  // STRUCTURED GALAXY CLOUDS
+                  float scale = 2.5 + uScrollProgress * 0.4;
+                  
+                  // Layer 1: Main cloud structure
+                  vec2 q = vec2(fbm(uv * scale + t), fbm(uv * scale + vec2(5.2, 1.3) - t * 0.7));
+                  vec2 r = vec2(fbm(uv * scale + 4.0 * q + vec2(1.7, 9.2) + t * 0.5), fbm(uv * scale + 4.0 * q + vec2(8.3, 2.8)));
+                  float cloudMain = fbm(uv * scale + 4.0 * r);
+                  
+                  // Layer 2: Secondary wispy clouds
+                  vec2 uv2 = uv * 1.3 + vec2(0.4, -0.3);
+                  float cloudWispy = fbm(uv2 * scale * 0.8 - t * 0.15);
+                  
+                  // Layer 3: Fine detail turbulence
+                  float detail = turbulence(uv * scale * 3.0 + t * 0.3) * 0.3;
+                  
+                  // Layer 4: Large scale gradient clouds
+                  float cloudLarge = fbm(uv * scale * 0.5 + t * 0.1);
+                  
+                  // Combine layers with different weights
+                  float f = cloudMain * 0.6 + cloudWispy * 0.25 + detail * 0.15;
+                  f = pow(f, 0.85); // Boost contrast
+                  
+                  // Base - light with subtle warmth
+                  vec3 color = vec3(0.96, 0.94, 0.97);
+                  
+                  // DEEP PURPLE STRUCTURE - visible cloud formations
+                  // Dark nebula depths (creates structure)
+                  color = mix(color, vec3(0.75, 0.72, 0.88), smoothstep(0.15, 0.5, cloudMain) * 0.6);
+                  
+                  // Rich purple mid-tones  
+                  color = mix(color, vec3(0.55, 0.52, 0.85), smoothstep(0.25, 0.65, f) * 0.55);
+                  
+                  // Deep indigo in dense areas (#6366f1)
+                  color = mix(color, vec3(0.39, 0.40, 0.95), pow(f, 1.5) * 0.5);
+                  
+                  // Vibrant purple peaks
+                  color = mix(color, vec3(0.50, 0.35, 0.88), pow(cloudMain, 1.8) * 0.4);
+                  
+                  // Secondary wispy layer - adds dimension
+                  color = mix(color, vec3(0.65, 0.60, 0.92), smoothstep(0.3, 0.7, cloudWispy) * 0.35);
+                  
+                  // Dark void areas for DEPTH contrast
+                  float voidMask = smoothstep(0.2, 0.55, cloudLarge);
+                  color = mix(color, vec3(0.88, 0.86, 0.95), (1.0 - voidMask) * 0.25);
+                  
+                  // Deep purple shadows in cloud crevices
+                  color = mix(color, vec3(0.32, 0.30, 0.72), pow(f, 2.5) * 0.3);
+                  
+                  // Subtle mint glow in bright spots
+                  color = mix(color, vec3(0.5, 0.9, 0.82), pow(cloudWispy, 3.0) * 0.12);
+                  
+                  // Warm highlight accents
+                  color = mix(color, vec3(0.98, 0.78, 0.65), pow(f, 4.0) * 0.08);
+                  
+                  // STARS - tiny bright points
+                  float stars = pow(noise(uv * 400.0), 20.0) * 0.4;
+                  stars += pow(noise(uv * 250.0 + 50.0), 18.0) * 0.25;
+                  color += vec3(stars * 0.9, stars * 0.85, stars);
+                  
+                  // Soft vignette for depth
+                  vec2 vc = uv - 0.5;
+                  float vd = length(vc * vec2(1.1, 0.9));
+                  float vig = 1.0 - smoothstep(0.2, 0.9, vd);
+                  color *= 0.88 + vig * 0.12;
+                  
+                  // Edge atmospheric haze
+                  color = mix(color, vec3(0.92, 0.90, 0.96), smoothstep(0.4, 0.85, vd) * 0.15);
+                  
+                  gl_FragColor = vec4(color, 1.0);
+              }
+          `,
+        depthWrite: false
+      });
+      const nebula = new THREE.Mesh(new THREE.PlaneGeometry(180, 130), nebulaMaterial);
+      nebula.position.z = -50;
+      scene.add(nebula);
+
+      // Starfield - Purple-themed particles matching brand
+      const starLayers = [];
+      const starColors = [
+        [0.42, 0.44, 0.95],   // Brand Indigo (primary #6366f1)
+        [0.58, 0.52, 0.92],   // Lavender
+        [0.45, 0.85, 0.78],   // Mint accent
+        [0.35, 0.32, 0.82],   // Deep Purple
+        [0.68, 0.58, 0.95],   // Light Violet
+        [0.48, 0.46, 0.88]    // Medium Purple
+      ];
+      [0.2, 0.4, 0.6].forEach((speed, layer) => {
+        const count = 500; // More particles
+        const positions = new Float32Array(count * 3);
+        const sizes = new Float32Array(count);
+        const colors = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * 100;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 70;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 50 - layer * 15;
+          sizes[i] = 0.06 + Math.random() * 0.12; // Larger stars
+          const c = starColors[Math.floor(Math.random() * starColors.length)];
+          colors[i * 3] = c[0];
+          colors[i * 3 + 1] = c[1];
+          colors[i * 3 + 2] = c[2];
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.ShaderMaterial({
+          uniforms: { uTime: { value: 0 }, uPixelRatio: { value: renderer.getPixelRatio() } },
+          vertexShader: `attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uTime, uPixelRatio; void main() { vColor = color; vec4 mvPos = modelViewMatrix * vec4(position, 1.0); float twinkle = sin(uTime * 2.5 + position.x * 8.0) * 0.5 + 0.5; gl_PointSize = size * uPixelRatio * 100.0 * (0.7 + twinkle * 0.3) / -mvPos.z; gl_Position = projectionMatrix * mvPos; }`,
+          fragmentShader: `varying vec3 vColor; void main() { float d = length(gl_PointCoord - 0.5); float alpha = smoothstep(0.5, 0.0, d) * 0.85; float glow = exp(-d * 3.0) * 0.5; gl_FragColor = vec4(vColor + glow, alpha); }`,
+          transparent: true, depthWrite: false, blending: THREE.NormalBlending
+        });
+        const points = new THREE.Points(geometry, material);
+        points.userData = { speed, originalPositions: positions.slice() };
+        scene.add(points);
+        starLayers.push(points);
+      });
+
+      // Crystal Shards - Floating geometric elements
+      const shards = [];
+      const shardShape = new THREE.Shape();
+      for (let i = 0; i < 6; i++) {
+        const angle = (i / 6) * Math.PI * 2 - Math.PI / 6;
+        i === 0 ? shardShape.moveTo(Math.cos(angle), Math.sin(angle)) : shardShape.lineTo(Math.cos(angle), Math.sin(angle));
+      }
+      const shardGeo = new THREE.ExtrudeGeometry(shardShape, { depth: 0.12, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 2 });
+      shardGeo.center();
+
+      // Background shards (more visible, ambient)
+      for (let i = 0; i < 55; i++) {
+        const colors = [0x6366f1, 0x8b5cf6, 0x7c3aed, 0xa78bfa, 0x818cf8];
+        const colorIndex = Math.floor(Math.random() * colors.length);
+        const mat = new THREE.MeshPhysicalMaterial({
+          color: colors[colorIndex],
+          metalness: 0.15, roughness: 0.08, transmission: 0.7, transparent: true, opacity: 0.45,
+          ior: 1.6, thickness: 0.5, emissive: colors[colorIndex], emissiveIntensity: 0.12
+        });
+        const mesh = new THREE.Mesh(shardGeo, mat);
+        mesh.position.set((Math.random() - 0.5) * 80, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 60 - 8);
+        mesh.scale.setScalar(0.08 + Math.random() * 0.2); // Larger shards
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        mesh.userData = { originalPosition: mesh.position.clone(), rotSpeed: (Math.random() - 0.5) * 0.25, floatSpeed: 0.2 + Math.random() * 0.35, floatOffset: Math.random() * Math.PI * 2, parallax: 0.1 + Math.random() * 0.4, isHero: false };
+        scene.add(mesh);
+        shards.push(mesh);
+      }
+
+      // HERO SHARDS - Three large shards for the morph animation with PERSONA IMAGES
+      const heroShardColors = [0x10b981, 0x3b82f6, 0xf97316]; // Mint, Navy, Orange
+      const heroShardLabels = ['Arbeitssuchend', 'Berufstätig', 'Unternehmen'];
+      const heroShardIcons = ['ph-user-circle-gear', 'ph-briefcase', 'ph-buildings'];
+      const heroShards = [];
+      const heroShardGeo = new THREE.ExtrudeGeometry(shardShape, { depth: 0.25, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05, bevelSegments: 3 });
+      heroShardGeo.center();
+
+      // Persona images for each shard
+      const personaImages = [
+        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&q=80', // Arbeitssuchend
+        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&q=80', // Berufstätig
+        'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=200&h=200&fit=crop&q=80'  // Unternehmen
+      ];
+
+      // SIDE ENTRY - Shards fly in from left and right sides with rotation
+      const heroStartPositions = [
+        new THREE.Vector3(-70, 8, -35),   // Mint - starts FAR LEFT
+        new THREE.Vector3(0, -45, -55),   // Navy - starts BOTTOM
+        new THREE.Vector3(70, 8, -35),    // Orange - starts FAR RIGHT
+      ];
+      const heroEndPositions = [
+        new THREE.Vector3(-10, 0, 5),   // Mint - ends left - MORE SPACING
+        new THREE.Vector3(0, 0, 5),     // Navy - ends center
+        new THREE.Vector3(10, 0, 5),    // Orange - ends right - MORE SPACING
+      ];
+
+      // Load textures for persona images
+      const textureLoader = new THREE.TextureLoader();
+
+      heroStartPositions.forEach((startPos, i) => {
+        // Load persona texture for the MAIN hexagon face
+        const personaTexture = textureLoader.load(personaImages[i]);
+        personaTexture.colorSpace = THREE.SRGBColorSpace;
+        
+        // Create hexagon with PERSONA IMAGE as main texture - mirror effect
+        const mat = new THREE.MeshPhysicalMaterial({
+          color: 0xffffff,  // White base shows texture clearly
+          map: personaTexture,  // Persona image AS the hexagon texture
+          metalness: 0.3,   // Reflective like a mirror
+          roughness: 0.1,   // Smooth surface
+          transmission: 0.0, // NOT transparent - show the image!
+          transparent: false,
+          clearcoat: 0.8,   // Glass-like shine on top
+          clearcoatRoughness: 0.1,
+          emissive: heroShardColors[i], 
+          emissiveIntensity: 0.08,
+          side: THREE.DoubleSide
+        });
+        const mesh = new THREE.Mesh(heroShardGeo, mat);
+        mesh.position.copy(startPos);
+        mesh.scale.setScalar(1.8);
+        mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        
+        // Add a colored glass frame around the hexagon
+        const frameMat = new THREE.MeshPhysicalMaterial({
+          color: heroShardColors[i],
+          metalness: 0.2, roughness: 0.15, 
+          transmission: 0.4, transparent: true, opacity: 0.7,
+          emissive: heroShardColors[i], emissiveIntensity: 0.25,
+          side: THREE.DoubleSide
+        });
+        // Create slightly larger hexagon as frame
+        const frameGeo = new THREE.ExtrudeGeometry(shardShape, { depth: 0.3, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.08, bevelSegments: 3 });
+        frameGeo.center();
+        const frameMesh = new THREE.Mesh(frameGeo, frameMat);
+        frameMesh.scale.setScalar(1.12); // Slightly larger than main
+        frameMesh.position.z = -0.05; // Behind main hexagon
+        mesh.add(frameMesh);
+        
+        mesh.userData = {
+          startPosition: startPos.clone(),
+          endPosition: heroEndPositions[i].clone(),
+          startRotation: new THREE.Euler(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2),
+          endRotation: new THREE.Euler(0, 0, 0),
+          rotSpeed: (Math.random() - 0.5) * 0.3,
+          floatSpeed: 0.15 + Math.random() * 0.1,
+          floatOffset: Math.random() * Math.PI * 2,
+          index: i,
+          isHero: true,
+          label: heroShardLabels[i],
+          icon: heroShardIcons[i],
+          frameMesh: frameMesh
+        };
+        scene.add(mesh);
+        heroShards.push(mesh);
+        shards.push(mesh);
+      });
+
+      // Create floating HTML labels for hero shards
+      const shardLabelsContainer = document.createElement('div');
+      shardLabelsContainer.className = 'shard-labels-container';
+      shardLabelsContainer.innerHTML = heroShardLabels.map((label, i) => `
+        <button class="shard-label" data-index="${i}" style="--shard-color: ${['#10b981', '#3b82f6', '#f97316'][i]}">
+          <i class="ph-fill ${heroShardIcons[i]}"></i>
+          <span>${label}</span>
+        </button>
+      `).join('');
+      document.body.appendChild(shardLabelsContainer);
+      const shardLabelEls = shardLabelsContainer.querySelectorAll('.shard-label');
+
+      // Label click handlers
+      shardLabelEls.forEach((el, i) => {
+        el.addEventListener('click', () => {
+          if (typeof openMorphModal === 'function') {
+            openMorphModal(i);
+          }
+        });
+      });
+
+      // Lights - Warm with purple accents
+      scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+      const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+      keyLight.position.set(5, 10, 10);
+      scene.add(keyLight);
+      const purpleLight = new THREE.PointLight(0x8b5cf6, 0.8, 70);
+      purpleLight.position.set(15, 6, 5);
+      scene.add(purpleLight);
+      const warmLight = new THREE.PointLight(0xfaf8f5, 0.6, 60);
+      warmLight.position.set(-15, -5, 8);
+      scene.add(warmLight);
+
+      // ==========================================
+      // RAYCASTER FOR CLICKABLE 3D TILES
+      // ==========================================
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      let hoveredShard = null;
+
+      // Mouse move for hover detection
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      });
+
+      // Click handler for 3D tiles
+      canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(heroShards);
+
+        if (intersects.length > 0 && morphProgress > 0.15 && morphProgress < 0.98) {
+          const clickedShard = intersects[0].object;
+          const index = clickedShard.userData.index;
+
+          // Open the modal via the JS function
+          if (typeof openMorphModal === 'function') {
+            openMorphModal(index);
+          } else {
+            // Fallback: trigger modal manually
+            const overlay = document.getElementById('morphModalOverlay');
+            if (overlay) {
+              overlay.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
+          }
+        }
+      });
+
+      // Cursor style based on hover - EXPANDED clickable range
+      function updateCursor() {
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(heroShards);
+
+        if (intersects.length > 0 && morphProgress > 0.15 && morphProgress < 0.98) {
+          canvas.style.cursor = 'pointer';
+          hoveredShard = intersects[0].object;
+        } else {
+          canvas.style.cursor = 'default';
+          hoveredShard = null;
+        }
+      }
+
+      // Animation
+      let scrollProgress = 0, targetScrollProgress = 0;
+      let morphProgress = 0, targetMorphProgress = 0;
+      let currentSection = 0, targetSection = 0;
+
+      // DOM elements for morph section
+      const morphSection = document.getElementById('morph-stage');
+      const morphTargets = document.querySelectorAll('.morph-target');
+      const morphContent = document.querySelector('.morph-content');
+      const audienceSection = document.querySelector('.audience-reveal');
+      const morphScrollHint = document.querySelector('.morph-scroll-hint');
+
+      // All sections for snappy camera
+      const allSections = document.querySelectorAll('section[id]');
+
+      // Easing functions
+      const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+      const easeInOutQuart = t => t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
+      const easeOutBack = t => 1 + 2.70158 * Math.pow(t - 1, 3) + 1.70158 * Math.pow(t - 1, 2);
+
+      // Smooth camera settings - NO SNAPPING
+      const cameraStart = { x: 0, y: 0, z: 38 };
+      const cameraEnd = { x: 0, y: 0, z: 8 };  // Zoom in as you scroll
+
+      // Get team section for early shard disappearance
+      const teamSection = document.getElementById('team');
+
+      window.addEventListener('scroll', () => {
+        targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)));
+
+        // Calculate morph progress - MUCH LONGER timing for better interaction
+        if (morphSection) {
+          const rect = morphSection.getBoundingClientRect();
+          const sectionHeight = morphSection.offsetHeight;
+          const viewportHeight = window.innerHeight;
+
+          // Start earlier, take LONGER to complete - more time to click
+          const scrollIntoSection = -rect.top + viewportHeight * 0.5; // Start 50% into viewport
+          const morphDistance = sectionHeight * 0.75; // 75% of section for full morph - MUCH more time
+          targetMorphProgress = Math.max(0, Math.min(1, scrollIntoSection / morphDistance));
+        }
+
+        // Calculate shard EXIT animation - shards FLY PAST the viewer
+        if (teamSection) {
+          const teamRect = teamSection.getBoundingClientRect();
+          const flyStartDistance = window.innerHeight * 1.0; // Start flying when team section is 1 viewport away
+          
+          if (teamRect.top < flyStartDistance) {
+            // exitProgress goes from 0 (just started) to 1 (fully past)
+            const exitProgress = 1 - Math.max(0, Math.min(1, teamRect.top / flyStartDistance));
+            
+            // Store exit progress for use in animation loop
+            window.shardExitProgress = exitProgress;
+            
+            // Fade labels quickly
+            shardLabelsContainer.style.opacity = Math.max(0, 1 - exitProgress * 2);
+            shardLabelsContainer.style.pointerEvents = exitProgress > 0.2 ? 'none' : 'auto';
+          } else {
+            window.shardExitProgress = 0;
+            shardLabelsContainer.style.opacity = '1';
+            shardLabelsContainer.style.pointerEvents = 'auto';
+          }
+        }
+      }, { passive: true });
+
+      const clock = new THREE.Clock();
+      const baseFov = 65;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        const dt = clock.getDelta(), t = clock.getElapsedTime();
+        scrollProgress += (targetScrollProgress - scrollProgress) * 0.05;
+        morphProgress += (targetMorphProgress - morphProgress) * 0.05; // Slower morph for more time to interact
+
+        nebulaMaterial.uniforms.uTime.value = t;
+        nebulaMaterial.uniforms.uScrollProgress.value = scrollProgress;
+
+        // Dynamic star movement with depth
+        starLayers.forEach(layer => {
+          layer.material.uniforms.uTime.value = t;
+          const pos = layer.geometry.attributes.position.array;
+          const orig = layer.userData.originalPositions;
+          for (let j = 0; j < pos.length; j += 3) {
+            pos[j + 2] = orig[j + 2] + scrollProgress * layer.userData.speed * 50;
+            pos[j] = orig[j] + Math.sin(t * 0.3 + j * 0.01) * 0.15;
+          }
+          layer.geometry.attributes.position.needsUpdate = true;
+        });
+
+        // Background shard animation
+        shards.forEach(shard => {
+          const d = shard.userData;
+          if (d.isHero) return; // Skip hero shards here
+
+          shard.position.y = d.originalPosition.y + Math.sin(t * d.floatSpeed + d.floatOffset) * 0.5;
+          shard.position.x = d.originalPosition.x + Math.cos(t * d.floatSpeed * 0.7 + d.floatOffset) * 0.3;
+          shard.rotation.x += d.rotSpeed * dt * 0.4;
+          shard.rotation.y += d.rotSpeed * dt * 0.25;
+          shard.position.z = d.originalPosition.z + scrollProgress * d.parallax * 40;
+          const zScale = 1 + scrollProgress * d.parallax * 0.3;
+          shard.scale.setScalar((0.06 + d.parallax * 0.12) * zScale);
+        });
+
+        // HERO SHARD ANIMATION - Fly in from SIDES with ROTATION
+        const easedMorph = easeOutCubic(morphProgress);
+        const rotationEase = easeInOutQuart(morphProgress);
+
+        // Temporary vector for screen projection
+        const tempVec = new THREE.Vector3();
+
+        heroShards.forEach((shard, i) => {
+          if (!shard.visible) return;
+          
+          const d = shard.userData;
+
+          // Interpolate position from start to end - SIDE ENTRY with curve
+          const curveOffset = Math.sin(easedMorph * Math.PI) * 3; // Arc motion
+          shard.position.lerpVectors(d.startPosition, d.endPosition, easedMorph);
+          
+          // Add curve to the path - shards curve inward
+          if (i === 0) shard.position.x += curveOffset * 0.5; // Left shard curves right then left
+          if (i === 2) shard.position.x -= curveOffset * 0.5; // Right shard curves left then right
+          shard.position.y += curveOffset * 0.3; // All shards arc upward
+
+          // Add floating animation on top - reduced when settled
+          const floatAmount = (1 - easedMorph) * 1.5;
+          shard.position.y += Math.sin(t * d.floatSpeed + d.floatOffset) * floatAmount;
+
+          // DRAMATIC ROTATION: Full rotations as they fly in
+          const rotationMultiplier = (1 - easedMorph);
+          const baseRotation = morphProgress * Math.PI * 2; // Full rotation during flight
+          
+          if (easedMorph < 0.85) {
+            // Spinning rotation during flight - each shard rotates differently
+            shard.rotation.x = baseRotation * (i === 1 ? 1.5 : 1) + d.rotSpeed * t * 2;
+            shard.rotation.y = baseRotation * (i === 0 ? -1 : 1) + d.rotSpeed * t * 1.5;
+            shard.rotation.z = Math.sin(t * 2 + i) * 0.3 * rotationMultiplier;
+          } else {
+            // Settle to final rotation facing camera (flat)
+            shard.rotation.x += (0 - shard.rotation.x) * 0.12;
+            shard.rotation.y += (0 - shard.rotation.y) * 0.12;
+            shard.rotation.z += (0 - shard.rotation.z) * 0.12;
+          }
+
+          // Scale: start smaller, grow LARGER as they approach for better visibility
+          const scaleStart = 1.5;
+          const scaleEnd = 3.2; // BIGGER shards
+          const hoverBoost = (hoveredShard === shard) ? 0.35 : 0;
+          
+          // ==========================================
+          // EXIT ANIMATION - Shards FLY PAST the viewer
+          // ==========================================
+          const exitProgress = window.shardExitProgress || 0;
+          const easedExit = easeInOutQuart(exitProgress);
+          
+          if (exitProgress > 0.01) {
+            // FLY OUT: Move shards outward and TOWARD camera (positive Z = closer)
+            const flyOutX = (i === 0 ? -1 : i === 2 ? 1 : 0) * easedExit * 60; // Left goes more left, right goes more right
+            const flyOutY = (i === 1 ? -1 : 1) * easedExit * 30; // Center goes down, sides go up
+            const flyOutZ = easedExit * 80; // All fly TOWARD and PAST the camera
+            
+            shard.position.x += flyOutX;
+            shard.position.y += flyOutY;
+            shard.position.z += flyOutZ;
+            
+            // Add dramatic rotation as they fly past
+            shard.rotation.x += easedExit * Math.PI * (i === 1 ? 1.5 : 1);
+            shard.rotation.y += easedExit * Math.PI * (i === 0 ? -2 : 2);
+            shard.rotation.z += easedExit * Math.PI * 0.5;
+            
+            // Scale UP as they get closer (perspective effect)
+            const exitScale = 1 + easedExit * 2.5;
+            shard.scale.setScalar((scaleStart + (scaleEnd - scaleStart) * easedMorph + hoverBoost) * exitScale);
+            
+            // Fade out as they pass by
+            shard.material.opacity = Math.max(0, 1 - easedExit * 1.5);
+            shard.visible = shard.material.opacity > 0.01;
+            
+            // Frame also fades
+            if (shard.userData.frameMesh) {
+              shard.userData.frameMesh.material.opacity = Math.max(0, 0.7 - easedExit * 1.2);
+            }
+          } else {
+            // Normal settled state
+            shard.scale.setScalar(scaleStart + (scaleEnd - scaleStart) * easedMorph + hoverBoost);
+            shard.material.opacity = 1;
+            shard.visible = true;
+            
+            // Adjust material based on morph progress - enhance mirror effect as it settles
+            shard.material.emissiveIntensity = 0.05 + easedMorph * 0.1 + ((hoveredShard === shard) ? 0.15 : 0);
+            shard.material.metalness = 0.2 + easedMorph * 0.3; // More reflective when settled
+            shard.material.clearcoat = 0.5 + easedMorph * 0.5; // More glass-like shine
+            
+            // Enhance colored frame glow when settled
+            if (shard.userData.frameMesh) {
+              shard.userData.frameMesh.material.emissiveIntensity = 0.15 + easedMorph * 0.35 + ((hoveredShard === shard) ? 0.25 : 0);
+              shard.userData.frameMesh.material.opacity = 0.7;
+            }
+          }
+
+          // Update HTML label position to follow 3D shard - VISIBLE LONGER
+          if (shardLabelEls[i] && morphProgress > 0.2 && morphProgress < 0.98) {
+            tempVec.copy(shard.position);
+            tempVec.y += 3.5; // Position label above shard
+            tempVec.project(camera);
+
+            const x = (tempVec.x * 0.5 + 0.5) * window.innerWidth;
+            const y = (-tempVec.y * 0.5 + 0.5) * window.innerHeight;
+
+            shardLabelEls[i].style.left = `${x}px`;
+            shardLabelEls[i].style.top = `${y}px`;
+            // Fade in earlier, stay visible much longer
+            const labelOpacity = Math.min(1, (morphProgress - 0.2) * 4) * (1 - Math.max(0, (morphProgress - 0.92) * 12));
+            shardLabelEls[i].style.opacity = labelOpacity.toString();
+            shardLabelEls[i].style.transform = `translate(-50%, -50%) scale(${0.85 + easedMorph * 0.15})`;
+          } else if (shardLabelEls[i]) {
+            shardLabelEls[i].style.opacity = '0';
+          }
+        });
+
+        // Update HTML morph targets visibility
+        // Show between 30-80% morph progress, then hide
+        if (morphTargets.length > 0) {
+          morphTargets.forEach((target, i) => {
+            const showThreshold = 0.25 + i * 0.08;
+            const hideThreshold = 0.85;
+
+            if (morphProgress > showThreshold && morphProgress < hideThreshold) {
+              target.classList.add('arrived');
+            } else {
+              target.classList.remove('arrived');
+            }
+          });
+        }
+
+        // Show/hide morph content
+        if (morphContent) {
+          if (morphProgress > 0.1 && morphProgress < 0.9) {
+            morphContent.classList.add('visible');
+          } else {
+            morphContent.classList.remove('visible');
+          }
+        }
+
+        // Hide scroll hint after starting scroll
+        if (morphScrollHint) {
+          morphScrollHint.style.opacity = Math.max(0, 1 - morphProgress * 3);
+        }
+
+        // SMOOTH CAMERA ZOOM - scroll-based, no snapping
+        // Smooth zoom from start to end position
+        const easedScroll = easeOutCubic(scrollProgress);
+
+        const targetX = cameraStart.x + (cameraEnd.x - cameraStart.x) * easedScroll * 0.5;
+        const targetY = cameraStart.y + (cameraEnd.y - cameraStart.y) * easedScroll * 0.3;
+        const targetZ = cameraStart.z + (cameraEnd.z - cameraStart.z) * easedScroll;
+
+        // Very gentle floating - subtle, not distracting
+        camera.position.x = targetX + Math.sin(t * 0.08) * 0.15;
+        camera.position.y = targetY + Math.cos(t * 0.06) * 0.1;
+        camera.position.z = targetZ;
+        camera.rotation.z = 0; // No tilt
+
+        // Stable FOV
+        camera.fov = baseFov;
+        camera.updateProjectionMatrix();
+
+        // Update cursor for 3D tile hover
+        updateCursor();
+
+        composer.render();
+      }
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      animate();
+    }
+  </script>
 
   <!-- Design System JS -->
   <script src="js/script.js"></script>
   <!-- Page Specific JS -->
   <script src="js/landing.js"></script>
-  <script>
-    // GLOBAL CURSOR GLOW SCRIPT - INLINED FOR RELIABILITY
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      document.documentElement.style.setProperty('--mouse-x', x + 'px');
-      document.documentElement.style.setProperty('--mouse-y', y + 'px');
+
+  <!-- Morph Section Init -->
+  <script type="module">
+    import { initMorphSection } from './js/morph-section.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize immediately but ensure elements exist
+      initMorphSection();
     });
-    console.log("Cursor glow script initialized");
   </script>
 </body>
 

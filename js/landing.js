@@ -24,18 +24,40 @@ function handleVideoVisibility() {
 // Preloader
 window.addEventListener('load', () => {
   setTimeout(() => {
-    document.getElementById('preloader').classList.add('hidden');
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.classList.add('hidden');
     // Trigger initial animations after preloader
     setTimeout(initAnimations, 300);
   }, 2000);
 });
 
 function initAnimations() {
-  // Hero text animation (updated for new structure)
-  gsap.from('.scramble-badge', { opacity: 0, y: 30, duration: 0.6, ease: 'power2.out' });
-  gsap.from('.hero-subtitle', { opacity: 0, y: 30, duration: 0.6, delay: 0.8, ease: 'power2.out' });
-  gsap.from('.hero-ctas', { opacity: 0, y: 30, duration: 0.6, delay: 1, ease: 'power2.out' });
-  gsap.from('.hero-card', { opacity: 0, x: 50, duration: 0.8, delay: 0.5, ease: 'power2.out' });
+  // Hero text animation - Fly-In from LEFT (side entrance)
+  const heroFlyIn = document.querySelector('.hero-fly-in-left');
+  if (heroFlyIn) {
+    // CSS animation handles the main fly-in, GSAP for CTA card
+    gsap.from('.hero-cta-card', { 
+      opacity: 0, 
+      x: 50, 
+      duration: 0.8, 
+      delay: 0.8, 
+      ease: 'power2.out' 
+    });
+  } else {
+    // Fallback for old class
+    gsap.fromTo('.hero-fly-in .hero-badge',
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
+    );
+
+    gsap.fromTo('.hero-fly-in .claim-line',
+      { x: -100, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.2, stagger: 0.12, ease: 'power3.out', delay: 0.2 }
+    );
+  }
+
+  gsap.from('.hero-ctas', { opacity: 0, y: 20, duration: 0.5, delay: 0.8, ease: 'power2.out' });
+  gsap.from('.hero-card', { opacity: 0, x: 30, duration: 0.6, delay: 0.5, ease: 'power2.out' });
 }
 
 // Header scroll effect
@@ -98,21 +120,38 @@ function animateKPIs() {
         const suffix = el.dataset.suffix || '';
         const prefix = el.dataset.prefix || '';
 
-        const duration = 2500;
+        const duration = 2000;
         const startTime = Date.now();
+        const chars = '0123456789!@#$%^&*';
+        let scramblePhase = true;
+
+        // Add counting class for glow effect
+        el.classList.add('counting');
 
         function updateNumber() {
           const elapsed = Date.now() - startTime;
           const progress = Math.min(elapsed / duration, 1);
-          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          const easeProgress = 1 - Math.pow(1 - progress, 4); // Sharper ease
           const currentValue = Math.floor(easeProgress * target);
 
-          el.textContent = prefix + currentValue.toLocaleString('de-DE') + suffix;
+          // Cyber scramble effect for first 30% of animation
+          if (progress < 0.3 && scramblePhase) {
+            const scrambled = String(currentValue).split('').map((char, i) => {
+              return Math.random() > 0.5 ? chars[Math.floor(Math.random() * chars.length)] : char;
+            }).join('');
+            el.textContent = prefix + scrambled + suffix;
+          } else {
+            scramblePhase = false;
+            el.textContent = prefix + currentValue.toLocaleString('de-DE') + suffix;
+          }
 
           if (progress < 1) {
             requestAnimationFrame(updateNumber);
           } else {
             el.textContent = prefix + target.toLocaleString('de-DE') + suffix;
+            el.classList.remove('counting');
+            // Final glow pulse
+            el.style.animation = 'kpiGlowFinal 0.5s ease';
           }
         }
 
@@ -424,7 +463,9 @@ gsap.from('.story-small', {
   }
 });
 
-// Scroll reveal animations
+// DISABLED: Heavy scroll animations - Commented out for performance
+// These were causing choppy scrolling on mobile
+/*
 gsap.utils.toArray('.section-header').forEach(el => {
   gsap.from(el, {
     opacity: 0,
@@ -454,7 +495,6 @@ gsap.utils.toArray('.audience-card, .event-card, .video-item').forEach((el, i) =
   });
 });
 
-// Parallax slider section intro animation
 gsap.from('.mentors-intro-text', {
   opacity: 0,
   x: -50,
@@ -467,7 +507,6 @@ gsap.from('.mentors-intro-text', {
   }
 });
 
-// Location cards stagger
 gsap.from('.location-card', {
   opacity: 0,
   y: 40,
@@ -481,7 +520,6 @@ gsap.from('.location-card', {
   }
 });
 
-// Vision boxes
 gsap.from('.vision-box, .certs-box', {
   opacity: 0,
   y: 40,
@@ -494,6 +532,7 @@ gsap.from('.vision-box, .certs-box', {
     once: true
   }
 });
+*/
 
 // ==========================================
 // CHARACTER APPEAR - Data Waterfall Effect
@@ -527,13 +566,13 @@ function initCharAppear() {
       target.appendChild(lineDiv);
     });
 
-    // Animate immediately for hero (not on scroll)
+    // Animate immediately for hero (faster animation)
     gsap.to(target.querySelectorAll('.char-appear-inner'), {
       y: '0%',
-      duration: 0.8,
-      stagger: 0.03,
+      duration: 0.5,
+      stagger: 0.018,
       ease: 'expo.out',
-      delay: 0.5
+      delay: 0.2
     });
   });
 }
@@ -659,17 +698,20 @@ function initParallaxSlider() {
   // Set initial position
   gsap.set(track, { x: -currentIndex * itemWidth });
 
-  // Create indicators
-  for (let i = 0; i < totalOriginal; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goToSlide(i + totalOriginal));
-    indicatorsContainer.appendChild(dot);
+  // Create indicators (only if container exists)
+  if (indicatorsContainer) {
+    for (let i = 0; i < totalOriginal; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goToSlide(i + totalOriginal));
+      indicatorsContainer.appendChild(dot);
+    }
   }
 
-  const dots = indicatorsContainer.querySelectorAll('.slider-dot');
+  const dots = indicatorsContainer ? indicatorsContainer.querySelectorAll('.slider-dot') : [];
 
   function updateIndicators() {
+    if (!dots.length) return;
     const realIndex = ((currentIndex - totalOriginal) % totalOriginal + totalOriginal) % totalOriginal;
     dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === realIndex);
@@ -868,3 +910,297 @@ document.addEventListener('mousemove', (e) => {
   document.documentElement.style.setProperty('--mouse-x', x + 'px');
   document.documentElement.style.setProperty('--mouse-y', y + 'px');
 });
+
+// ==========================================
+// MORPH TARGET MODAL SYSTEM
+// ==========================================
+const morphModalData = {
+  0: { // Arbeitssuchende (mint)
+    color: 'mint',
+    icon: 'ph-user-circle-gear',
+    title: 'Für Arbeitssuchende',
+    desc: 'Starte deine Karriere in der KI-Branche mit 100% geförderten Weiterbildungen durch die Agentur für Arbeit. Unsere AZAV-zertifizierten Bootcamps machen dich fit für den KI-Arbeitsmarkt.',
+    features: [
+      '100% gefördert durch Bildungsgutschein',
+      'Vollzeit oder Teilzeit möglich',
+      'Praxisnahe Projekte mit echten Unternehmen',
+      'Karriereberatung & Bewerbungstraining',
+      'Anerkannte Zertifikate (Microsoft, Google, AWS)'
+    ],
+    cta: 'Förderung prüfen',
+    ctaLink: '#contact'
+  },
+  1: { // Berufstätige (navy)
+    color: 'navy',
+    icon: 'ph-briefcase',
+    title: 'Für Berufstätige',
+    desc: 'Erweitere deine Skills und bleibe relevant in der digitalen Transformation. Unsere berufsbegleitenden Kurse passen sich deinem Zeitplan an.',
+    features: [
+      'Flexible Abend- und Wochenendkurse',
+      'Online & Präsenz in Köln/Düsseldorf',
+      'Zertifizierte Abschlüsse',
+      'Netzwerk mit KI-Experten',
+      'QCG-Förderung für Angestellte möglich'
+    ],
+    cta: 'Kurse entdecken',
+    ctaLink: '#events'
+  },
+  2: { // Unternehmen (orange)
+    color: 'orange',
+    icon: 'ph-buildings',
+    title: 'Für Unternehmen',
+    desc: 'Transformiere dein Team mit maßgeschneiderten KI-Trainings. Wir entwickeln individuelle Curricula für eure spezifischen Herausforderungen.',
+    features: [
+      'Individuelle Inhouse-Trainings',
+      'Keynotes & Workshops',
+      'Change Management Support',
+      'Talentpool & Recruiting-Zugang',
+      'QCG-Förderung bis 100% möglich'
+    ],
+    cta: 'Beratung anfragen',
+    ctaLink: '#contact'
+  }
+};
+
+// Global function for Three.js to call
+window.openMorphModal = function (index) {
+  const overlay = document.getElementById('morphModalOverlay');
+  const modal = document.getElementById('morphModal');
+  if (!overlay || !modal) return;
+
+  const data = morphModalData[index];
+  if (!data) return;
+
+  // Update modal content
+  modal.setAttribute('data-color', data.color);
+  document.getElementById('morphModalTitle').textContent = data.title;
+  document.querySelector('.morph-modal-header h3 i').className = `ph-fill ${data.icon}`;
+  document.getElementById('morphModalDesc').textContent = data.desc;
+
+  const featuresEl = document.getElementById('morphModalFeatures');
+  featuresEl.innerHTML = data.features.map(f =>
+    `<li><i class="ph-fill ph-check-circle"></i> ${f}</li>`
+  ).join('');
+
+  const ctaEl = document.getElementById('morphModalCta');
+  ctaEl.textContent = data.cta;
+  ctaEl.href = data.ctaLink;
+
+  // Show modal
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+function initMorphTargetModals() {
+  const overlay = document.getElementById('morphModalOverlay');
+  const modal = document.getElementById('morphModal');
+  const closeBtn = document.getElementById('morphModalClose');
+  const closeBtnAlt = document.querySelector('.morph-modal-close-btn');
+  const morphTargets = document.querySelectorAll('.morph-target');
+
+  if (!overlay || !modal) return;
+
+  function openModal(index) {
+    const data = morphModalData[index];
+    if (!data) return;
+
+    // Update modal content
+    modal.setAttribute('data-color', data.color);
+    document.getElementById('morphModalTitle').textContent = data.title;
+    document.querySelector('.morph-modal-header h3 i').className = `ph-fill ${data.icon}`;
+    document.getElementById('morphModalDesc').textContent = data.desc;
+
+    const featuresEl = document.getElementById('morphModalFeatures');
+    featuresEl.innerHTML = data.features.map(f =>
+      `<li><i class="ph-fill ph-check-circle"></i> ${f}</li>`
+    ).join('');
+
+    const ctaEl = document.getElementById('morphModalCta');
+    ctaEl.textContent = data.cta;
+    ctaEl.href = data.ctaLink;
+
+    // Show modal
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Click handlers for morph targets
+  morphTargets.forEach((target, index) => {
+    target.addEventListener('click', () => {
+      // Only open if the target has "arrived" (is visible)
+      if (target.classList.contains('arrived')) {
+        openModal(index);
+      }
+    });
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeModal);
+  if (closeBtnAlt) closeBtnAlt.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Close modal when clicking CTA
+  document.getElementById('morphModalCta').addEventListener('click', () => {
+    closeModal();
+  });
+
+  console.log('Morph Target Modals initialized');
+}
+
+// Initialize morph modals
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMorphTargetModals);
+} else {
+  initMorphTargetModals();
+}
+
+// ==========================================
+// VIDEO MODAL - Full Screen Playback
+// ==========================================
+function initVideoModal() {
+  const overlay = document.getElementById('videoModalOverlay');
+  const iframe = document.getElementById('videoModalIframe');
+  const closeBtn = document.getElementById('videoModalClose');
+  const videoItems = document.querySelectorAll('.video-mosaic-item');
+
+  if (!overlay || !iframe || !closeBtn) return;
+
+  function openVideoModal(videoUrl) {
+    iframe.src = videoUrl + '?autoplay=1';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    // Stop video by clearing src
+    setTimeout(() => {
+      iframe.src = '';
+    }, 300);
+  }
+
+  // Video item click handlers
+  videoItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const videoUrl = item.dataset.videoUrl;
+      if (videoUrl) {
+        openVideoModal(videoUrl);
+      }
+    });
+  });
+
+  // Close handlers
+  closeBtn.addEventListener('click', closeVideoModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeVideoModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closeVideoModal();
+    }
+  });
+
+  console.log('Video Modal initialized');
+}
+
+// Initialize video modal
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initVideoModal);
+} else {
+  initVideoModal();
+}
+
+// ==========================================
+// PARTNER MARQUEE - Draggable with GSAP
+// ==========================================
+function initDraggableMarquee() {
+  const marquee = document.getElementById('partnerMarquee');
+  const track = document.getElementById('marqueeTrack');
+  
+  if (!marquee || !track || typeof Draggable === 'undefined') return;
+
+  // Get track width for infinite loop
+  const items = track.querySelectorAll('.marquee-item-interactive');
+  const itemCount = items.length;
+  
+  // Clone items for seamless loop
+  items.forEach(item => {
+    const clone = item.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  // Stop CSS animation, use GSAP instead
+  track.style.animation = 'none';
+  
+  // Calculate total width
+  const itemWidth = items[0].offsetWidth + 60; // width + gap
+  const totalWidth = itemWidth * itemCount;
+  
+  // Set initial position
+  gsap.set(track, { x: 0 });
+
+  // Auto-scroll animation
+  const autoScroll = gsap.to(track, {
+    x: -totalWidth,
+    duration: 30,
+    ease: 'none',
+    repeat: -1,
+    modifiers: {
+      x: gsap.utils.unitize(x => parseFloat(x) % totalWidth)
+    }
+  });
+
+  // Draggable
+  Draggable.create(track, {
+    type: 'x',
+    trigger: marquee,
+    inertia: true,
+    bounds: { minX: -totalWidth * 2, maxX: totalWidth },
+    onPress: () => {
+      autoScroll.pause();
+    },
+    onDrag: function() {
+      // Wrap position for infinite scroll
+      const x = this.x;
+      if (x > 0) {
+        gsap.set(track, { x: x - totalWidth });
+        this.update();
+      } else if (x < -totalWidth) {
+        gsap.set(track, { x: x + totalWidth });
+        this.update();
+      }
+    },
+    onRelease: () => {
+      // Resume auto-scroll after a delay
+      gsap.delayedCall(2, () => {
+        autoScroll.resume();
+      });
+    }
+  });
+
+  // Pause on hover
+  marquee.addEventListener('mouseenter', () => autoScroll.pause());
+  marquee.addEventListener('mouseleave', () => {
+    gsap.delayedCall(0.5, () => autoScroll.resume());
+  });
+
+  console.log('Draggable Marquee initialized');
+}
+
+// Initialize draggable marquee
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initDraggableMarquee);
+} else {
+  initDraggableMarquee();
+}
