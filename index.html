@@ -48,7 +48,7 @@
   <header class="header" id="header">
     <div class="header-inner">
       <a href="#"><img src="https://res.cloudinary.com/startplatz/image/upload/v1709845467/ai-hub/AI-Hub-Logo.png"
-          alt="STARTPLATZ AI Hub" class="logo"></a>
+          alt="STARTPLATZ AI Hub" class="logo"></a>1234567
       <nav class="nav">
 
         <!-- Mega Menu: Weiterbildungen -->
@@ -918,8 +918,9 @@
     if (!canvas) {
       console.warn('Canvas not found');
     } else {
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
+      // Cap pixel ratio aggressively for mobile performance
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.6;
@@ -933,7 +934,12 @@
 
       const composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
-      composer.addPass(new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 0.65, 0.4, 0.75));
+      // Reduced bloom for better performance
+      const bloomPass = new UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2), // Half resolution
+        0.5, 0.3, 0.8 // Reduced intensity
+      );
+      composer.addPass(bloomPass);
 
       // Nebula - GALAXY with STRUCTURE and DEPTH
       const nebulaMaterial = new THREE.ShaderMaterial({
@@ -1069,7 +1075,7 @@
         [0.48, 0.46, 0.88]    // Medium Purple
       ];
       [0.2, 0.4, 0.6].forEach((speed, layer) => {
-        const count = 500; // More particles
+        const count = 200; // Reduced for better performance
         const positions = new Float32Array(count * 3);
         const sizes = new Float32Array(count);
         const colors = new Float32Array(count * 3);
@@ -1409,52 +1415,91 @@
       // Get team section for early shard disappearance
       const teamSection = document.getElementById('team');
 
+      // Throttled scroll handler for better performance
+      let scrollTicking = false;
       window.addEventListener('scroll', () => {
-        targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)));
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(() => {
+            targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)));
 
-        // Calculate morph progress - MUCH LONGER timing for better interaction
-        if (morphSection) {
-          const rect = morphSection.getBoundingClientRect();
-          const sectionHeight = morphSection.offsetHeight;
-          const viewportHeight = window.innerHeight;
+            // Calculate morph progress
+            if (morphSection) {
+              const rect = morphSection.getBoundingClientRect();
+              const sectionHeight = morphSection.offsetHeight;
+              const viewportHeight = window.innerHeight;
+              const scrollIntoSection = -rect.top + viewportHeight * 0.5;
+              const morphDistance = sectionHeight * 0.75;
+              targetMorphProgress = Math.max(0, Math.min(1, scrollIntoSection / morphDistance));
+              
+              // FORCE RESET when scrolled back to top of section
+              if (rect.top > viewportHeight * 0.8) {
+                targetMorphProgress = 0;
+                morphProgress = 0; // Immediate reset
+              }
+            }
 
-          // Start earlier, take LONGER to complete - more time to click
-          const scrollIntoSection = -rect.top + viewportHeight * 0.5; // Start 50% into viewport
-          const morphDistance = sectionHeight * 0.75; // 75% of section for full morph - MUCH more time
-          targetMorphProgress = Math.max(0, Math.min(1, scrollIntoSection / morphDistance));
-        }
-
-        // Calculate shard EXIT animation - shards FLY PAST the viewer
-        if (teamSection) {
-          const teamRect = teamSection.getBoundingClientRect();
-          const flyStartDistance = window.innerHeight * 1.0; // Start flying when team section is 1 viewport away
-          
-          if (teamRect.top < flyStartDistance) {
-            // exitProgress goes from 0 (just started) to 1 (fully past)
-            const exitProgress = 1 - Math.max(0, Math.min(1, teamRect.top / flyStartDistance));
+            // Calculate shard EXIT animation
+            if (teamSection) {
+              const teamRect = teamSection.getBoundingClientRect();
+              const flyStartDistance = window.innerHeight * 1.0;
+              
+              if (teamRect.top < flyStartDistance) {
+                const exitProgress = 1 - Math.max(0, Math.min(1, teamRect.top / flyStartDistance));
+                window.shardExitProgress = exitProgress;
+                shardLabelsContainer.style.opacity = Math.max(0, 1 - exitProgress * 2);
+                shardLabelsContainer.style.pointerEvents = exitProgress > 0.2 ? 'none' : 'auto';
+              } else {
+                window.shardExitProgress = 0;
+                shardLabelsContainer.style.opacity = '1';
+                shardLabelsContainer.style.pointerEvents = 'auto';
+              }
+            }
             
-            // Store exit progress for use in animation loop
-            window.shardExitProgress = exitProgress;
-            
-            // Fade labels quickly
-            shardLabelsContainer.style.opacity = Math.max(0, 1 - exitProgress * 2);
-            shardLabelsContainer.style.pointerEvents = exitProgress > 0.2 ? 'none' : 'auto';
-          } else {
-            window.shardExitProgress = 0;
-            shardLabelsContainer.style.opacity = '1';
-            shardLabelsContainer.style.pointerEvents = 'auto';
-          }
+            scrollTicking = false;
+          });
         }
       }, { passive: true });
 
       const clock = new THREE.Clock();
       const baseFov = 65;
+      let isPageVisible = true;
+      let animationId = null;
+      let lastFrameTime = 0;
+      const targetFPS = 30; // Cap at 30 FPS for better battery/performance
+      const frameInterval = 1000 / targetFPS;
+
+      // Pause animation when tab is not visible (HUGE performance boost)
+      document.addEventListener('visibilitychange', () => {
+        isPageVisible = !document.hidden;
+        if (isPageVisible && !animationId) {
+          clock.start();
+          lastFrameTime = performance.now();
+          animate();
+        }
+      });
 
       function animate() {
-        requestAnimationFrame(animate);
-        const dt = clock.getDelta(), t = clock.getElapsedTime();
-        scrollProgress += (targetScrollProgress - scrollProgress) * 0.05;
-        morphProgress += (targetMorphProgress - morphProgress) * 0.05; // Slower morph for more time to interact
+        if (!isPageVisible) {
+          animationId = null;
+          return;
+        }
+        animationId = requestAnimationFrame(animate);
+        
+        // FPS limiter - skip frames if too fast (saves battery/GPU)
+        const now = performance.now();
+        const elapsed = now - lastFrameTime;
+        if (elapsed < frameInterval) return;
+        lastFrameTime = now - (elapsed % frameInterval);
+        
+        const dt = Math.min(clock.getDelta(), 0.1); // Cap delta to prevent jumps
+        const t = clock.getElapsedTime();
+        
+        scrollProgress += (targetScrollProgress - scrollProgress) * 0.08;
+        
+        // FASTER reset when scrolling back UP, slower when scrolling down
+        const morphLerpSpeed = targetMorphProgress < morphProgress ? 0.15 : 0.05;
+        morphProgress += (targetMorphProgress - morphProgress) * morphLerpSpeed;
 
         nebulaMaterial.uniforms.uTime.value = t;
         nebulaMaterial.uniforms.uScrollProgress.value = scrollProgress;
@@ -1492,10 +1537,22 @@
         // Temporary vector for screen projection
         const tempVec = new THREE.Vector3();
 
+        // HARD RESET: When morph is near 0, snap shards to start position
+        const isReset = morphProgress < 0.02;
+
         heroShards.forEach((shard, i) => {
           if (!shard.visible) return;
           
           const d = shard.userData;
+          
+          // Hard reset when scrolled back
+          if (isReset) {
+            shard.position.copy(d.startPosition);
+            shard.rotation.set(0, 0, 0);
+            shard.scale.setScalar(d.baseScale);
+            if (shard.material) shard.material.opacity = 1;
+            return;
+          }
 
           // Interpolate position from start to end - SIDE ENTRY with curve
           const curveOffset = Math.sin(easedMorph * Math.PI) * 3; // Arc motion
