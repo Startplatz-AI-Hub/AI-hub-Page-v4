@@ -6037,121 +6037,88 @@ NEWSPAPER GRID (Insights)
     display: none;
 }
 
+/* ==========================================
+   MOBILE DESIGN - PROFESSIONAL & COMPACT
+   ========================================== */
 @media (max-width: 768px) {
-    /* ==========================================
-       MOBILE MASTER RESET - FORCE CENTERED LAYOUT
-       ========================================== */
-    
-    /* Fix any overflow issues */
+    /* Global Mobile Reset */
     body, html {
         overflow-x: hidden !important;
-        width: 100% !important;
-        max-width: 100vw !important;
+        font-size: 15px !important;
     }
     
-    /* Hero section full-width centered */
-    .hero,
-    .hero-bold {
-        width: 100% !important;
-        max-width: 100vw !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        margin: 0 !important;
-        overflow-x: hidden !important;
-    }
-    
-    /* Reset the hero container for mobile - CENTERED */
-    .hero-bold-container {
-        min-height: 100svh !important;
+    /* ==========================================
+       HERO SECTION - Compact & Professional
+       ========================================== */
+    .hero, .hero-bold {
+        min-height: auto !important;
         padding: 0 !important;
-        margin: 0 auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        background: transparent !important;
-        width: 100% !important;
-        max-width: 100% !important;
     }
     
-    /* Hero split layout - single column on mobile */
+    .hero-bold-container,
     .hero-split-layout {
         display: flex !important;
         flex-direction: column !important;
-        padding: 100px 20px 40px !important;
-        gap: 32px !important;
+        padding: 80px 20px 32px !important;
+        gap: 24px !important;
         min-height: auto !important;
-        width: 100% !important;
-        max-width: 100% !important;
         align-items: center !important;
-        text-align: center !important;
-        grid-template-columns: 1fr !important;
     }
     
-    /* Left side with claim - centered */
+    /* Hero Badge - Compact */
+    .hero-badge {
+        font-size: 11px !important;
+        padding: 6px 14px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    /* Headline - Readable, not overwhelming */
     .hero-bold-left {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
         text-align: center !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 16px !important;
-        margin: 0 auto !important;
-        background: transparent !important;
+        padding: 0 !important;
     }
     
-    /* Badge styling */
-    .hero-bold-left .hero-badge {
+    .hero-mega-claim,
+    .hero-mega-claim-xl {
+        font-size: 2rem !important;
+        line-height: 1.1 !important;
         margin-bottom: 16px !important;
     }
     
-    /* Mobile headline sizing */
-    .hero-mega-claim-xl {
-        font-size: 2.5rem !important;
-        line-height: 1.05 !important;
-        letter-spacing: -0.02em !important;
-        text-align: center !important;
-        margin-bottom: 24px !important;
-        align-items: center !important;
-    }
-    
     .hero-mega-claim-xl .claim-line {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
         display: block !important;
-        text-align: center !important;
     }
     
-    /* COMPLETELY HIDE the CTA card column on mobile */
+    .hero-mega-claim-xl .claim-line.highlight {
+        font-size: 2.2rem !important;
+    }
+    
+    /* HIDE Desktop CTA Card */
     .hero-bold-right.hero-cta-right,
-    .hero-cta-right,
-    .hero-split-layout > .hero-bold-right,
     .hero-cta-card {
         display: none !important;
-        visibility: hidden !important;
-        width: 0 !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        position: absolute !important;
-        left: -9999px !important;
-        opacity: 0 !important;
     }
     
-    /* SHOW mobile CTA section */
+    /* Mobile CTA Section - Clean & Trustworthy */
     .hero-mobile-cta {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 20px !important;
-        margin-top: 32px !important;
+        gap: 16px !important;
         width: 100% !important;
-        padding: 0 16px !important;
-        width: 100% !important;
-        padding: 0 !important;
+        max-width: 340px !important;
+        margin: 0 auto !important;
+        padding: 20px !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08) !important;
+        border: 1px solid rgba(99, 102, 241, 0.1) !important;
     }
     
     .mobile-cta-desc {
-        font-size: 1rem !important;
-        color: var(--color-gray-600) !important;
+        font-size: 14px !important;
+        color: var(--color-gray-700) !important;
         text-align: center !important;
         line-height: 1.5 !important;
         margin: 0 !important;
@@ -6160,156 +6127,289 @@ NEWSPAPER GRID (Insights)
     .mobile-cta-buttons {
         display: flex !important;
         flex-direction: column !important;
-        gap: 12px !important;
+        gap: 10px !important;
         width: 100% !important;
-        max-width: 320px !important;
     }
     
     .mobile-cta-buttons .btn {
         width: 100% !important;
-        justify-content: center !important;
-        padding: 16px 24px !important;
-        font-size: 1rem !important;
+        padding: 14px 20px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        border-radius: 10px !important;
     }
     
     .mobile-secondary-link {
+        font-size: 13px !important;
+        color: var(--color-gray-600) !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 8px !important;
-        color: var(--color-primary) !important;
-        font-weight: 500 !important;
-        text-decoration: none !important;
-        font-size: 0.9rem !important;
+        gap: 6px !important;
     }
     
-    /* Partner marquee at bottom */
+    /* Partner Marquee - Compact */
+    .hero-partner-marquee,
     .hero-partner-marquee-interactive {
-        position: relative !important;
-        bottom: auto !important;
-        margin-top: auto !important;
-        padding: 16px 0 !important;
+        padding: 12px 0 !important;
+        margin-top: 20px !important;
     }
     
-    /* Scroll indicator */
+    .marquee-item-interactive img {
+        height: 20px !important;
+        opacity: 0.5 !important;
+    }
+    
+    /* Hide scroll hint on mobile */
+    .hero-scroll-hint,
     .scroll-indicator {
         display: none !important;
     }
     
-    /* HIDE 3D Shards completely on mobile - too heavy */
+    /* ==========================================
+       HIDE 3D / MORPH SECTION ON MOBILE
+       ========================================== */
     #three-canvas,
     .shard-labels-container,
-    .morph-scroll-section {
+    .morph-scroll-section,
+    #morph-stage {
         display: none !important;
     }
     
     /* ==========================================
-       OTHER MOBILE FIXES
+       AUDIENCE CARDS - Stacked & Clean
        ========================================== */
-    
-    /* Prevent horizontal overflow */
-    body, html {
-        overflow-x: hidden !important;
+    .audience-section {
+        padding: 40px 16px !important;
     }
     
-    /* Section padding on mobile */
-    section {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
-    }
-    
-    /* KPI Section - 2 columns on mobile */
-    .stats-strip {
-        grid-template-columns: repeat(2, 1fr) !important;
+    .audience-grid {
+        grid-template-columns: 1fr !important;
         gap: 16px !important;
+    }
+    
+    .audience-card {
+        padding: 0 !important;
+        border-radius: 12px !important;
+    }
+    
+    .audience-card-inner {
+        flex-direction: column !important;
+    }
+    
+    .audience-card-image {
+        height: 140px !important;
+    }
+    
+    .audience-card-content {
+        padding: 16px !important;
+    }
+    
+    .audience-card-content h3 {
+        font-size: 18px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .audience-main {
+        font-size: 13px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .audience-features {
+        font-size: 12px !important;
+        gap: 6px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .audience-cta {
+        font-size: 13px !important;
+        padding: 10px 16px !important;
+    }
+    
+    /* Hide flow lines on mobile */
+    .flow-line {
+        display: none !important;
+    }
+    
+    /* ==========================================
+       TEAM SECTION - Compact
+       ========================================== */
+    .team-fullwidth-section {
         padding: 32px 16px !important;
     }
     
-    /* Vision/Certificates cards */
-    .values-grid {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
+    .team-fullwidth-header {
+        margin-bottom: 16px !important;
     }
     
-    /* Certificates badges - wrap */
-    .cert-cards {
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-    }
-    
-    /* Team section - full width on mobile */
-    .team-fullwidth-section {
-        padding: 40px 16px !important;
+    .team-fullwidth-header h2 {
+        font-size: 1.5rem !important;
     }
     
     .team-fullwidth-image-wrapper {
-        height: auto !important;
-        min-height: 200px !important;
+        height: 200px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
     }
     
     .team-floating-card {
-        position: relative !important;
-        width: 100% !important;
-        max-width: none !important;
-        margin-bottom: 16px !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
+        display: none !important;
     }
     
-    /* Events section */
-    .events-scroll {
-        gap: 16px !important;
-        padding: 0 16px !important;
+    /* ==========================================
+       KPI SECTION - 2x2 Grid
+       ========================================== */
+    .kpi-section {
+        padding: 32px 16px !important;
     }
     
-    .event-card {
-        min-width: 280px !important;
-    }
-    
-    /* Video Wall - single column */
-    .video-wall-grid {
-        grid-template-columns: 1fr !important;
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 16px !important;
     }
     
-    /* Insights section */
-    .insights-section {
-        padding: 40px 16px !important;
+    .kpi-item {
+        padding: 16px !important;
     }
     
-    .insights-grid {
-        grid-template-columns: 1fr !important;
+    .kpi-number {
+        font-size: 1.75rem !important;
     }
     
-    .insights-sidebar {
-        flex-direction: column !important;
+    .kpi-label {
+        font-size: 11px !important;
     }
     
-    /* FAQ section */
-    .faq-section {
-        padding: 40px 16px !important;
+    /* ==========================================
+       EVENTS SECTION - Horizontal Scroll
+       ========================================== */
+    .events-timeline-section {
+        padding: 32px 0 !important;
     }
     
-    /* Newsletter section */
-    .newsletter-section {
-        padding: 40px 16px !important;
+    .events-header {
+        padding: 0 16px 16px !important;
     }
     
-    .newsletter-inner {
-        flex-direction: column !important;
-        gap: 32px !important;
+    .events-header h2 {
+        font-size: 1.5rem !important;
     }
     
-    /* Footer - single column */
+    .timeline-event {
+        min-width: 260px !important;
+        padding: 16px !important;
+    }
+    
+    .timeline-event h3 {
+        font-size: 16px !important;
+    }
+    
+    .timeline-event p {
+        font-size: 13px !important;
+    }
+    
+    /* ==========================================
+       SECTION TITLES - Smaller on Mobile
+       ========================================== */
+    .section-title,
+    .section-title-xl {
+        font-size: 1.5rem !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .section-subtitle {
+        font-size: 14px !important;
+    }
+    
+    .section-badge {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* ==========================================
+       GENERAL MOBILE FIXES
+       ========================================== */
+    section {
+        padding: 32px 16px !important;
+    }
+    
+    .container {
+        padding: 0 !important;
+    }
+    
+    /* Footer */
     .footer-grid {
         grid-template-columns: 1fr !important;
-        gap: 32px !important;
+        gap: 24px !important;
         text-align: center !important;
     }
     
     .footer-links {
         align-items: center !important;
+    }
+    
+    /* Forms */
+    .newsletter-inner {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    /* Disable complex effects */
+    * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Smooth scroll disabled */
+    html {
+        scroll-snap-type: none !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* ==========================================
+       HEADER - Compact on Mobile
+       ========================================== */
+    .header {
+        padding: 10px 0 !important;
+    }
+    
+    .header-inner {
+        padding: 0 16px !important;
+    }
+    
+    .logo {
+        height: 28px !important;
+    }
+    
+    .header.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    /* Hide desktop nav, show hamburger */
+    .nav {
+        display: none !important;
+    }
+    
+    .mobile-menu-toggle {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 10px !important;
+    }
+    
+    /* Mobile overlay - cleaner look */
+    .mobile-nav-overlay {
+        background: white !important;
+    }
+    
+    .mobile-nav-link {
+        font-size: 1.25rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .mobile-nav-links {
+        gap: 20px !important;
     }
 }
 
