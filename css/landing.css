@@ -120,9 +120,11 @@ body {
 }
 
 .header-inner {
-  max-width: 1400px;
+  max-width: 1600px;
+  /* Matched to hero-bold-container */
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 48px;
+  /* Matched to hero padding */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -390,6 +392,38 @@ ul.dropdown-list a:hover {
   font-size: 13px;
 }
 
+/* OFFSET BUTTON - Cool Animation */
+/* OFFSET BUTTON - Cool Animation (Hover Reveal) */
+.btn-offset {
+  position: relative;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  /* User requested no border */
+  box-shadow: 0 0 0 transparent;
+  /* Hidden by default */
+  border-radius: var(--radius-sm);
+  /* Slightly sharper for offset look */
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transform: translate(0, 0);
+}
+
+.btn-offset:hover {
+  transform: translate(-4px, -4px);
+  /* Moves up-left */
+  box-shadow: 4px 4px 0 var(--color-gray-900);
+  /* Shadow appears */
+  background: var(--color-primary-hover);
+}
+
+.btn-offset:active {
+  transform: translate(0, 0);
+  /* Presses back down */
+  box-shadow: 0 0 0 transparent;
+}
+
 /* SCROLL PROGRESS */
 .scroll-progress {
   position: fixed;
@@ -529,12 +563,14 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 11px 20px;
+  /* +10% */
   background: rgba(99, 102, 241, 0.12);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(99, 102, 241, 0.2);
   border-radius: 100px;
-  font-size: 12px;
+  font-size: 13.5px;
+  /* +10% */
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-primary);
@@ -682,6 +718,17 @@ body::before {
 
 .hero-scroll-hint i {
   font-size: 18px;
+}
+
+/* User Requested: Partner Banner 5% larger and 5% higher (Total +10% now) */
+.hero-partner-marquee {
+  position: absolute;
+  bottom: 13%;
+  left: 0;
+  width: 100%;
+  transform: scale(1.1);
+  transform-origin: bottom center;
+  z-index: 10;
 }
 
 @keyframes bounceDown {
@@ -5905,7 +5952,8 @@ NEWSPAPER GRID (Insights)
   position: relative;
   z-index: 30;
   padding-top: 0;
-  margin-top: 0;
+  margin-top: -10vh;
+  /* Moved 10% higher as requested */
   text-align: left;
   max-width: none;
 }
@@ -5922,7 +5970,8 @@ NEWSPAPER GRID (Insights)
 
 /* MUCH Larger Hero Text - Pushed to top left */
 .hero-mega-claim-xl {
-  font-size: clamp(5rem, 11vw, 10rem) !important;
+  font-size: clamp(5.5rem, 12vw, 11rem) !important;
+  /* Increased by 10% */
   line-height: 0.85 !important;
   letter-spacing: -0.04em;
   margin-top: 0;
@@ -6800,7 +6849,8 @@ NEWSPAPER GRID (Insights)
 }
 
 .section-title-xl {
-  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  /* Standardized to match .section-title */
   margin-top: 12px;
 }
 
