@@ -23,7 +23,8 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-gray-900);
-  background: transparent;
+  /* Match Three.js scene background to prevent visible edges */
+  background: #eae8f0;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   width: 100%;
@@ -432,6 +433,8 @@ body::before {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+  /* Background matches nebula edge to prevent visible border */
+  background: #eae8f0;
 }
 
 #canvas-container canvas {

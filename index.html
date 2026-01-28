@@ -1107,7 +1107,8 @@
         fragmentShader: quality.shaderComplexity === 'low' ? nebulaShaderLow : nebulaShaderHigh,
         depthWrite: false
       });
-      const nebula = new THREE.Mesh(new THREE.PlaneGeometry(180, 130), nebulaMaterial);
+      // Larger plane to prevent visible edges at all scroll positions
+      const nebula = new THREE.Mesh(new THREE.PlaneGeometry(300, 220), nebulaMaterial);
       nebula.position.z = -50;
       scene.add(nebula);
 
@@ -1338,6 +1339,7 @@
           floatOffset: Math.random() * Math.PI * 2,
           index: i,
           isHero: true,
+          baseScale: 1.8, // Initial scale for reset
           label: heroShardLabels[i],
           icon: heroShardIcons[i],
           frameMesh: frameMesh
@@ -1616,50 +1618,47 @@
         // Temporary vector for screen projection
         const tempVec = new THREE.Vector3();
 
-        // HARD RESET: When morph is near 0, snap shards to start position
-        const isReset = morphProgress < 0.02;
-
+        // Animation is BIDIRECTIONAL - follows morphProgress both ways
         heroShards.forEach((shard, i) => {
-          if (!shard.visible) return;
-          
           const d = shard.userData;
           
-          // Hard reset when scrolled back
-          if (isReset) {
-            shard.position.copy(d.startPosition);
-            shard.rotation.set(0, 0, 0);
-            shard.scale.setScalar(d.baseScale);
-            if (shard.material) shard.material.opacity = 1;
-            return;
-          }
-
-          // Interpolate position from start to end - SIDE ENTRY with curve
+          // Always ensure shard is visible when in morph zone
+          shard.visible = true;
+          
+          // Interpolate position from start to end - works both directions!
           const curveOffset = Math.sin(easedMorph * Math.PI) * 3; // Arc motion
           shard.position.lerpVectors(d.startPosition, d.endPosition, easedMorph);
           
           // Add curve to the path - shards curve inward
-          if (i === 0) shard.position.x += curveOffset * 0.5; // Left shard curves right then left
-          if (i === 2) shard.position.x -= curveOffset * 0.5; // Right shard curves left then right
-          shard.position.y += curveOffset * 0.3; // All shards arc upward
+          if (i === 0) shard.position.x += curveOffset * 0.5;
+          if (i === 2) shard.position.x -= curveOffset * 0.5;
+          shard.position.y += curveOffset * 0.3;
 
-          // Add floating animation on top - reduced when settled
+          // Add floating animation - more when not settled
           const floatAmount = (1 - easedMorph) * 1.5;
           shard.position.y += Math.sin(t * d.floatSpeed + d.floatOffset) * floatAmount;
 
-          // DRAMATIC ROTATION: Full rotations as they fly in
-          const rotationMultiplier = (1 - easedMorph);
-          const baseRotation = morphProgress * Math.PI * 2; // Full rotation during flight
+          // ROTATION - based on morphProgress, so it also reverses!
+          const baseRotation = easedMorph * Math.PI * 2; // Rotation tied to progress
           
           if (easedMorph < 0.85) {
-            // Spinning rotation during flight - each shard rotates differently
-            shard.rotation.x = baseRotation * (i === 1 ? 1.5 : 1) + d.rotSpeed * t * 2;
-            shard.rotation.y = baseRotation * (i === 0 ? -1 : 1) + d.rotSpeed * t * 1.5;
-            shard.rotation.z = Math.sin(t * 2 + i) * 0.3 * rotationMultiplier;
+            // Spinning rotation during flight - scales with morphProgress
+            shard.rotation.x = baseRotation * (i === 1 ? 1.5 : 1) * (1 - easedMorph);
+            shard.rotation.y = baseRotation * (i === 0 ? -1 : 1) * (1 - easedMorph);
+            shard.rotation.z = Math.sin(t * 2 + i) * 0.3 * (1 - easedMorph);
           } else {
-            // Settle to final rotation facing camera (flat)
-            shard.rotation.x += (0 - shard.rotation.x) * 0.12;
-            shard.rotation.y += (0 - shard.rotation.y) * 0.12;
-            shard.rotation.z += (0 - shard.rotation.z) * 0.12;
+            // Smooth settle to flat rotation
+            shard.rotation.x *= 0.88;
+            shard.rotation.y *= 0.88;
+            shard.rotation.z *= 0.88;
+          }
+          
+          // When scrolled back to start (morphProgress near 0), ensure starting state
+          if (easedMorph < 0.05) {
+            const resetBlend = easedMorph / 0.05; // 0 at start, 1 at 0.05
+            shard.rotation.x *= resetBlend;
+            shard.rotation.y *= resetBlend;
+            shard.rotation.z *= resetBlend;
           }
 
           // Scale: start smaller, grow LARGER as they approach for better visibility
@@ -1675,46 +1674,46 @@
           
           if (exitProgress > 0.01) {
             // FLY OUT: Move shards outward and TOWARD camera (positive Z = closer)
-            const flyOutX = (i === 0 ? -1 : i === 2 ? 1 : 0) * easedExit * 60; // Left goes more left, right goes more right
-            const flyOutY = (i === 1 ? -1 : 1) * easedExit * 30; // Center goes down, sides go up
-            const flyOutZ = easedExit * 80; // All fly TOWARD and PAST the camera
+            const flyOutX = (i === 0 ? -1 : i === 2 ? 1 : 0) * easedExit * 60;
+            const flyOutY = (i === 1 ? -1 : 1) * easedExit * 30;
+            const flyOutZ = easedExit * 80;
             
             shard.position.x += flyOutX;
             shard.position.y += flyOutY;
             shard.position.z += flyOutZ;
             
-            // Add dramatic rotation as they fly past
             shard.rotation.x += easedExit * Math.PI * (i === 1 ? 1.5 : 1);
             shard.rotation.y += easedExit * Math.PI * (i === 0 ? -2 : 2);
             shard.rotation.z += easedExit * Math.PI * 0.5;
             
-            // Scale UP as they get closer (perspective effect)
             const exitScale = 1 + easedExit * 2.5;
             shard.scale.setScalar((scaleStart + (scaleEnd - scaleStart) * easedMorph + hoverBoost) * exitScale);
             
-            // Fade out as they pass by
             shard.material.opacity = Math.max(0, 1 - easedExit * 1.5);
             shard.visible = shard.material.opacity > 0.01;
             
-            // Frame also fades
             if (shard.userData.frameMesh) {
               shard.userData.frameMesh.material.opacity = Math.max(0, 0.7 - easedExit * 1.2);
             }
           } else {
-            // Normal settled state
-            shard.scale.setScalar(scaleStart + (scaleEnd - scaleStart) * easedMorph + hoverBoost);
-            shard.material.opacity = 1;
+            // ALWAYS ensure shards are visible and properly positioned when not exiting
             shard.visible = true;
+            shard.material.opacity = 1;
+            shard.material.transparent = true;
             
-            // Adjust material based on morph progress - enhance mirror effect as it settles
+            // Normal scale based on morph progress
+            shard.scale.setScalar(scaleStart + (scaleEnd - scaleStart) * easedMorph + hoverBoost);
+            
+            // Material properties based on morph progress
             shard.material.emissiveIntensity = 0.05 + easedMorph * 0.1 + ((hoveredShard === shard) ? 0.15 : 0);
-            shard.material.metalness = 0.2 + easedMorph * 0.3; // More reflective when settled
-            shard.material.clearcoat = 0.5 + easedMorph * 0.5; // More glass-like shine
+            shard.material.metalness = 0.2 + easedMorph * 0.3;
+            shard.material.clearcoat = 0.5 + easedMorph * 0.5;
             
-            // Enhance colored frame glow when settled
+            // Frame glow
             if (shard.userData.frameMesh) {
               shard.userData.frameMesh.material.emissiveIntensity = 0.15 + easedMorph * 0.35 + ((hoveredShard === shard) ? 0.25 : 0);
               shard.userData.frameMesh.material.opacity = 0.7;
+              shard.userData.frameMesh.visible = true;
             }
           }
 
