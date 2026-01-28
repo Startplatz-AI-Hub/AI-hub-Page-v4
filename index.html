@@ -907,7 +907,7 @@
   }
   </script>
 
-  <!-- 3D Neural Network Background Engine - PERFORMANCE OPTIMIZED -->
+  <!-- 3D Neural Network Background Engine - MOBILE: CSS FALLBACK -->
   <script type="module">
     import * as THREE from 'three';
     import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -919,23 +919,39 @@
       console.warn('Canvas not found');
     } else {
       // ==========================================
-      // PERFORMANCE CONFIG - Adaptive Quality
+      // DEVICE DETECTION
       // ==========================================
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
       const isLowPower = navigator.hardwareConcurrency <= 4;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
-      // Quality presets - same visuals, different internal resolution
-      const quality = {
-        pixelRatio: isMobile ? Math.min(window.devicePixelRatio, 1.0) : Math.min(window.devicePixelRatio, 1.5),
-        bloomEnabled: !isMobile && !isLowPower,
-        starCount: isMobile ? 100 : 200,
-        shardCount: isMobile ? 25 : 55,
-        targetFPS: isMobile ? 24 : 30, // Smooth enough, saves battery
-        shaderComplexity: isMobile ? 'low' : 'high'
-      };
+      // ==========================================
+      // MOBILE: Disable Three.js completely, use CSS background
+      // ==========================================
+      if (isMobile || prefersReducedMotion) {
+        console.log('📱 Mobile mode: Using CSS background for 60fps performance');
+        canvas.style.display = 'none';
+        document.getElementById('canvas-container').classList.add('mobile-bg');
+        
+        // Hide shard labels on mobile (3D shards won't exist)
+        const existingLabels = document.querySelector('.shard-labels-container');
+        if (existingLabels) existingLabels.style.display = 'none';
+        
+        // Don't initialize Three.js at all - exit early
+      } else {
+      // ==========================================
+      // DESKTOP: Full Three.js experience
+      // ==========================================
+      console.log('🖥️ Desktop mode: Full 3D experience');
       
-      console.log('🎮 Performance mode:', isMobile ? 'Mobile' : 'Desktop', quality);
+      const quality = {
+        pixelRatio: Math.min(window.devicePixelRatio, 1.5),
+        bloomEnabled: !isLowPower,
+        starCount: 200,
+        shardCount: 55,
+        targetFPS: 30,
+        shaderComplexity: 'high'
+      };
 
       const renderer = new THREE.WebGLRenderer({ 
         canvas, 
@@ -1805,6 +1821,7 @@
       });
 
       animate();
+      } // End of desktop-only else block
     }
   </script>
 
