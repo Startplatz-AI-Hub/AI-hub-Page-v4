@@ -6,11 +6,19 @@
     // ========================================
     // STITCH GRID ANIMATION - AI Hub Brand Style
     // Sharp 2px corners, dashed lines, zigzag accents
+    // PERFORMANCE OPTIMIZED - Skips on mobile
     // ========================================
     class MeshGrid {
       constructor(canvasId, options = {}) {
         this.canvas = document.getElementById(canvasId);
         if (!this.canvas) return;
+        
+        // Skip on mobile for performance
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+        if (this.isMobile) {
+          this.canvas.style.display = 'none';
+          return;
+        }
         
         this.ctx = this.canvas.getContext('2d');
         this.points = [];
@@ -18,12 +26,17 @@
         this.mouseY = -1000;
         this.glowRadius = options.glowRadius || 150;
         this.spacing = options.spacing || 40;
-        this.dotSize = options.dotSize || 2; // Now represents square half-size
+        this.dotSize = options.dotSize || 2;
         this.lineColor = options.lineColor || 'rgba(156, 163, 175, 0.25)';
         this.dotColor = options.dotColor || 'rgba(156, 163, 175, 0.4)';
-        this.glowColor = options.glowColor || 'rgba(139, 92, 246, 0.8)'; // Primary purple
-        this.dashPattern = options.dashPattern || [4, 4]; // Stitch pattern
-        this.showZigzag = options.showZigzag !== false; // Zigzag accents
+        this.glowColor = options.glowColor || 'rgba(139, 92, 246, 0.8)';
+        this.dashPattern = options.dashPattern || [4, 4];
+        this.showZigzag = options.showZigzag !== false;
+        this.isVisible = true;
+        this.animationId = null;
+        this.lastFrameTime = 0;
+        this.targetFPS = 24;
+        this.frameInterval = 1000 / this.targetFPS;
         
         this.init();
       }
@@ -32,7 +45,21 @@
         this.resize();
         this.createPoints();
         this.bindEvents();
+        this.setupVisibilityObserver();
         this.animate();
+      }
+      
+      setupVisibilityObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            this.isVisible = entry.isIntersecting;
+            if (this.isVisible && !this.animationId) {
+              this.lastFrameTime = performance.now();
+              this.animate();
+            }
+          });
+        }, { threshold: 0.01 });
+        observer.observe(this.canvas);
       }
       
       resize() {
@@ -68,14 +95,14 @@
           const rect = this.canvas.getBoundingClientRect();
           this.mouseX = e.clientX - rect.left;
           this.mouseY = e.clientY - rect.top;
-        });
+        }, { passive: true });
         
         this.canvas.addEventListener('mouseleave', () => {
           this.mouseX = -1000;
           this.mouseY = -1000;
-        });
+        }, { passive: true });
         
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', () => this.resize(), { passive: true });
       }
       
       // Draw a dashed line (stitch style)
@@ -111,6 +138,20 @@
       }
       
       animate() {
+        // Stop if not visible
+        if (!this.isVisible) {
+          this.animationId = null;
+          return;
+        }
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+        
+        // FPS limiter
+        const now = performance.now();
+        const elapsed = now - this.lastFrameTime;
+        if (elapsed < this.frameInterval) return;
+        this.lastFrameTime = now - (elapsed % this.frameInterval);
+        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         // Draw dashed grid lines
@@ -156,7 +197,7 @@
           }
         }
         
-        // Draw square nodes (2px corners - brand style)
+        // Draw square nodes - simplified for performance
         this.points.forEach(point => {
           const dist = Math.hypot(point.x - this.mouseX, point.y - this.mouseY);
           const size = this.dotSize;
@@ -165,24 +206,19 @@
             const intensity = 1 - (dist / this.glowRadius);
             const glowSize = size + intensity * 2;
             
-            // Glow square with rounded corners (2px)
             this.ctx.fillStyle = this.glowColor;
             this.ctx.beginPath();
             this.roundRect(point.x - glowSize, point.y - glowSize, glowSize * 2, glowSize * 2, 1);
             this.ctx.fill();
             
-            // Zigzag accent on hover
             if (intensity > 0.5) {
               this.drawZigzag(point.x, point.y, 8, this.glowColor, intensity);
             }
           } else {
-            // Regular square node
             this.ctx.fillStyle = this.dotColor;
             this.ctx.fillRect(point.x - size, point.y - size, size * 2, size * 2);
           }
         });
-        
-        requestAnimationFrame(() => this.animate());
       }
       
       // Helper: rounded rectangle (2px corners)
@@ -202,12 +238,19 @@
     // ========================================
     // DYNAMIC STITCH GRID (Animated Moving Points)
     // AI Hub Brand Style - Dashed lines, square nodes, zigzag accents
-    // Used in Hero Section
+    // Used in Hero Section - PERFORMANCE OPTIMIZED
     // ========================================
     class DynamicMeshGrid {
       constructor(canvasId, options = {}) {
         this.canvas = document.getElementById(canvasId);
         if (!this.canvas) return;
+        
+        // Skip on mobile for performance
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+        if (this.isMobile) {
+          this.canvas.style.display = 'none';
+          return;
+        }
         
         this.ctx = this.canvas.getContext('2d');
         this.points = [];
@@ -218,11 +261,16 @@
         this.dotSize = options.dotSize || 3;
         this.lineColor = options.lineColor || 'rgba(156, 163, 175, 0.3)';
         this.dotColor = options.dotColor || 'rgba(156, 163, 175, 0.5)';
-        this.glowColor = options.glowColor || 'rgba(139, 92, 246, 0.8)'; // Primary purple
+        this.glowColor = options.glowColor || 'rgba(139, 92, 246, 0.8)';
         this.maxDrift = options.maxDrift || 25;
-        this.dashPattern = options.dashPattern || [5, 5]; // Stitch pattern
+        this.dashPattern = options.dashPattern || [5, 5];
         this.showZigzag = options.showZigzag !== false;
-        this.zigzagPhase = 0; // Animation phase for zigzags
+        this.zigzagPhase = 0;
+        this.isVisible = true;
+        this.animationId = null;
+        this.lastFrameTime = 0;
+        this.targetFPS = 24;
+        this.frameInterval = 1000 / this.targetFPS;
         
         this.init();
       }
@@ -231,7 +279,21 @@
         this.resize();
         this.createPoints();
         this.bindEvents();
+        this.setupVisibilityObserver();
         this.animate();
+      }
+      
+      setupVisibilityObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            this.isVisible = entry.isIntersecting;
+            if (this.isVisible && !this.animationId) {
+              this.lastFrameTime = performance.now();
+              this.animate();
+            }
+          });
+        }, { threshold: 0.01 });
+        observer.observe(this.canvas);
       }
       
       resize() {
@@ -269,14 +331,14 @@
           const rect = this.canvas.getBoundingClientRect();
           this.mouseX = e.clientX - rect.left;
           this.mouseY = e.clientY - rect.top;
-        });
+        }, { passive: true });
         
         this.canvas.addEventListener('mouseleave', () => {
           this.mouseX = -1000;
           this.mouseY = -1000;
-        });
+        }, { passive: true });
         
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', () => this.resize(), { passive: true });
       }
       
       // Draw dashed line (stitch style)
@@ -322,8 +384,22 @@
       }
       
       animate() {
+        // Stop if not visible
+        if (!this.isVisible) {
+          this.animationId = null;
+          return;
+        }
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+        
+        // FPS limiter
+        const now = performance.now();
+        const elapsed = now - this.lastFrameTime;
+        if (elapsed < this.frameInterval) return;
+        this.lastFrameTime = now - (elapsed % this.frameInterval);
+        
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.zigzagPhase++; // Animate zigzags
+        this.zigzagPhase++;
         
         // Update points - they drift and bounce back
         this.points.forEach(p => {
@@ -348,7 +424,6 @@
             const p2 = this.points[idx + 1];
             const p3 = this.points[(i + 1) * this.rows + j];
             
-            // Horizontal stitch line
             if (p1 && p2) {
               const midX = (p1.x + p2.x) / 2;
               const midY = (p1.y + p2.y) / 2;
@@ -356,17 +431,12 @@
               const glow = Math.max(0, 1 - mouseDist / this.glowRadius);
               
               if (glow > 0) {
-                this.drawStitchLine(
-                  p1.x, p1.y, p2.x, p2.y,
-                  `rgba(139, 92, 246, ${0.3 + glow * 0.5})`,
-                  1 + glow
-                );
+                this.drawStitchLine(p1.x, p1.y, p2.x, p2.y, `rgba(139, 92, 246, ${0.3 + glow * 0.5})`, 1 + glow);
               } else {
                 this.drawStitchLine(p1.x, p1.y, p2.x, p2.y, this.lineColor, 1);
               }
             }
             
-            // Vertical stitch line
             if (p1 && p3) {
               const midX = (p1.x + p3.x) / 2;
               const midY = (p1.y + p3.y) / 2;
@@ -374,11 +444,7 @@
               const glow = Math.max(0, 1 - mouseDist / this.glowRadius);
               
               if (glow > 0) {
-                this.drawStitchLine(
-                  p1.x, p1.y, p3.x, p3.y,
-                  `rgba(139, 92, 246, ${0.3 + glow * 0.5})`,
-                  1 + glow
-                );
+                this.drawStitchLine(p1.x, p1.y, p3.x, p3.y, `rgba(139, 92, 246, ${0.3 + glow * 0.5})`, 1 + glow);
               } else {
                 this.drawStitchLine(p1.x, p1.y, p3.x, p3.y, this.lineColor, 1);
               }
@@ -386,7 +452,7 @@
           }
         }
         
-        // Draw square nodes with zigzag accents
+        // Draw square nodes - simplified
         this.points.forEach(p => {
           const mouseDist = Math.hypot(p.x - this.mouseX, p.y - this.mouseY);
           const glow = Math.max(0, 1 - mouseDist / this.glowRadius);
@@ -394,21 +460,14 @@
           
           if (glow > 0) {
             const glowSize = size + glow * 2;
-            
-            // Glowing square node
             this.ctx.fillStyle = `rgba(139, 92, 246, ${0.5 + glow * 0.5})`;
             this.ctx.fillRect(p.x - glowSize, p.y - glowSize, glowSize * 2, glowSize * 2);
-            
-            // Zigzag accent on strong hover
             this.drawZigzagAccent(p.x, p.y, 10, `rgba(139, 92, 246, ${glow})`, glow);
           } else {
-            // Regular square node (2px style)
             this.ctx.fillStyle = this.dotColor;
             this.ctx.fillRect(p.x - size, p.y - size, size * 2, size * 2);
           }
         });
-        
-        requestAnimationFrame(() => this.animate());
       }
     }
     

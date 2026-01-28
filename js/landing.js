@@ -60,9 +60,11 @@ function initAnimations() {
   gsap.from('.hero-card', { opacity: 0, x: 30, duration: 0.6, delay: 0.5, ease: 'power2.out' });
 }
 
-// Header scroll effect
+// Header scroll effect - OPTIMIZED with throttling and passive listener
 let lastScroll = 0;
-window.addEventListener('scroll', () => {
+let scrollTicking = false;
+
+function handleScroll() {
   const header = document.getElementById('header');
   const currentScroll = window.scrollY;
 
@@ -74,22 +76,37 @@ window.addEventListener('scroll', () => {
 
   lastScroll = currentScroll;
 
-  // Scroll progress
+  // Scroll progress - use transform instead of width for GPU acceleration
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const scrollPercent = Math.min((currentScroll / docHeight) * 100, 100);
-  document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+  const progressBar = document.getElementById('scrollProgress');
+  if (progressBar) {
+    progressBar.style.transform = `scaleX(${scrollPercent / 100})`;
+    progressBar.style.transformOrigin = 'left';
+  }
 
   // Back to top button
   const backToTop = document.getElementById('backToTop');
-  if (currentScroll > 500) {
-    backToTop.classList.add('visible');
-  } else {
-    backToTop.classList.remove('visible');
+  if (backToTop) {
+    if (currentScroll > 500) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
   }
 
   // Handle video visibility
   handleVideoVisibility();
-});
+  
+  scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    requestAnimationFrame(handleScroll);
+    scrollTicking = true;
+  }
+}, { passive: true });
 
 // Back to top click
 document.getElementById('backToTop').addEventListener('click', () => {
@@ -209,16 +226,29 @@ if (document.readyState === 'loading') {
   initMobileMenu();
 }
 
-// Hero Grid Animation (Pulsating Grid)
+// Hero Grid Animation (Pulsating Grid) - PERFORMANCE OPTIMIZED
 class HeroGrid {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
     if (!this.canvas) return;
+    
+    // Skip on mobile for better performance - the Three.js background is enough
+    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    if (this.isMobile) {
+      this.canvas.style.display = 'none';
+      return;
+    }
+    
     this.ctx = this.canvas.getContext('2d');
     this.points = [];
     this.mouseX = -1000;
     this.mouseY = -1000;
     this.time = 0;
+    this.isVisible = true;
+    this.animationId = null;
+    this.lastFrameTime = 0;
+    this.targetFPS = 24; // Lower FPS for secondary canvas
+    this.frameInterval = 1000 / this.targetFPS;
     this.init();
   }
 
@@ -226,11 +256,29 @@ class HeroGrid {
     this.resize();
     this.createPoints();
     this.bindEvents();
+    this.setupVisibilityObserver();
     this.animate();
     // Trigger pulse every 8 seconds
-    this.pulseInterval = setInterval(() => this.triggerPulse(), 8000);
+    this.pulseInterval = setInterval(() => {
+      if (this.isVisible) this.triggerPulse();
+    }, 8000);
     // Initial pulse after 2 seconds
-    setTimeout(() => this.triggerPulse(), 2000);
+    setTimeout(() => {
+      if (this.isVisible) this.triggerPulse();
+    }, 2000);
+  }
+  
+  setupVisibilityObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        this.isVisible = entry.isIntersecting;
+        if (this.isVisible && !this.animationId) {
+          this.lastFrameTime = performance.now();
+          this.animate();
+        }
+      });
+    }, { threshold: 0.01 });
+    observer.observe(this.canvas);
   }
 
   resize() {
@@ -241,7 +289,7 @@ class HeroGrid {
 
   createPoints() {
     this.points = [];
-    const spacing = 40;
+    const spacing = 50; // Slightly larger spacing for fewer points
     const cols = Math.ceil(this.canvas.width / spacing) + 1;
     const rows = Math.ceil(this.canvas.height / spacing) + 1;
 
@@ -267,8 +315,8 @@ class HeroGrid {
       const rect = this.canvas.getBoundingClientRect();
       this.mouseX = e.clientX - rect.left;
       this.mouseY = e.clientY - rect.top;
-    });
-    window.addEventListener('resize', () => this.resize());
+    }, { passive: true });
+    window.addEventListener('resize', () => this.resize(), { passive: true });
   }
 
   triggerPulse() {
@@ -285,10 +333,23 @@ class HeroGrid {
   }
 
   animate() {
+    if (!this.isVisible) {
+      this.animationId = null;
+      return;
+    }
+    
+    this.animationId = requestAnimationFrame(() => this.animate());
+    
+    // FPS limiter
+    const now = performance.now();
+    const elapsed = now - this.lastFrameTime;
+    if (elapsed < this.frameInterval) return;
+    this.lastFrameTime = now - (elapsed % this.frameInterval);
+    
     this.time += 0.01;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Draw grid lines
+    // Draw grid lines - OPTIMIZED: disable shadow on low intensity
     for (let i = 0; i < this.points.length; i++) {
       const point = this.points[i];
       point.pulse *= 0.96;
@@ -296,13 +357,9 @@ class HeroGrid {
       const nextPoint = this.points[i + 1];
       const belowPoint = this.points[i + this.cols];
 
-      // Mouse distance for glow effect
       const mouseDist = Math.hypot(point.x - this.mouseX, point.y - this.mouseY);
       const mouseGlow = Math.max(0, 1 - mouseDist / 180);
-
-      // Ambient wave
       const wave = Math.sin(this.time * 2 + point.row * 0.3 + point.col * 0.3) * 0.15 + 0.15;
-
       const intensity = Math.max(mouseGlow, point.pulse, wave);
 
       // Draw horizontal line
@@ -311,19 +368,10 @@ class HeroGrid {
         this.ctx.setLineDash([3, 6]);
         this.ctx.moveTo(point.x, point.y);
         this.ctx.lineTo(nextPoint.x, nextPoint.y);
-
-        if (intensity > 0.3) {
-          this.ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 + intensity * 0.6})`;
-          this.ctx.shadowBlur = intensity * 8;
-          this.ctx.shadowColor = 'rgba(99, 102, 241, 0.5)';
-        } else {
-          this.ctx.strokeStyle = `rgba(99, 102, 241, ${0.08 + intensity * 0.15})`;
-          this.ctx.shadowBlur = 0;
-        }
-        this.ctx.lineWidth = 1 + intensity * 0.5;
+        this.ctx.strokeStyle = `rgba(99, 102, 241, ${0.08 + intensity * 0.4})`;
+        this.ctx.lineWidth = 1;
         this.ctx.stroke();
         this.ctx.setLineDash([]);
-        this.ctx.shadowBlur = 0;
       }
 
       // Draw vertical line
@@ -332,42 +380,23 @@ class HeroGrid {
         this.ctx.setLineDash([3, 6]);
         this.ctx.moveTo(point.x, point.y);
         this.ctx.lineTo(belowPoint.x, belowPoint.y);
-
-        if (intensity > 0.3) {
-          this.ctx.strokeStyle = `rgba(99, 102, 241, ${0.2 + intensity * 0.6})`;
-          this.ctx.shadowBlur = intensity * 8;
-          this.ctx.shadowColor = 'rgba(99, 102, 241, 0.5)';
-        } else {
-          this.ctx.strokeStyle = `rgba(99, 102, 241, ${0.08 + intensity * 0.15})`;
-          this.ctx.shadowBlur = 0;
-        }
-        this.ctx.lineWidth = 1 + intensity * 0.5;
+        this.ctx.strokeStyle = `rgba(99, 102, 241, ${0.08 + intensity * 0.4})`;
+        this.ctx.lineWidth = 1;
         this.ctx.stroke();
         this.ctx.setLineDash([]);
-        this.ctx.shadowBlur = 0;
       }
 
-      // Draw node point
-      const size = 2 + intensity * 3;
-      if (intensity > 0.3) {
-        this.ctx.fillStyle = `rgba(99, 102, 241, ${0.6 + intensity * 0.4})`;
-        this.ctx.shadowBlur = intensity * 10;
-        this.ctx.shadowColor = 'rgba(99, 102, 241, 0.8)';
-      } else {
-        this.ctx.fillStyle = `rgba(99, 102, 241, ${0.15 + intensity * 0.3})`;
-        this.ctx.shadowBlur = 0;
-      }
+      // Draw node point - simplified, no shadow for performance
+      const size = 2 + intensity * 2;
+      this.ctx.fillStyle = `rgba(99, 102, 241, ${0.15 + intensity * 0.5})`;
       this.ctx.beginPath();
       this.ctx.arc(point.x, point.y, size / 2, 0, Math.PI * 2);
       this.ctx.fill();
-      this.ctx.shadowBlur = 0;
     }
-
-    requestAnimationFrame(() => this.animate());
   }
 }
 
-// Initialize hero grid
+// Initialize hero grid only on desktop
 new HeroGrid('heroGridCanvas');
 
 // ==========================================
@@ -903,13 +932,21 @@ if (typeof Draggable !== 'undefined') {
 }
 
 
-// Global Cursor Glow
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX;
-  const y = e.clientY;
-  document.documentElement.style.setProperty('--mouse-x', x + 'px');
-  document.documentElement.style.setProperty('--mouse-y', y + 'px');
-});
+// Global Cursor Glow - OPTIMIZED with throttle (only on desktop)
+const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+if (!isMobileDevice) {
+  let cursorThrottle = false;
+  document.addEventListener('mousemove', (e) => {
+    if (cursorThrottle) return;
+    cursorThrottle = true;
+    requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+      cursorThrottle = false;
+    });
+  }, { passive: true });
+}
 
 // ==========================================
 // MORPH TARGET MODAL SYSTEM

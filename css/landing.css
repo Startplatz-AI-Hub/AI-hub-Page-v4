@@ -402,9 +402,11 @@ ul.dropdown-list a:hover {
 
 .scroll-progress-bar {
   height: 100%;
-  width: 0%;
+  width: 100%; /* Full width, controlled by scaleX transform */
   background: var(--gradient-primary);
-  transition: width 0.1s linear;
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform; /* GPU acceleration hint */
 }
 
 /* REMOVED DISTRACTING GLOBAL GRID OVERLAY - Using hero grid only */
@@ -6782,4 +6784,98 @@ html {
     padding-bottom: 24px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     margin-bottom: 32px;
+}
+
+
+/* ==========================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   - Disables expensive effects on mobile
+   - Same visual appearance, much better FPS
+   ========================================== */
+@media (max-width: 768px) {
+    /* Disable backdrop-filter on mobile - huge performance gain */
+    .header,
+    .hero-cta-card,
+    .audience-card,
+    .faq-item,
+    .newsletter-premium-form-wrap,
+    .morph-modal,
+    .video-modal,
+    .mobile-nav-overlay,
+    .dropdown-menu,
+    .mega-menu,
+    .cert-badge,
+    .hero-badge,
+    .section-badge,
+    .timeline-event,
+    [class*="frost"],
+    [class*="glass"] {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+    
+    /* Replace with solid backgrounds where needed */
+    .header.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+    }
+    
+    .hero-cta-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    .mobile-nav-overlay {
+        background: rgba(10, 10, 20, 0.98) !important;
+    }
+    
+    .morph-modal {
+        background: rgba(255, 255, 255, 0.98) !important;
+    }
+    
+    /* Reduce box-shadow complexity on mobile */
+    .audience-card,
+    .timeline-event,
+    .news-main-feature,
+    .video-mosaic-item {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Disable complex animations on mobile */
+    .flow-line {
+        display: none !important;
+    }
+    
+    /* Simplify hover effects - reduce repaints */
+    * {
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Disable scroll snap on mobile for smoother scrolling */
+    html {
+        scroll-snap-type: none !important;
+    }
+    
+    #morph-stage,
+    #hero,
+    #team {
+        scroll-snap-align: none !important;
+        scroll-snap-stop: normal !important;
+    }
+}
+
+/* Reduced motion preference - respect user settings */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .hero-partner-marquee,
+    .velocity-marquee,
+    .marquee-track-draggable {
+        animation: none !important;
+    }
 }
