@@ -6005,13 +6005,65 @@ NEWSPAPER GRID (Insights)
 @media (max-width: 768px) {
     .hero-split-layout {
         padding: 70px 16px 30px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        grid-template-columns: 1fr !important;
     }
     
     .hero-partner-marquee-interactive {
         bottom: 40px;
     }
+    
+    /* HIDE 3D Shards completely on mobile - too heavy */
+    #three-canvas,
+    .shard-labels-container,
+    .morph-scroll-section {
+        display: none !important;
+    }
+    
+    /* HIDE the floating CTA column on mobile - it breaks the layout */
+    .hero-bold-right.hero-cta-right,
+    .hero-cta-right,
+    .hero-split-layout > .hero-bold-right {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+    
+    /* Show the CTA elements inline below the hero text instead */
+    .hero-bold-left {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    /* Mobile claim sizing */
+    .hero-mega-claim-xl {
+        font-size: 2.8rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .hero-mega-claim-xl .claim-line {
+        font-size: 2.8rem !important;
+    }
 }
 
+/* ==========================================
+   HERO BACKGROUND FALLBACK - Instant WOW
+   ========================================== */
+.hero-bold-container {
+    /* Beautiful gradient as fallback while Three.js loads */
+    background: 
+        radial-gradient(ellipse 80% 60% at 50% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 60%, rgba(168, 85, 247, 0.1) 0%, transparent 40%),
+        linear-gradient(180deg, #f8f7ff 0%, #ffffff 50%, #faf9ff 100%);
+}
 
 /* ==========================================
    3D SHARD LABELS - Floating Labels

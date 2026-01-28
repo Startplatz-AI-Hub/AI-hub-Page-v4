@@ -1119,11 +1119,14 @@
       const heroShardGeo = new THREE.ExtrudeGeometry(shardShape, { depth: 0.25, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05, bevelSegments: 3 });
       heroShardGeo.center();
 
-      // Persona images for each shard
-      const personaImages = [
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&q=80', // Arbeitssuchend
-        'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&q=80', // Berufstätig
-        'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=200&h=200&fit=crop&q=80'  // Unternehmen
+      // Abstract SVG icons for each shard - NO stock photos!
+      const shardIcons = [
+        // Arbeitssuchend - Rocket icon (new beginnings)
+        `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#34d399"/><stop offset="100%" style="stop-color:#10b981"/></linearGradient></defs><rect width="200" height="200" fill="url(#g1)"/><path d="M100 40c-15 0-30 20-35 50-3 15-3 30 0 40 5 15 20 25 35 30 15-5 30-15 35-30 3-10 3-25 0-40-5-30-20-50-35-50zm0 20c5 0 10 5 10 10s-5 10-10 10-10-5-10-10 5-10 10-10zm-20 100l20-30 20 30h-40z" fill="rgba(255,255,255,0.9)"/></svg>')}`,
+        // Berufstätig - Chart/Growth icon (career growth)
+        `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6366f1"/><stop offset="100%" style="stop-color:#4f46e5"/></linearGradient></defs><rect width="200" height="200" fill="url(#g2)"/><rect x="40" y="120" width="25" height="40" rx="4" fill="rgba(255,255,255,0.7)"/><rect x="75" y="90" width="25" height="70" rx="4" fill="rgba(255,255,255,0.8)"/><rect x="110" y="60" width="25" height="100" rx="4" fill="rgba(255,255,255,0.9)"/><path d="M50 110l35-30 35-25 30-15" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="145" cy="50" r="8" fill="white"/></svg>')}`,
+        // Unternehmen - Building/Network icon (business)
+        `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f97316"/><stop offset="100%" style="stop-color:#ea580c"/></linearGradient></defs><rect width="200" height="200" fill="url(#g3)"/><rect x="60" y="50" width="80" height="110" rx="6" fill="rgba(255,255,255,0.9)"/><rect x="75" y="65" width="20" height="15" rx="2" fill="rgba(249,115,22,0.6)"/><rect x="105" y="65" width="20" height="15" rx="2" fill="rgba(249,115,22,0.6)"/><rect x="75" y="90" width="20" height="15" rx="2" fill="rgba(249,115,22,0.6)"/><rect x="105" y="90" width="20" height="15" rx="2" fill="rgba(249,115,22,0.6)"/><rect x="85" y="120" width="30" height="40" rx="3" fill="rgba(249,115,22,0.8)"/></svg>')}`
       ];
 
       // SIDE ENTRY - Shards fly in from left and right sides with rotation
@@ -1142,8 +1145,8 @@
       const textureLoader = new THREE.TextureLoader();
 
       heroStartPositions.forEach((startPos, i) => {
-        // Load persona texture for the MAIN hexagon face
-        const personaTexture = textureLoader.load(personaImages[i]);
+        // Load abstract icon texture for the MAIN hexagon face
+        const personaTexture = textureLoader.load(shardIcons[i]);
         personaTexture.colorSpace = THREE.SRGBColorSpace;
         
         // Create hexagon with PERSONA IMAGE as main texture - mirror effect
