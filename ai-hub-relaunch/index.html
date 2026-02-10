@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="STARTPLATZ AI Hub – Dein Weg in die KI-Zukunft. Geförderte Weiterbildungen, praxisnahe Bootcamps und Zertifizierungen in Köln & Düsseldorf." />
+    <meta name="theme-color" content="#7C3AED" />
+    <meta property="og:title" content="STARTPLATZ AI Hub | KI-Weiterbildung & Bootcamps" />
+    <meta property="og:description" content="Geförderte Bootcamps, praxisnahe Kurse und eine starke Community für KI-Kompetenz in NRW." />
+    <meta property="og:type" content="website" />
+    <title>STARTPLATZ AI Hub | KI-Weiterbildung & Bootcamps</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Preload hero images for instant display -->
+    <link rel="preload" as="image" href="https://res.cloudinary.com/startplatz/image/upload/f_auto,q_auto,w_800/v1767662279/ai-hub/website/website_stock_images/EVENT-01.png" />
+    <link rel="preload" as="image" href="https://res.cloudinary.com/startplatz/image/upload/f_auto,q_auto,w_800/v1767662282/ai-hub/website/website_stock_images/EVENT-03.png" />
+    <link rel="preload" as="image" href="https://res.cloudinary.com/startplatz/image/upload/f_auto,q_auto,w_800/v1767662288/ai-hub/website/website_stock_images/EVENT-04.png" />
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #FFFFFF;
+        color: #111827;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+      /* HTML preloader matches React overlay: white background */
+      .preloader {
+        position: fixed; inset: 0; z-index: 10000;
+        background: #FFFFFF;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .preloader-ring {
+        width: 48px; height: 48px;
+        border: 3px solid rgba(124, 58, 237, 0.15);
+        border-top-color: #7C3AED;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div class="preloader" id="preloader">
+      <div class="preloader-ring"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
